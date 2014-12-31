@@ -14,6 +14,7 @@ run
 pho_n
 pho_p4
 pho_r9
+pho_r9_cleaned
 pho_calopos
 
 ## on the fly regression corrections calculation
@@ -47,8 +48,15 @@ pho_phicry
 bc_sieie
 pho_sipip
 pho_sieip
-#pho_sieie
-#pho_e5x5
+pho_sieip_cleaned
+pho_sieie
+pho_sieie_cleaned
+pho_e5x5
+pho_e5x5_cleaned
+pho_e2x2
+pho_e2x2_cleaned
+pho_seed_time
+pho_seed_outoftimechi2
 
 ## minimal allconversions info
 conv_n
@@ -70,15 +78,15 @@ vtx_std_n
 vtx_std_tkind
 vtx_std_ntks
 vtx_std_tkweight
-tk_n
-tk_p4
-tk_pterr
-tk_quality
+#tk_n
+#tk_p4
+#tk_pterr
+#tk_quality
 
 ## track isolation
-tk_n
-tk_p4
-tk_vtx_pos
+#tk_n
+#tk_p4
+#tk_vtx_pos
 
 ## DeltaR to track
 el_std_n
@@ -89,8 +97,8 @@ el_std_dphiin
 el_std_tkind
 
 ## Muon Variables
-mu_glo_n
-mu_glo_tkind
+#mu_glo_n
+#mu_glo_tkind
 
 ## MC truth
 gp_n:1
@@ -100,40 +108,47 @@ gp_status:1
 gp_pdgid:1
 gp_mother:1
 
-genjet_algo1_n:1
-genjet_algo1_p4:1
-genjet_algo2_n:1
-genjet_algo2_p4:1
-genjet_algo3_n:1
-genjet_algo3_p4:1
+#genjet_algo1_n:1
+#genjet_algo1_p4:1
+#genjet_algo2_n:1
+#genjet_algo2_p4:1
+#genjet_algo3_n:1
+#genjet_algo3_p4:1
 
-jet_algoPF1_beta_ext
-jet_algoPF1_betaStar_ext
-jet_algoPF1_betaStarClassic_ext
+#jet_algoPF1_beta_ext
+#jet_algoPF1_betaStar_ext
+#jet_algoPF1_betaStarClassic_ext
 vtx_std_tkind
 vtx_std_xyz
-jet_algoPF1_tkind
+#jet_algoPF1_tkind
 #jet_algoPF2_tkind
-jet_algoPF3_tkind
-jet_algoPF1_ntk
+#jet_algoPF3_tkind
+#jet_algoPF1_ntk
 #jet_algoPF2_ntk
-jet_algoPF3_ntk
-tk_p4
-tk_vtx_pos
+#jet_algoPF3_ntk
+#tk_p4
+#tk_vtx_pos
 
 # B-tagging variables
-jet_algoPF1_csvBtag
-jet_algoPF1_csvMvaBtag
-jet_algoPF1_jetProbBtag
-jet_algoPF1_tcheBtag
+#jet_algoPF1_csvBtag
+#jet_algoPF1_csvMvaBtag
+#jet_algoPF1_jetProbBtag
+#jet_algoPF1_tcheBtag
 
 # QG tagging variables
-jet_algoPF1_ptD_QC
-jet_algoPF1_nCharged_QC
-jet_algoPF1_axis2_QC
-jet_algoPF1_nNeutrals_ptCut
+#jet_algoPF1_ptD_QC
+#jet_algoPF1_nCharged_QC
+#jet_algoPF1_axis2_QC
+#jet_algoPF1_nNeutrals_ptCut
 
 pfcand_n
 pfcand_pdgid
+pfcand_time
 pfcand_p4
 pfcand_posvtx
+#####pfcand_poscalo
+
+ecalhit_n
+ecalhit_time
+ecalhit_detid
+ecalhit_p4

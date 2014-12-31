@@ -2261,18 +2261,18 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
                 continue;
             }
             oneKinSelected = true;
-
-            if( ! l.PhotonMITPreSelection(ipho1, vtxs[0], &corrected_pho_energy[0] )
-                || ! l.PhotonMITPreSelection(ipho2, vtxs[0], &corrected_pho_energy[0] ) ) {
-                vtxAna_.discardLastDipho();
-                continue;
-            }
-
-            l.vtx_std_ranked_list->push_back(vtxs);
-            if( tmvaPerEvtReader_ ) {
-                float vtxEvtMva = vtxAna_.perEventMva( *tmvaPerEvtReader_, tmvaPerEvtMethod, l.vtx_std_ranked_list->back() );
-                l.vtx_std_evt_mva->push_back(vtxEvtMva);
-            }
+            
+            //        if( ! l.PhotonMITPreSelection(ipho1, vtxs[0], &corrected_pho_energy[0] )
+            //  || ! l.PhotonMITPreSelection(ipho2, vtxs[0], &corrected_pho_energy[0] ) ) {
+            //   vtxAna_.discardLastDipho();
+            //   continue;
+            // }
+        
+        l.vtx_std_ranked_list->push_back(vtxs);
+        if( tmvaPerEvtReader_ ) {
+            float vtxEvtMva = vtxAna_.perEventMva( *tmvaPerEvtReader_, tmvaPerEvtMethod, l.vtx_std_ranked_list->back() );
+            l.vtx_std_evt_mva->push_back(vtxEvtMva);
+        }
             if( l.vtx_std_ranked_list->back().size() != 0 && ! useDefaultVertex ) {
                 l.dipho_vtx_std_sel->push_back( (l.vtx_std_ranked_list)->back()[0] );
             } else {

@@ -5,4 +5,6 @@ htyp=0  plot=0  ncat=1  xbins=40    ybins=0  xmin=0.0  xmax=4.0    ymin=0  ymax=
 htyp=0  plot=0  ncat=1  xbins=40    ybins=0  xmin=0.0  xmax=4.0    ymin=0  ymax=0  name=deno_hist_absEta  xaxis=|Eta|  yaxis=Nevents
 htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=num_hist_Pt  xaxis=Pt  yaxis=Nevents
 htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=deno_hist_Pt  xaxis=Pt  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=my_nvtx_rv  xaxis=nvtx_right  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=my_nvtx  xaxis=nvtx_total  yaxis=Nevents
 

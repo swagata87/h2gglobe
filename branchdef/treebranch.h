@@ -4,8 +4,7 @@ void Branch_pfcand_n(TTree * tree) { tree->Branch("pfcand_n",&pfcand_n, "pfcand_
 void Branch_pfcand_p4(TTree * tree) { tree->Branch("pfcand_p4", "TClonesArray",&pfcand_p4, 32000, 0); }; 
 void Branch_pfcand_posvtx(TTree * tree) { tree->Branch("pfcand_posvtx", "TClonesArray",&pfcand_posvtx, 32000, 0); }; 
 void Branch_pfcand_pdgid(TTree * tree) { tree->Branch("pfcand_pdgid",&pfcand_pdgid, "pfcand_pdgid[pfcand_n]/I");  };
-
-
+void Branch_pfcand_time(TTree * tree) { tree->Branch("pfcand_time",&pfcand_time, "pfcand_time[pfcand_n]/F"); };
 void Branch_event(TTree * tree) { tree->Branch("event",&event, "event/I");  }; 
 void Branch_run(TTree * tree) { tree->Branch("run",&run, "run/I");  }; 
 void Branch_process_id(TTree * tree) { tree->Branch("process_id",&process_id, "process_id/I");  }; 
@@ -442,6 +441,13 @@ void Branch_pho_e1x5(TTree * tree) { tree->Branch("pho_e1x5",&pho_e1x5,"pho_e1x5
 void Branch_pho_e2x5(TTree * tree) { tree->Branch("pho_e2x5",&pho_e2x5,"pho_e2x5[pho_n]/F");  }; 
 void Branch_pho_e3x3(TTree * tree) { tree->Branch("pho_e3x3",&pho_e3x3,"pho_e3x3[pho_n]/F");  }; 
 void Branch_pho_e5x5(TTree * tree) { tree->Branch("pho_e5x5",&pho_e5x5,"pho_e5x5[pho_n]/F");  }; 
+
+void Branch_pho_r9_cleaned(TTree * tree) { tree->Branch("pho_r9_cleaned",&pho_r9_cleaned,"pho_r9_cleaned[pho_n]/F"); };
+void Branch_pho_sieip_cleaned(TTree * tree) { tree->Branch("pho_sieip_cleaned",&pho_sieip_cleaned,"pho_sieip_cleaned[pho_n]/F"); };
+void Branch_pho_sieie_cleaned(TTree * tree) { tree->Branch("pho_sieie_cleaned",&pho_sieie_cleaned,"pho_sieie_cleaned[pho_n]/F"); };
+void Branch_pho_e5x5_cleaned(TTree * tree) { tree->Branch("pho_e5x5_cleaned",&pho_e5x5_cleaned,"pho_e5x5_cleaned[pho_n]/F"); };
+void Branch_pho_e2x2_cleaned(TTree * tree) { tree->Branch("pho_e2x2_cleaned",&pho_e2x2_cleaned,"pho_e2x2_cleaned[pho_n]/F"); };
+
 void Branch_pho_emaxxtal(TTree * tree) { tree->Branch("pho_emaxxtal",&pho_emaxxtal,"pho_emaxxtal[pho_n]/F");  }; 
 void Branch_pho_hoe(TTree * tree) { tree->Branch("pho_hoe",&pho_hoe,"pho_hoe[pho_n]/F");  }; 
 void Branch_pho_h1oe(TTree * tree) { tree->Branch("pho_h1oe",&pho_h1oe,"pho_h1oe[pho_n]/F");  }; 

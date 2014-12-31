@@ -3,12 +3,11 @@
 #include "TList.h"
 #include "TKey.h"
 #include "TString.h"
-
 #include<iostream>
 #include<vector>
 #include<string>
 
-int merger(char* filename = "all.root", char* dirname = "",  char* outfilename = "opttree.root", char* treename = "opttree") {
+int merger(char* filename = "all.root", char* dirname = "",  char* outfilename = "opttree_8TeV_ReproduceLegacy.root", char* treename = "opttree") {
 
   int nTrees = 0;
   TTree *tree[100];

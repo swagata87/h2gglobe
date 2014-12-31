@@ -39,17 +39,31 @@ public:
   virtual bool SkimEvents(LoopAll&, int);
   virtual bool SelectEvents(LoopAll&, int);
   virtual bool Analysis(LoopAll&, Int_t);
-  void FillFlatTree(LoopAll&, Int_t, Int_t);
-  int MatchedWithReco(TLorentzVector&, LoopAll&) ;
+  void FillFlatTree(LoopAll&, Int_t, Float_t, Int_t, Int_t, Float_t);
+  bool PhotonPreSelection(LoopAll&, Int_t, Int_t);
+
+  float pfEcalIso(LoopAll& l, int phoindex, float dRmax, float dRVetoBarrel, float dRVetoEndcap, float etaStripBarrel, float etaStripEndcap, float thrBarrel, float thrEndcaps, int pfToUse=4, float time_cut=15);
+
+  bool makeOptTree;
+  std::string photonLevel2012IDMVA_EB;
+  std::string photonLevel2012IDMVA_EE;
+  std::string photonLevel2013IDMVA_EB;
+  std::string photonLevel2013IDMVA_EE;
+  std::string photonLevel2013_7TeV_IDMVA_EE;
+  std::string photonLevel2013_7TeV_IDMVA_EB;
+
+  std::string photonLevelMvaUCSD  ;
+  std::string eventLevelMvaUCSD   ;
+  std::string eventLevelMvaMIT    ;
+
+  std::string bdtTrainingType;
+  std::string bdtTrainingPhilosophy;
+
+  bool run7TeV4Xanalysis;
 
   
 protected:
   std::string name_;
-  
-  /// Counters for photon reconstruction efficiency ///
-  int deno;
-  int num ;
-  
 };
 
 #endif

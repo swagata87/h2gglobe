@@ -3,6 +3,7 @@ Int_t pfcand_n;
 Int_t pfcand_pdgid[MAX_PFCANDS];
 TClonesArray* pfcand_p4;
 TClonesArray* pfcand_posvtx;
+Float_t pfcand_time[MAX_PFCANDS];
 Int_t lumis;
 Int_t bx;
 Int_t event;
@@ -466,6 +467,13 @@ Float_t pho_e1x5[MAX_PHOTONS];
 Float_t pho_e2x5[MAX_PHOTONS];
 Float_t pho_e3x3[MAX_PHOTONS];
 Float_t pho_e5x5[MAX_PHOTONS];
+
+Float_t pho_r9_cleaned[MAX_PHOTONS];
+Float_t pho_sieip_cleaned[MAX_PHOTONS];
+Float_t pho_sieie_cleaned[MAX_PHOTONS];
+Float_t pho_e5x5_cleaned[MAX_PHOTONS];
+Float_t pho_e2x2_cleaned[MAX_PHOTONS];
+
 Float_t pho_emaxxtal[MAX_PHOTONS];
 Float_t pho_hoe[MAX_PHOTONS];
 Float_t pho_h1oe[MAX_PHOTONS];

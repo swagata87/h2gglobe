@@ -1,4 +1,9 @@
 TBranch* b_pho_ncrys;
+TBranch* b_pho_r9_cleaned;
+TBranch* b_pho_sieip_cleaned;
+TBranch* b_pho_sieie_cleaned;
+TBranch* b_pho_e5x5_cleaned;
+TBranch* b_pho_e2x2_cleaned;
 TBranch* b_pho_bieta;
 TBranch* b_pho_biphi;
 TBranch* b_pho_betacry;
@@ -9,6 +14,7 @@ TBranch* b_pfcand_n;
 TBranch* b_pfcand_pdgid;
 TBranch* b_pfcand_p4;
 TBranch* b_pfcand_posvtx;
+TBranch* b_pfcand_time;
     TBranch *b_event;
     TBranch *b_run;
     TBranch *b_process_id;

@@ -1,19 +1,40 @@
-intL=19620. histfile=/afs/cern.ch/user/s/swmukher/work/FutureHiggsStudy/New/CMSSW_6_1_2/src/h2gglobe/AnalysisScripts/%(label)s/CMS-HGG.root output=eventsList.txt
+intL=19620. histfile=/afs/cern.ch/user/s/swmukher/work/NtupleProductionHgg/PU_140_MC/BigSamples/CMSSW_7_1_0/src/h2gglobe/AnalysisScripts/myTestntuples_14TeV_ggH_vtxEff_vtxChosen.root  output=eventsList1.txt  sqrtS=14
+
+split typ=-34 ind=1 draw=1   Nam=ggh_14TeV   Fil=root://eoscms//eos/cms/store/group/phys_higgs/cmshgg/reduced/UpgradeFinal_signal/BigSamples_Upgrade_signal/GluGluToHToGG_M-125_14TeV-powheg-pythia6_Summer13-UpgradePhase1Age0DES_DR61SLHCx_PU140Bx25_DES17_61_V5-v1/GluGluToHToGG_M-125_14TeV-powheg-pythia6_Summer13-UpgradePhase1Age0DES_DR61SLHCx_PU140Bx25_DES17_61_V5-v1_0.root   red=0 lum=1000000.0   xsec=49.85   kfac=1.000000   scal=1.000000
+
+###typ=-1 ind=1 draw=1   Nam=ggh_m125_8TeV   CaDir=/store/group/phys_higgs/cmshgg/reduced/legacy_paper/legacy_paper_reduction_8TeV_v5/mc/Summer12_RD1/GluGluToHToGG_M-125_StdMaterial   red=0 lum=1000000.0   xsec=-1.0   kfac=1.000000   scal=1.000000
 
 #
-# Signal
+# Bkg
 #
-split typ=-33 ind=1 draw=1   Nam=ggh_m125_8TeV  CaDir=/store/group/phys_higgs/cmshgg/processed/V15_00_08/mc/Summer12_RD1/GluGluToHToGG_M-125_8TeV-powheg-pythia6_Summer12_DR53X-PU_RD1_START53_V7N-v1  lum=1000000.0   xsec=-1.0   kfac=1.000000   scal=1.000000
 
-split typ=-34 ind=1 draw=1   Nam=ggh_14TeV_PU50  CaDir=/store/group/phys_higgs/cmshgg/processed/V16_00_02/mc/Summer12_POSTLS1_14TeV/GluGluToHToGG_M-125_14TeV-powheg-pythia6_PU50  lum=1000000.0   xsec=49.85   kfac=1.000000   scal=1.000000
+## 8TeV Legacy ##
+#####typ=+32    ind=101 draw=1  Nam=gjet_20_8TeV    CaDir=/store/group/phys_higgs/cmshgg/reduced/legacy_paper/legacy_paper_reduction_8TeV_v5/mc/Summer12_RD1/GJet_Pt-20to40_doubleEMEnriched_TuneZ2star_8TeV-pythia6_pf/   red=0   lum=1.e10  xsec=150.34  kfac=1.3  scal=1.
+
+######typ=+42    ind=104  draw=1  Nam=gjet_40_8TeV   Fil=root://eoscms//eos/cms/store/group/phys_higgs/cmshgg/reduced/legacy_paper/legacy_paper_reduction_8TeV_v5/mc/Summer12_RD1/GJet_Pt40_doubleEMEnriched_TuneZ2star_8TeV_ext-pythia6_pf/GJet_Pt40_doubleEMEnriched_TuneZ2star_8TeV_ext-pythia6_pf_98.root    red=0   lum=1.e10   xsec=478.58   kfac=1.3  scal=1.
+
+
+###typ=+32    ind=101 draw=1  Nam=gjet_20_8TeV    CaDir=/store/group/phys_higgs/cmshgg/reduced/TP_ReReduction8TeV/TechProp_2014/GJet_Pt-20to40_doubleEMEnriched_TuneZ2star_8TeV-pythia6/   red=0   lum=1.e10  xsec=150.34  kfac=1.3  scal=1.
+
+###typ=+42    ind=104  draw=1  Nam=gjet_40_8TeV   CaDir=/store/group/phys_higgs/cmshgg/reduced/TP_ReReduction8TeV/TechProp_2014/GJet_Pt40_doubleEMEnriched_TuneZ2star_8TeV_ext-pythia6    red=0   lum=1.e10   xsec=478.58   kfac=1.3  scal=1.
+
+####typ=-1 ind=1 draw=1   Nam=ggh_m125_8TeV   Fil=root://eoscms//eos/cms/store/group/phys_higgs/cmshgg/reduced/legacy_paper/legacy_paper_reduction_8TeV_v5/mc/Summer12_RD1/GluGluToHToGG_M-125_StdMaterial/GluGluToHToGG_M-125_StdMaterial_20.root   red=0 lum=1000000.0   xsec=-1.0   kfac=1.000000   scal=1.000000
+
+## 14 TeV ##
+##typ=+32 ind=101   draw=1   Nam=GJets_14TeV_Pt20to40   CaDir=/store/group/phys_higgs/cmshgg/reduced/TechnicalProposal_Aug14/TechProp_2014/GJet_Pt-20to40_doubleEMEnriched_TuneZ2star_14TeV-pythia6_Summer13-UpgradePhase1Age0START_DR61SLHCx_PU140Bx25_STAR17_61_V1A-v1  red=0  lum=1.e10   xsec=299.38   kfac=1.3   scal=1.0
+
+##typ=+42 ind=104  draw=1   Nam=GJets_14TeV_Pt40   CaDir=/store/group/phys_higgs/cmshgg/reduced/TechnicalProposal_July14/TechProp_2014/GJet_Pt40_doubleEMEnriched_TuneZ2star_14TeV-pythia6_Summer13-UpgradePhase1Age0STARTdr61SLHCx_PU140Bx25_STAR17_61_V1A-v1  red=0  lum=1.e10    xsec=953.77   kfac=1.3   scal=1.0
+
+##typ=+42 ind=104  draw=1   Nam=GJets_14TeV_Pt40   Fil=root://eoscms//eos/cms/store/group/phys_higgs/cmshgg/reduced/TechnicalProposal_July14/TechProp_2014/GJet_Pt40_doubleEMEnriched_TuneZ2star_14TeV-pythia6_Summer13-UpgradePhase1Age0STARTdr61SLHCx_PU140Bx25_STAR17_61_V1A-v1/GJet_Pt40_doubleEMEnriched_TuneZ2star_14TeV-pythia6_Summer13-UpgradePhase1Age0STARTdr61SLHCx_PU140Bx25_STAR17_61_V1A-v1_976.root  red=0  lum=1.e10    xsec=953.77   kfac=1.3   scal=1.0
+
 
 #
 # Branches to use
 #
-inputBranches FutureStudy/minimal_input.dat
 
-treevariables FutureStudy/trees.dat
-plotvariables FutureStudy/plotMyvariables.dat
+inputBranches futureanalysis/minimal_input.dat
+treevariables futureanalysis/trees.dat
+plotvariables futureanalysis/plotMyvariables.dat
 
 ## define analyses to run
 ##   a library containing the class dictionary has loaded before parsing the
@@ -22,4 +43,6 @@ plotvariables FutureStudy/plotMyvariables.dat
 ##   analyzer <class_name> <config_file>
 ##
 
-analyzer FutureAnalysis FutureStudy/photon.dat
+analyzer FutureAnalysis futureanalysis/photon.dat
+
+######analyzer MassFactorizedMvaAnalysis photonanalysis.dat analysis_settings.dat massfactorizedmvaanalysis.dat  saveDatacardTrees_=1 dumpAscii=1 dumpMcAscii=0 common/2012AB_rereco_settings.dat
