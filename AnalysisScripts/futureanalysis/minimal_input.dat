@@ -37,25 +37,25 @@ pho_eseffsiyiy
 ## PF photon ID
 ##
 pho_sieie
-##pho_sieie_cleaned
+pho_sieie_cleaned
 pho_sieip
-##pho_sieip_cleaned
+pho_sieip_cleaned
 pho_sipip
 pho_hoe
 pho_lambdaratio
 pho_r9
-##pho_r9_cleaned
+pho_r9_cleaned
 pho_e2x2
-##pho_e2x2_cleaned
+pho_e2x2_cleaned
 pho_e5x5
-##pho_e5x5_cleaned
+pho_e5x5_cleaned
 pho_pfiso_myphoton03
 pho_pfiso_myphoton04
 
-##pfcand_pdgid
-##pfcand_n
-##pfcand_posvtx
-##pfcand_p4
+pfcand_pdgid
+pfcand_n
+pfcand_posvtx
+pfcand_p4
 #######pfcand_time
 pho_pfiso_myneutral03
 pho_pfiso_mycharged02

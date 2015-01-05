@@ -110,10 +110,10 @@ TMVAtreeReader::TMVAtreeReader(TTree *tree) : fChain(0)
 // used to generate this class and read the Tree.
   if (tree == 0) {
     /////    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("TMVA_photonid_General.root");
-    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("TMVA_newTraining_onlyNewBDTsettings_noNewInputVar.root");
+    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("TMVA_GJet_14TeV_General_Jan5.root");
     if (!f || !f->IsOpen()) {
       //////  f = new TFile("TMVA_photonid_General.root");
-      f = new TFile("TMVA_newTraining_onlyNewBDTsettings_noNewInputVar.root");
+      f = new TFile("TMVA_GJet_14TeV_General_Jan5.root");
     }
     f->GetObject("TrainTree",tree);
     ////    f->GetObject("TestTree",tree);

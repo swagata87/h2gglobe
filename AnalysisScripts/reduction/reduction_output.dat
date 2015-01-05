@@ -232,6 +232,8 @@ pho_regr_energyerr
 pho_sieip
 pho_sipip
 pho_isconv
+###pho_genmatched
+###pho_genenergy
 # new variables
 pho_pfiso_myneutral01
 pho_pfiso_myneutral02

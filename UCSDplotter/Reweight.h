@@ -124,11 +124,11 @@ Reweight::Reweight(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-     TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("opttree_8TeV_ReproduceLegacy.root");
+     TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("opttree_14TeV_GJet_Jan5.root");
      /////    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("opttree_Sept15_8TeV_legacy.root");
 
       if (!f || !f->IsOpen()) {
-	f = new TFile("opttree_8TeV_ReproduceLegacy.root");
+	f = new TFile("opttree_14TeV_GJet_Jan5.root");
 	///	f = new TFile("opttree_Sept15_8TeV_legacy.root");
       }
       f->GetObject("opttree",tree);

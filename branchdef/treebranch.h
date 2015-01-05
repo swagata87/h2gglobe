@@ -447,6 +447,8 @@ void Branch_pho_sieip_cleaned(TTree * tree) { tree->Branch("pho_sieip_cleaned",&
 void Branch_pho_sieie_cleaned(TTree * tree) { tree->Branch("pho_sieie_cleaned",&pho_sieie_cleaned,"pho_sieie_cleaned[pho_n]/F"); };
 void Branch_pho_e5x5_cleaned(TTree * tree) { tree->Branch("pho_e5x5_cleaned",&pho_e5x5_cleaned,"pho_e5x5_cleaned[pho_n]/F"); };
 void Branch_pho_e2x2_cleaned(TTree * tree) { tree->Branch("pho_e2x2_cleaned",&pho_e2x2_cleaned,"pho_e2x2_cleaned[pho_n]/F"); };
+////void Branch_pho_genmatched(TTree * tree) { tree->Branch("pho_genmatched",&pho_genmatched,"pho_genmatched[pho_n]/I"); };
+////void Branch_pho_genenergy(TTree * tree) { tree->Branch("pho_genenergy",&pho_genenergy,"pho_genenergy[pho_n]/F"); };
 
 void Branch_pho_emaxxtal(TTree * tree) { tree->Branch("pho_emaxxtal",&pho_emaxxtal,"pho_emaxxtal[pho_n]/F");  }; 
 void Branch_pho_hoe(TTree * tree) { tree->Branch("pho_hoe",&pho_hoe,"pho_hoe[pho_n]/F");  }; 

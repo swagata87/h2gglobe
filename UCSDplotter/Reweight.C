@@ -14,7 +14,7 @@ void Reweight::Loop()
 
   float new_wt=0.0;
 
-  TFile* outputFile = new TFile("2DReweighted_opttree_8TeV_reproduceLegacy.root","RECREATE");
+  TFile* outputFile = new TFile("2DReweighted_opttree_14TeV_GJet_Jan5.root","RECREATE");
   TTree* myTree = new TTree("opttree_2Dwt","opttree_2Dwt");
 
   myTree->Branch("run", &run, "run/I");

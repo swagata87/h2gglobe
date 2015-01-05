@@ -10,6 +10,8 @@ TBranch* b_pho_betacry;
 TBranch* b_pho_phicry;
 TBranch* b_pho_bphitilt;
 TBranch* b_pho_bthetatilt;
+///TBranch* b_pho_genmatched;
+///TBranch* b_pho_genenergy;
 TBranch* b_pfcand_n;
 TBranch* b_pfcand_pdgid;
 TBranch* b_pfcand_p4;

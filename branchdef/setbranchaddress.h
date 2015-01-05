@@ -5,7 +5,8 @@ void SetBranchAddress_pho_sieip_cleaned(TTree * tree) { tree->SetBranchAddress("
 void SetBranchAddress_pho_sieie_cleaned(TTree * tree) { tree->SetBranchAddress("pho_sieie_cleaned", &pho_sieie_cleaned, &b_pho_sieie_cleaned); };
 void SetBranchAddress_pho_e5x5_cleaned(TTree * tree) { tree->SetBranchAddress("pho_e5x5_cleaned", &pho_e5x5_cleaned, &b_pho_e5x5_cleaned); };
 void SetBranchAddress_pho_e2x2_cleaned(TTree * tree) { tree->SetBranchAddress("pho_e2x2_cleaned", &pho_e2x2_cleaned, &b_pho_e2x2_cleaned); };
-
+///void SetBranchAddress_pho_genmatched(TTree * tree) { tree->SetBranchAddress("pho_genmatched", &pho_genmatched, &b_pho_genmatched); };
+///void SetBranchAddress_pho_genenergy(TTree * tree) { tree->SetBranchAddress("pho_genenergy", &pho_genenergy, &b_pho_genenergy); };
 
 void SetBranchAddress_pfcand_n(TTree * tree) { tree->SetBranchAddress("pfcand_n", &pfcand_n, &b_pfcand_n); }; 
 void SetBranchAddress_pfcand_pdgid(TTree * tree) { tree->SetBranchAddress("pfcand_pdgid", &pfcand_pdgid, &b_pfcand_pdgid); }

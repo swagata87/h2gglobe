@@ -159,12 +159,14 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
   if (pho_indx != -1) {
     TLorentzVector* p4_photon = (TLorentzVector*) l.pho_p4->At(pho_indx);
     //std::cout << "E2x2=" << l.pho_e2x2[pho_indx] << "  E5x5=" << l.pho_e5x5[pho_indx] << std::endl;                                
-    pho_E2byE5 = l.pho_e2x2[pho_indx]/l.bc_s25[l.sc_bcseedind[l.pho_scind[pho_indx]]]; 
-      //l.pho_e2x2[pho_indx]/l.pho_e5x5[pho_indx];
-    //std::cout << "pho_E2byE5=" << pho_E2byE5 << std::endl;                                                                         
-    pho_E2byE5_cleaned = l.pho_e2x2_cleaned[pho_indx]/l.bc_s25[l.sc_bcseedind[l.pho_scind[pho_indx]]];
-      ///l.pho_e2x2_cleaned[pho_indx]/l.pho_e5x5_cleaned[pho_indx];
-
+    pho_E2byE5 = ((l.pho_e2x2[pho_indx])/(l.pho_e5x5[pho_indx]));
+      //l.pho_e2x2[pho_indx]/l.bc_s25[l.sc_bcseedind[l.pho_scind[pho_indx]]];
+    //    std::cout << "\n\nsc_eta_pho=" << ((TVector3*)l.sc_xyz->At(l.pho_scind[pho_indx]))->Eta() << "  pho_E2byE5=" << pho_E2byE5 << "  pho_e2x2=" << l.pho_e2x2[pho_indx] << "  bc_s25=" << l.bc_s25[l.sc_bcseedind[l.pho_scind[pho_indx]]] << "  sc_bcseedind=" << l.sc_bcseedind[l.pho_scind[pho_indx]]  << std::endl;
+    //l.pho_e2x2[pho_indx]/l.pho_e5x5[pho_indx];
+    pho_E2byE5_cleaned = l.pho_e2x2_cleaned[pho_indx]/l.pho_e5x5_cleaned[pho_indx];
+      //l.pho_e2x2_cleaned[pho_indx]/l.bc_s25[l.sc_bcseedind[l.pho_scind[pho_indx]]];
+    ///l.pho_e2x2_cleaned[pho_indx]/l.pho_e5x5_cleaned[pho_indx];
+    
     if (isnan(pho_E2byE5)) pho_E2byE5=0.0;
     if (isnan(pho_E2byE5_cleaned)) pho_E2byE5_cleaned=0.0;
     if (isinf(pho_E2byE5)) pho_E2byE5=0.0;
@@ -203,7 +205,7 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
     l.FillTree("Et_pho",                   p4_photon->Et(),                                          "Future_myTry");
     l.FillTree("E2byE5_pho",               pho_E2byE5,                                               "Future_myTry");
     l.FillTree("E2byE5_cleaned_pho",       pho_E2byE5_cleaned,                                       "Future_myTry");
-    if (l.pho_r9[pho_indx]<0.5) std::cout << "r9<0.5" << std::endl;
+    //   if (l.pho_r9[pho_indx]<0.5) std::cout << "r9<0.5" << std::endl;
     l.FillTree("r9_pho",                   l.pho_r9[pho_indx],                                       "Future_myTry");
     l.FillTree("r9_cleaned_pho",           l.pho_r9_cleaned[pho_indx],                               "Future_myTry");
 
@@ -216,7 +218,7 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
     l.FillTree("ecaliso03_pho",            l.pho_ecalsumetconedr03[pho_indx],                        "Future_myTry");
     l.FillTree("hcaliso03_pho",            l.pho_hcalsumetconedr03[pho_indx],                        "Future_myTry");
     l.FillTree("pf_pho_iso",               l.pho_pfiso_myphoton03[pho_indx],                         "Future_myTry");
-    if (pf_charged_iso03_chosenvtx>14.0) std::cout<< "Pf_chIso03_chosenvtx>14.0" << std::endl; 
+    // if (pf_charged_iso03_chosenvtx>14.0) std::cout<< "Pf_chIso03_chosenvtx>14.0" << std::endl; 
     l.FillTree("pf_charged_iso_chosenvtx", pf_charged_iso03_chosenvtx,                               "Future_myTry");
     l.FillTree("pf_charged_iso_vtx1",      pf_charged_iso03_vtx1,                                    "Future_myTry");
     l.FillTree("pf_charged_iso_vtx2",      pf_charged_iso03_vtx2,                                    "Future_myTry");
@@ -347,15 +349,15 @@ bool FutureAnalysis::PhotonPreSelection(LoopAll &l, Int_t photon_index, Int_t vt
   float val_trkiso  = l.pho_trksumpthollowconedr03[photon_index] - 0.002*ph->Et(); 
   int val_pho_isconv = l.pho_isconv[photon_index];
   float val_pfiso02 = (*l.pho_pfiso_mycharged02)[photon_index][vtx];
-
-    if (val_hoe             >= mitCuts_hoe[photon_category]         ) return false;
-    if (val_sieie           >= mitCuts_sieie[photon_category]       ) return false;
-    if (val_hcaliso         >= mitCuts_hcaliso[photon_category]     ) return false;
-    if (val_trkiso          >= mitCuts_trkiso[photon_category]      ) return false;
-    if ((!val_pho_isconv)) return false; // Electron Rejection based Conversion Safe Veto 
-    if ( val_pfiso02 >= mitCuts_pfiso[photon_category]) return false;
-    
-
+  
+  //  if (val_hoe             >= mitCuts_hoe[photon_category]         ) return false;
+  //  if (val_sieie           >= mitCuts_sieie[photon_category]       ) return false;
+  //  if (val_hcaliso         >= mitCuts_hcaliso[photon_category]     ) return false;
+  //  if (val_trkiso          >= mitCuts_trkiso[photon_category]      ) return false;
+  //  if ((!val_pho_isconv)) return false; // Electron Rejection based Conversion Safe Veto 
+  //  if ( val_pfiso02 >= mitCuts_pfiso[photon_category]) return false;
+  
+  
   return true;
 }
 

@@ -16,7 +16,7 @@ void TMVAtreeReader::Loop()
   
   //////  TFile* outputFile = new TFile("Overtraining_general.root","RECREATE");
   //////  TFile* outputFile = new TFile("Hgg_StudyTMVA_timeCl_2thEvt_1000trees.root","RECREATE");
-  TFile* outputFile = new TFile("Hgg_General_8TeV_NewTrainingNewSettings_noNewVar.root","RECREATE");
+  TFile* outputFile = new TFile("Hgg_General_14TeV_Jan5.root","RECREATE");
 
   TH1F* h_weight_sig = new TH1F("weight_Sig", "h_weight_Sig", 200, 0.0, 20.0);
   TH1F* h_weight_bkg = new TH1F("weight_Bkg", "h_weight_Bkg", 200, 0.0, 20.0);

@@ -327,7 +327,7 @@ class LoopAll {
 
   float pfTkIsoWithVertex(int phoindex, int vtxInd, float dRmax, float dRvetoBarrel, float dRvetoEndcap, float ptMin, float dzMax, float dxyMax, int pfToUse=1);
   float pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dRVetoEndcap, float etaStripBarrel, float etaStripEndcap, 
-		  float thrBarrel, float thrEndcaps, int pfToUse=4);
+		  float thrBarrel, float thrEndcaps, float, float, int pfToUse=4);
 
   RooFuncReader *funcReader_dipho_MIT;
   TMVA::Reader *tmvaReaderID_UCSD, * tmvaReader_dipho_UCSD;
@@ -781,6 +781,7 @@ Float_t dipho_sumpt[MAX_DIPHOTONS];
 Bool_t dipho_sel[MAX_DIPHOTONS];
 Float_t dipho_BDT[MAX_DIPHOTONS];
 Bool_t pho_genmatched[MAX_PHOTONS];
+Float_t pho_genenergy[MAX_PHOTONS];
 Float_t pho_regr_energy_otf[MAX_PHOTONS];
 Float_t pho_regr_energyerr_otf[MAX_PHOTONS];
 Float_t pho_ESEffSigmaRR[MAX_PHOTONS];
@@ -840,6 +841,7 @@ TBranch * b_dipho_subleadind;
 TBranch * b_dipho_vtxind;
 TBranch * b_dipho_sumpt;
 TBranch * b_pho_genmatched;
+TBranch * b_pho_genenergy;
 TBranch * b_pho_regr_energy_otf;
 TBranch * b_pho_regr_energyerr_otf;
 //// TBranch * b_dipho_leadet;
@@ -1061,6 +1063,7 @@ void Branch_dipho_subleadind(TTree * tree) { tree->Branch("dipho_subleadind", &d
 void Branch_dipho_vtxind(TTree * tree) { tree->Branch("dipho_vtxind", &dipho_vtxind, "dipho_vtxind[dipho_n]/I"); };
 void Branch_dipho_sumpt(TTree * tree) { tree->Branch("dipho_sumpt", &dipho_sumpt, "dipho_sumpt[dipho_n]/F"); };
 void Branch_pho_genmatched(TTree *tree){tree->Branch("pho_genmatched", &pho_genmatched, "pho_genmatched[pho_n]/O");};
+void Branch_pho_genenergy(TTree *tree){tree->Branch("pho_genenergy", &pho_genenergy, "pho_genenergy[pho_n]/F");};
 void Branch_pho_regr_energy_otf(TTree *tree){tree->Branch("pho_regr_energy_otf", &pho_regr_energy_otf, "pho_regr_energy_otf[pho_n]/F");};
 void Branch_pho_regr_energyerr_otf(TTree *tree){tree->Branch("pho_regr_energyerr_otf", &pho_regr_energyerr_otf, "pho_regr_energyerr_otf[pho_n]/F");};
 //// void Branch_dipho_leadet(TTree * tree) { tree->Branch("dipho_leadet", &dipho_leadet, "dipho_leadet[dipho_n]/F"); };
@@ -1083,6 +1086,7 @@ void SetBranchAddress_dipho_subleadind(TTree * tree) { tree->SetBranchAddress("d
 void SetBranchAddress_dipho_vtxind(TTree * tree) { tree->SetBranchAddress("dipho_vtxind", &dipho_vtxind, &b_dipho_vtxind); };
 void SetBranchAddress_dipho_sumpt(TTree * tree) { tree->SetBranchAddress("dipho_sumpt", &dipho_sumpt, &b_dipho_sumpt); };
 void SetBranchAddress_pho_genmatched(TTree * tree) { tree->SetBranchAddress("pho_genmatched", &pho_genmatched, &b_pho_genmatched); };
+void SetBranchAddress_pho_genenergy(TTree * tree) { tree->SetBranchAddress("pho_genenergy", &pho_genenergy, &b_pho_genenergy); };
 void SetBranchAddress_pho_regr_energy_otf(TTree * tree) { tree->SetBranchAddress("pho_regr_energy_otf", &pho_regr_energy_otf, &b_pho_regr_energy_otf); };
 void SetBranchAddress_pho_regr_energyerr_otf(TTree * tree) { tree->SetBranchAddress("pho_regr_energyerr_otf", &pho_regr_energyerr_otf, &b_pho_regr_energyerr_otf); };
 //// void SetBranchAddress_dipho_leadet(TTree * tree) { tree->SetBranchAddress("dipho_leadet", &dipho_leadet, &b_dipho_leadet); };

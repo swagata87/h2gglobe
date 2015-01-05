@@ -28,11 +28,11 @@ int efficiencyPlotterTMVA() {
   
   gROOT->SetBatch(kTRUE); 
   //////  TFile *input  = new TFile("Hgg_StudyTMVA_Aug_General.root");
-  TFile *input  = new TFile("Hgg_StudyTMVA_timeCleaned_AdHocPresel.root");
+  TFile *input  = new TFile("Hgg_General_14TeV_Jan5.root");
 
   //////// Output File /////////
   ///////TFile* outputFile = new TFile("CompareTMVAplots_Aug_general.root","RECREATE");
-  TFile* outputFile = new TFile("CompareTMVAplots_Aug_timeCleaned.root","RECREATE");
+  TFile* outputFile = new TFile("CompareTMVAplots_General_Jan5.root","RECREATE");
   Double_t x1 =.72, y1= 0.72,x2 = x1+0.25, y2= y1+0.20;
   
   //// Efficiency ////

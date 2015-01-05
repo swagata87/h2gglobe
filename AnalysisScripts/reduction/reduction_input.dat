@@ -16,7 +16,8 @@ pho_p4
 pho_r9
 pho_r9_cleaned
 pho_calopos
-
+###pho_genmatched
+####pho_genenergy
 ## on the fly regression corrections calculation
 pho_hoe
 sc_n

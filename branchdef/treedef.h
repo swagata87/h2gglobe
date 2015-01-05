@@ -451,6 +451,7 @@ TClonesArray *mu_glo_posvtx;
 TClonesArray *mu_glo_poshcal;
 TClonesArray *mu_glo_posecal;
 Int_t pho_n;
+
 Float_t pho_feta[MAX_PHOTONS][5];
 Float_t pho_crackcorr[MAX_PHOTONS];
 Float_t pho_localcorr[MAX_PHOTONS];
@@ -725,6 +726,8 @@ Float_t vtx_std_ndof[MAX_VERTICES];
 Int_t vtx_std_ntks[MAX_VERTICES];
 std::vector<std::vector<unsigned short> >* vtx_std_tkind;
 std::vector<std::vector<float> >* vtx_std_tkweight;
+///Int_t pho_genmatched[MAX_PHOTONS];
+///Float_t pho_genenergy[MAX_PHOTONS];
 Float_t pho_r19[MAX_PHOTONS];
 Float_t pho_maxoraw[MAX_PHOTONS];
 Float_t pho_cep[MAX_PHOTONS];

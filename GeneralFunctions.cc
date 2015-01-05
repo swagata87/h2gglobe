@@ -50,17 +50,19 @@ float LoopAll::pfTkIsoWithVertex(int phoindex, int vtxInd, float dRmax, float dR
 }
 
 float LoopAll::pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dRVetoEndcap, float etaStripBarrel, 
-                         float etaStripEndcap, float thrBarrel, float thrEndcaps, int pfToUse) {
+                         float etaStripEndcap, float thrBarrel, float thrEndcaps, float dPhiBarrel, float dPhiEndcap, int pfToUse) {
   
-    float dRVeto, etaStrip, thr;
+  float dRVeto, etaStrip, thr, dPhiCut;
     if (pho_isEB[phoindex]) {
         dRVeto = dRVetoBarrel;
         etaStrip = etaStripBarrel;
         thr = thrBarrel;
+	dPhiCut = dPhiBarrel;
     } else {
         dRVeto = dRVetoEndcap;
         etaStrip = etaStripEndcap;
         thr = thrEndcaps;
+	dPhiCut = dPhiEndcap;
     }
 
     float sum = 0;
@@ -88,13 +90,18 @@ float LoopAll::pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dR
 
             float dEta = fabs(photonDirectionWrtVtx.Eta() - pfc->Eta());
             float dR = photonDirectionWrtVtx.DeltaR(pfc->Vect());
-      
+	    float dPhi = fabs(photonDirectionWrtVtx.Phi() - pfc->Phi());
+	    if(dPhi > TMath::Pi())dPhi = TMath::TwoPi() - dPhi;
+	 
             if (dEta < etaStrip)
                 continue;
       
             if(dR > dRmax || dR < dRVeto)
                 continue;
-      
+
+	    if(dPhi < dPhiCut)
+	      continue;
+
             sum += pfc->Pt();
         }
     }
@@ -1435,12 +1442,12 @@ void LoopAll::set_pho_p4(int ipho, int ivtx, float *pho_energy_array)
 void LoopAll::FillCICPFInputs()
 {
     for(int ipho=0; ipho<pho_n; ++ipho) {
-        float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 5);
-        float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 5);
-        float neu03 = pfEcalIso(ipho, 0.3, 0., 0., 0., 0., 0., 0., 5);
-        float neu04 = pfEcalIso(ipho, 0.4, 0., 0., 0., 0., 0., 0., 5); 
-        float neu05 = pfEcalIso(ipho, 0.5, 0., 0., 0., 0., 0., 0., 5); 
-        float neu06 = pfEcalIso(ipho, 0.6, 0., 0., 0., 0., 0., 0., 5); 
+      float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 0., 0., 5);
+      float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 0., 0., 5);
+      float neu03 = pfEcalIso(ipho, 0.3, 0., 0., 0., 0., 0., 0., 0., 0., 5);
+      float neu04 = pfEcalIso(ipho, 0.4, 0., 0., 0., 0., 0., 0., 0., 0., 5); 
+      float neu05 = pfEcalIso(ipho, 0.5, 0., 0., 0., 0., 0., 0., 0., 0., 5); 
+      float neu06 = pfEcalIso(ipho, 0.6, 0., 0., 0., 0., 0., 0., 0., 0., 5); 
         if( GFDEBUG ) {
             if( ( pho_pfiso_myneutral03[ipho] != neu03 || 
                   pho_pfiso_myneutral04[ipho] != neu04   )
@@ -1459,12 +1466,12 @@ void LoopAll::FillCICPFInputs()
         pho_pfiso_myneutral06[ipho] = neu06;
 
 
-        float pho01 = pfEcalIso(ipho, 0.1, 0., 0.070, 0.015, 0., 0., 0.);
-        float pho02 = pfEcalIso(ipho, 0.2, 0., 0.070, 0.015, 0., 0., 0.);
-        float pho03 = pfEcalIso(ipho, 0.3, 0., 0.070, 0.015, 0., 0., 0.);
-        float pho04 = pfEcalIso(ipho, 0.4, 0., 0.070, 0.015, 0., 0., 0.); 
-        float pho05 = pfEcalIso(ipho, 0.5, 0., 0.070, 0.015, 0., 0., 0.); 
-        float pho06 = pfEcalIso(ipho, 0.6, 0., 0.070, 0.015, 0., 0., 0.); 
+        float pho01 = pfEcalIso(ipho, 0.1, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.);
+        float pho02 = pfEcalIso(ipho, 0.2, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.);
+        float pho03 = pfEcalIso(ipho, 0.3, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.);
+        float pho04 = pfEcalIso(ipho, 0.4, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.); 
+        float pho05 = pfEcalIso(ipho, 0.5, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.); 
+        float pho06 = pfEcalIso(ipho, 0.6, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.); 
         ///// float pho03 = pfEcalIso(ipho, 0.3, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1);
         ///// float pho04 = pfEcalIso(ipho, 0.4, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1); 
         if( GFDEBUG ) {
@@ -3930,6 +3937,7 @@ void LoopAll::DefineUserBranches()
     BRANCH_DICT(dipho_vtxind);
     BRANCH_DICT(dipho_sumpt);
     BRANCH_DICT(pho_genmatched);
+    BRANCH_DICT(pho_genenergy);
     BRANCH_DICT(pho_regr_energy_otf);
     BRANCH_DICT(pho_regr_energyerr_otf);
     //// BRANCH_DICT(dipho_leadet);
