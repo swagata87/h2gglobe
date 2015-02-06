@@ -28,11 +28,11 @@ int efficiencyPlotterTMVA() {
   
   gROOT->SetBatch(kTRUE); 
   //////  TFile *input  = new TFile("Hgg_StudyTMVA_Aug_General.root");
-  TFile *input  = new TFile("Hgg_General_14TeV_Jan5.root");
+  TFile *input  = new TFile("Hgg_General_14TeV_Jan13.root");
 
   //////// Output File /////////
   ///////TFile* outputFile = new TFile("CompareTMVAplots_Aug_general.root","RECREATE");
-  TFile* outputFile = new TFile("CompareTMVAplots_General_Jan5.root","RECREATE");
+  TFile* outputFile = new TFile("CompareTMVAplots_General_Jan13.root","RECREATE");
   Double_t x1 =.72, y1= 0.72,x2 = x1+0.25, y2= y1+0.20;
   
   //// Efficiency ////
@@ -1190,11 +1190,10 @@ int efficiencyPlotterTMVA() {
 
   /// pf_pho_iso ///
   std::cout << "pf_pho_iso" << std::endl;
-
   TCanvas* pp1 = new TCanvas("Pf_Pho_Iso_b", "Pf_Pho_Iso_barr");
 
   TH1F*  Pf_Pho_Iso_sig_barrel = (TH1F*)input->Get("pf_pho_iso_Sig_b");
-  Pf_Pho_Iso_sig_barrel->Scale(1.0/Pf_Pho_Iso_sig_barrel->Integral());
+  // Pf_Pho_Iso_sig_barrel->Scale(1.0/Pf_Pho_Iso_sig_barrel->Integral());
   Pf_Pho_Iso_sig_barrel->SetMarkerStyle(22);
   Pf_Pho_Iso_sig_barrel->SetMarkerColor(kRed);
   Pf_Pho_Iso_sig_barrel->SetLineColor(kRed);
@@ -1206,7 +1205,7 @@ int efficiencyPlotterTMVA() {
   //  gPad->SetLogy();
   Pf_Pho_Iso_sig_barrel->DrawCopy();
   pp1->Update();
-
+  /*
   TH1F*  Pf_Pho_Iso_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_Bkg_b");
   Pf_Pho_Iso_bkg_barrel->Scale(1.0/Pf_Pho_Iso_bkg_barrel->Integral());
   Pf_Pho_Iso_bkg_barrel->SetMarkerStyle(23);
@@ -1220,15 +1219,255 @@ int efficiencyPlotterTMVA() {
   //  gPad->SetLogy();
   Pf_Pho_Iso_bkg_barrel->DrawCopy("sames");
   pp1->Update();
-
+  */
   TLegend* L254 = new TLegend(x1,y1,x2,y2);
   L254->AddEntry(Pf_Pho_Iso_sig_barrel, "Signal", "L");
-  L254->AddEntry(Pf_Pho_Iso_bkg_barrel, "Background", "L");
+  //L254->AddEntry(Pf_Pho_Iso_bkg_barrel, "Background", "L");
   L254->SetFillColor(0);
   L254->Draw();
-
   pp1->Write();
-  /////////
+  //////////////////////////////////////////////////////////////////
+
+  /// pf_pho_iso eta030 ///
+  std::cout << "pf_pho_iso eta030" << std::endl;
+  TCanvas* pp1_eta030 = new TCanvas("Pf_Pho_Iso_eta030_b", "Pf_Pho_Iso_eta030_barr");
+
+  TH1F*  Pf_Pho_Iso_eta030_sig_barrel = (TH1F*)input->Get("pf_pho_iso_eta030_Sig_b");
+  // Pf_Pho_Iso_eta030_sig_barrel->Scale(1.0/Pf_Pho_Iso_eta030_sig_barrel->Integral());
+  Pf_Pho_Iso_eta030_sig_barrel->SetMarkerStyle(22);
+  Pf_Pho_Iso_eta030_sig_barrel->SetMarkerColor(kRed);
+  Pf_Pho_Iso_eta030_sig_barrel->SetLineColor(kRed);
+  Pf_Pho_Iso_eta030_sig_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta030_sig_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta030_sig_barrel->SetTitle("Pf_Pho_Iso_eta030 (barrel)");
+  pp1_eta030->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta030_sig_barrel->DrawCopy();
+  pp1_eta030->Update();
+  /*
+  TH1F*  Pf_Pho_Iso_eta030_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_eta030_Bkg_b");
+  Pf_Pho_Iso_eta030_bkg_barrel->Scale(1.0/Pf_Pho_Iso_eta030_bkg_barrel->Integral());
+  Pf_Pho_Iso_eta030_bkg_barrel->SetMarkerStyle(23);
+  Pf_Pho_Iso_eta030_bkg_barrel->SetMarkerColor(kBlue);
+  Pf_Pho_Iso_eta030_bkg_barrel->SetLineColor(kBlue);
+  Pf_Pho_Iso_eta030_bkg_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta030_bkg_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta030_bkg_barrel->SetTitle("Pf_Pho_Iso_eta030 (barrel)");
+  pp1_eta030->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta030_bkg_barrel->DrawCopy("sames");
+  pp1_eta030->Update();
+  */
+  TLegend* L254_eta030 = new TLegend(x1,y1,x2,y2);
+  L254_eta030->AddEntry(Pf_Pho_Iso_eta030_sig_barrel, "Signal", "L");
+  // L254_eta030->AddEntry(Pf_Pho_Iso_eta030_bkg_barrel, "Background", "L");
+  L254_eta030->SetFillColor(0);
+  L254_eta030->Draw();
+  pp1_eta030->Write();
+  //////////////////////////////////////////////////////////////////
+
+  /// pf_pho_iso eta045 ///
+  std::cout << "pf_pho_iso eta045" << std::endl;
+  TCanvas* pp1_eta045 = new TCanvas("Pf_Pho_Iso_eta045_b", "Pf_Pho_Iso_eta045_barr");
+
+  TH1F*  Pf_Pho_Iso_eta045_sig_barrel = (TH1F*)input->Get("pf_pho_iso_eta045_Sig_b");
+  // Pf_Pho_Iso_eta045_sig_barrel->Scale(1.0/Pf_Pho_Iso_eta045_sig_barrel->Integral());
+  Pf_Pho_Iso_eta045_sig_barrel->SetMarkerStyle(22);
+  Pf_Pho_Iso_eta045_sig_barrel->SetMarkerColor(kRed);
+  Pf_Pho_Iso_eta045_sig_barrel->SetLineColor(kRed);
+  Pf_Pho_Iso_eta045_sig_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta045_sig_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta045_sig_barrel->SetTitle("Pf_Pho_Iso_eta045 (barrel)");
+  pp1_eta045->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta045_sig_barrel->DrawCopy();
+  pp1_eta045->Update();
+  /*
+  TH1F*  Pf_Pho_Iso_eta045_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_eta045_Bkg_b");
+  Pf_Pho_Iso_eta045_bkg_barrel->Scale(1.0/Pf_Pho_Iso_eta045_bkg_barrel->Integral());
+  Pf_Pho_Iso_eta045_bkg_barrel->SetMarkerStyle(23);
+  Pf_Pho_Iso_eta045_bkg_barrel->SetMarkerColor(kBlue);
+  Pf_Pho_Iso_eta045_bkg_barrel->SetLineColor(kBlue);
+  Pf_Pho_Iso_eta045_bkg_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta045_bkg_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta045_bkg_barrel->SetTitle("Pf_Pho_Iso_eta045 (barrel)");
+  pp1_eta045->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta045_bkg_barrel->DrawCopy("sames");
+  pp1_eta045->Update();
+  */
+  TLegend* L254_eta045 = new TLegend(x1,y1,x2,y2);
+  L254_eta045->AddEntry(Pf_Pho_Iso_eta045_sig_barrel, "Signal", "L");
+  //L254_eta045->AddEntry(Pf_Pho_Iso_eta045_bkg_barrel, "Background", "L");
+  L254_eta045->SetFillColor(0);
+  L254_eta045->Draw();
+  pp1_eta045->Write();
+  //////////////////////////////////////////////////////////////////
+
+  /// pf_pho_iso eta060 ///
+  std::cout << "pf_pho_iso eta060" << std::endl;
+  TCanvas* pp1_eta060 = new TCanvas("Pf_Pho_Iso_eta060_b", "Pf_Pho_Iso_eta060_barr");
+
+  TH1F*  Pf_Pho_Iso_eta060_sig_barrel = (TH1F*)input->Get("pf_pho_iso_eta060_Sig_b");
+  // Pf_Pho_Iso_eta060_sig_barrel->Scale(1.0/Pf_Pho_Iso_eta060_sig_barrel->Integral());
+  Pf_Pho_Iso_eta060_sig_barrel->SetMarkerStyle(22);
+  Pf_Pho_Iso_eta060_sig_barrel->SetMarkerColor(kRed);
+  Pf_Pho_Iso_eta060_sig_barrel->SetLineColor(kRed);
+  Pf_Pho_Iso_eta060_sig_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta060_sig_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta060_sig_barrel->SetTitle("Pf_Pho_Iso_eta060 (barrel)");
+  pp1_eta060->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta060_sig_barrel->DrawCopy();
+  pp1_eta060->Update();
+  /*
+  TH1F*  Pf_Pho_Iso_eta060_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_eta060_Bkg_b");
+  Pf_Pho_Iso_eta060_bkg_barrel->Scale(1.0/Pf_Pho_Iso_eta060_bkg_barrel->Integral());
+  Pf_Pho_Iso_eta060_bkg_barrel->SetMarkerStyle(23);
+  Pf_Pho_Iso_eta060_bkg_barrel->SetMarkerColor(kBlue);
+  Pf_Pho_Iso_eta060_bkg_barrel->SetLineColor(kBlue);
+  Pf_Pho_Iso_eta060_bkg_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta060_bkg_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta060_bkg_barrel->SetTitle("Pf_Pho_Iso_eta060 (barrel)");
+  pp1_eta060->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta060_bkg_barrel->DrawCopy("sames");
+  pp1_eta060->Update();
+  */
+  TLegend* L254_eta060 = new TLegend(x1,y1,x2,y2);
+  L254_eta060->AddEntry(Pf_Pho_Iso_eta060_sig_barrel, "Signal", "L");
+  // L254_eta060->AddEntry(Pf_Pho_Iso_eta060_bkg_barrel, "Background", "L");
+  L254_eta060->SetFillColor(0);
+  L254_eta060->Draw();
+  pp1_eta060->Write();
+  //////////////////////////////////////////////////////////////////
+
+  /// pf_pho_iso eta075 ///
+  std::cout << "pf_pho_iso eta075" << std::endl;
+  TCanvas* pp1_eta075 = new TCanvas("Pf_Pho_Iso_eta075_b", "Pf_Pho_Iso_eta075_barr");
+
+  TH1F*  Pf_Pho_Iso_eta075_sig_barrel = (TH1F*)input->Get("pf_pho_iso_eta075_Sig_b");
+  //  Pf_Pho_Iso_eta075_sig_barrel->Scale(1.0/Pf_Pho_Iso_eta075_sig_barrel->Integral());
+  Pf_Pho_Iso_eta075_sig_barrel->SetMarkerStyle(22);
+  Pf_Pho_Iso_eta075_sig_barrel->SetMarkerColor(kRed);
+  Pf_Pho_Iso_eta075_sig_barrel->SetLineColor(kRed);
+  Pf_Pho_Iso_eta075_sig_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta075_sig_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta075_sig_barrel->SetTitle("Pf_Pho_Iso_eta075 (barrel)");
+  pp1_eta075->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta075_sig_barrel->DrawCopy();
+  pp1_eta075->Update();
+  /*
+  TH1F*  Pf_Pho_Iso_eta075_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_eta075_Bkg_b");
+  Pf_Pho_Iso_eta075_bkg_barrel->Scale(1.0/Pf_Pho_Iso_eta075_bkg_barrel->Integral());
+  Pf_Pho_Iso_eta075_bkg_barrel->SetMarkerStyle(23);
+  Pf_Pho_Iso_eta075_bkg_barrel->SetMarkerColor(kBlue);
+  Pf_Pho_Iso_eta075_bkg_barrel->SetLineColor(kBlue);
+  Pf_Pho_Iso_eta075_bkg_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta075_bkg_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta075_bkg_barrel->SetTitle("Pf_Pho_Iso_eta075 (barrel)");
+  pp1_eta075->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta075_bkg_barrel->DrawCopy("sames");
+  pp1_eta075->Update();
+  */
+  TLegend* L254_eta075 = new TLegend(x1,y1,x2,y2);
+  L254_eta075->AddEntry(Pf_Pho_Iso_eta075_sig_barrel, "Signal", "L");
+  // L254_eta075->AddEntry(Pf_Pho_Iso_eta075_bkg_barrel, "Background", "L");
+  L254_eta075->SetFillColor(0);
+  L254_eta075->Draw();
+  pp1_eta075->Write();
+  //////////////////////////////////////////////////////////////////
+
+  /// pf_pho_iso eta090 ///
+  std::cout << "pf_pho_iso eta090" << std::endl;
+  TCanvas* pp1_eta090 = new TCanvas("Pf_Pho_Iso_eta090_b", "Pf_Pho_Iso_eta090_barr");
+
+  TH1F*  Pf_Pho_Iso_eta090_sig_barrel = (TH1F*)input->Get("pf_pho_iso_eta090_Sig_b");
+  //  Pf_Pho_Iso_eta090_sig_barrel->Scale(1.0/Pf_Pho_Iso_eta090_sig_barrel->Integral());
+  Pf_Pho_Iso_eta090_sig_barrel->SetMarkerStyle(22);
+  Pf_Pho_Iso_eta090_sig_barrel->SetMarkerColor(kRed);
+  Pf_Pho_Iso_eta090_sig_barrel->SetLineColor(kRed);
+  Pf_Pho_Iso_eta090_sig_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta090_sig_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta090_sig_barrel->SetTitle("Pf_Pho_Iso_eta090 (barrel)");
+  pp1_eta090->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta090_sig_barrel->DrawCopy();
+  pp1_eta090->Update();
+  /*
+  TH1F*  Pf_Pho_Iso_eta090_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_eta090_Bkg_b");
+  Pf_Pho_Iso_eta090_bkg_barrel->Scale(1.0/Pf_Pho_Iso_eta090_bkg_barrel->Integral());
+  Pf_Pho_Iso_eta090_bkg_barrel->SetMarkerStyle(23);
+  Pf_Pho_Iso_eta090_bkg_barrel->SetMarkerColor(kBlue);
+  Pf_Pho_Iso_eta090_bkg_barrel->SetLineColor(kBlue);
+  Pf_Pho_Iso_eta090_bkg_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_eta090_bkg_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_eta090_bkg_barrel->SetTitle("Pf_Pho_Iso_eta090 (barrel)");
+  pp1_eta090->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_eta090_bkg_barrel->DrawCopy("sames");
+  pp1_eta090->Update();
+  */
+  TLegend* L254_eta090 = new TLegend(x1,y1,x2,y2);
+  L254_eta090->AddEntry(Pf_Pho_Iso_eta090_sig_barrel, "Signal", "L");
+  // L254_eta090->AddEntry(Pf_Pho_Iso_eta090_bkg_barrel, "Background", "L");
+  L254_eta090->SetFillColor(0);
+  L254_eta090->Draw();
+  pp1_eta090->Write();
+  //////////////////////////////////////////////////////////////////
+
+  /// pf_pho_iso_dR070 ///
+  std::cout << "pf_pho_iso_dR070" << std::endl;
+  TCanvas* pp1_dR070 = new TCanvas("Pf_Pho_Iso_dR070_b", "Pf_Pho_Iso_dR070_barr");
+
+  TH1F*  Pf_Pho_Iso_dR070_sig_barrel = (TH1F*)input->Get("pf_pho_iso_dR070_Sig_b");
+  // Pf_Pho_Iso_dR070_sig_barrel->Scale(1.0/Pf_Pho_Iso_dR070_sig_barrel->Integral());
+  Pf_Pho_Iso_dR070_sig_barrel->SetMarkerStyle(22);
+  Pf_Pho_Iso_dR070_sig_barrel->SetMarkerColor(kRed);
+  Pf_Pho_Iso_dR070_sig_barrel->SetLineColor(kRed);
+  Pf_Pho_Iso_dR070_sig_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_dR070_sig_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_dR070_sig_barrel->SetTitle("Pf_Pho_Iso_dR070 (barrel)");
+  pp1_dR070->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_dR070_sig_barrel->DrawCopy();
+  pp1_dR070->Update();
+  /*
+  TH1F*  Pf_Pho_Iso_dR070_bkg_barrel = (TH1F*)input->Get("pf_pho_iso_dR070_Bkg_b");
+  Pf_Pho_Iso_dR070_bkg_barrel->Scale(1.0/Pf_Pho_Iso_dR070_bkg_barrel->Integral());
+  Pf_Pho_Iso_dR070_bkg_barrel->SetMarkerStyle(23);
+  Pf_Pho_Iso_dR070_bkg_barrel->SetMarkerColor(kBlue);
+  Pf_Pho_Iso_dR070_bkg_barrel->SetLineColor(kBlue);
+  Pf_Pho_Iso_dR070_bkg_barrel->SetMarkerSize(1.0);
+  Pf_Pho_Iso_dR070_bkg_barrel->SetLineWidth(2);
+  Pf_Pho_Iso_dR070_bkg_barrel->SetTitle("Pf_Pho_Iso_dR070 (barrel)");
+  pp1_dR070->cd();
+  gPad->SetGrid();
+  //  gPad->SetLogy();
+  Pf_Pho_Iso_dR070_bkg_barrel->DrawCopy("sames");
+  pp1_dR070->Update();
+  */
+  TLegend* L254_dR070 = new TLegend(x1,y1,x2,y2);
+  L254_dR070->AddEntry(Pf_Pho_Iso_dR070_sig_barrel, "Signal", "L");
+  // L254_dR070->AddEntry(Pf_Pho_Iso_dR070_bkg_barrel, "Background", "L");
+  L254_dR070->SetFillColor(0);
+  L254_dR070->Draw();
+  pp1_dR070->Write();
+  //////////////////////////////////////////////////////////////////
+
 
   ///// endcap  pf_pho_iso ///
   std::cout << "pf_pho_iso endcap" << std::endl;

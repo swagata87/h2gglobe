@@ -724,7 +724,15 @@ void SetBranchAddress_pho_pfiso_myneutral05(TTree * tree) { tree->SetBranchAddre
 void SetBranchAddress_pho_pfiso_myneutral06(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myneutral06", pho_pfiso_myneutral06, &b_pho_pfiso_myneutral06); };
 void SetBranchAddress_pho_pfiso_myphoton01(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton01", pho_pfiso_myphoton01, &b_pho_pfiso_myphoton01); };
 void SetBranchAddress_pho_pfiso_myphoton02(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton02", pho_pfiso_myphoton02, &b_pho_pfiso_myphoton02); };
+///////
 void SetBranchAddress_pho_pfiso_myphoton03(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03", pho_pfiso_myphoton03, &b_pho_pfiso_myphoton03); };
+void SetBranchAddress_pho_pfiso_myphoton03_eta030(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03_eta030", pho_pfiso_myphoton03_eta030, &b_pho_pfiso_myphoton03_eta030); };
+void SetBranchAddress_pho_pfiso_myphoton03_eta045(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03_eta045", pho_pfiso_myphoton03_eta045, &b_pho_pfiso_myphoton03_eta045); };
+void SetBranchAddress_pho_pfiso_myphoton03_eta060(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03_eta060", pho_pfiso_myphoton03_eta060, &b_pho_pfiso_myphoton03_eta060); };
+void SetBranchAddress_pho_pfiso_myphoton03_eta075(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03_eta075", pho_pfiso_myphoton03_eta075, &b_pho_pfiso_myphoton03_eta075); };
+void SetBranchAddress_pho_pfiso_myphoton03_eta090(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03_eta090", pho_pfiso_myphoton03_eta090, &b_pho_pfiso_myphoton03_eta090); };
+void SetBranchAddress_pho_pfiso_myphoton03_dR070(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton03_dR070", pho_pfiso_myphoton03_dR070, &b_pho_pfiso_myphoton03_dR070); };
+///////
 void SetBranchAddress_pho_pfiso_myphoton04(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton04", pho_pfiso_myphoton04, &b_pho_pfiso_myphoton04); };
 void SetBranchAddress_pho_pfiso_myphoton05(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton05", pho_pfiso_myphoton05, &b_pho_pfiso_myphoton05); };
 void SetBranchAddress_pho_pfiso_myphoton06(TTree * tree) { tree->SetBranchAddress("pho_pfiso_myphoton06", pho_pfiso_myphoton06, &b_pho_pfiso_myphoton06); };

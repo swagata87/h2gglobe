@@ -50,19 +50,19 @@ float LoopAll::pfTkIsoWithVertex(int phoindex, int vtxInd, float dRmax, float dR
 }
 
 float LoopAll::pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dRVetoEndcap, float etaStripBarrel, 
-                         float etaStripEndcap, float thrBarrel, float thrEndcaps, float dPhiBarrel, float dPhiEndcap, int pfToUse) {
+                         float etaStripEndcap, float thrBarrel, float thrEndcaps, int pfToUse) {
   
   float dRVeto, etaStrip, thr, dPhiCut;
     if (pho_isEB[phoindex]) {
         dRVeto = dRVetoBarrel;
         etaStrip = etaStripBarrel;
         thr = thrBarrel;
-	dPhiCut = dPhiBarrel;
+	//	dPhiCut = dPhiBarrel;
     } else {
         dRVeto = dRVetoEndcap;
         etaStrip = etaStripEndcap;
         thr = thrEndcaps;
-	dPhiCut = dPhiEndcap;
+	//	dPhiCut = dPhiEndcap;
     }
 
     float sum = 0;
@@ -90,8 +90,8 @@ float LoopAll::pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dR
 
             float dEta = fabs(photonDirectionWrtVtx.Eta() - pfc->Eta());
             float dR = photonDirectionWrtVtx.DeltaR(pfc->Vect());
-	    float dPhi = fabs(photonDirectionWrtVtx.Phi() - pfc->Phi());
-	    if(dPhi > TMath::Pi())dPhi = TMath::TwoPi() - dPhi;
+	    //  float dPhi = fabs(photonDirectionWrtVtx.Phi() - pfc->Phi());
+	    //  if(dPhi > TMath::Pi())dPhi = TMath::TwoPi() - dPhi;
 	 
             if (dEta < etaStrip)
                 continue;
@@ -99,8 +99,8 @@ float LoopAll::pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dR
             if(dR > dRmax || dR < dRVeto)
                 continue;
 
-	    if(dPhi < dPhiCut)
-	      continue;
+	    // if(dPhi < dPhiCut)
+	    //   continue;
 
             sum += pfc->Pt();
         }
@@ -1442,12 +1442,12 @@ void LoopAll::set_pho_p4(int ipho, int ivtx, float *pho_energy_array)
 void LoopAll::FillCICPFInputs()
 {
     for(int ipho=0; ipho<pho_n; ++ipho) {
-      float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 0., 0., 5);
-      float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 0., 0., 5);
-      float neu03 = pfEcalIso(ipho, 0.3, 0., 0., 0., 0., 0., 0., 0., 0., 5);
-      float neu04 = pfEcalIso(ipho, 0.4, 0., 0., 0., 0., 0., 0., 0., 0., 5); 
-      float neu05 = pfEcalIso(ipho, 0.5, 0., 0., 0., 0., 0., 0., 0., 0., 5); 
-      float neu06 = pfEcalIso(ipho, 0.6, 0., 0., 0., 0., 0., 0., 0., 0., 5); 
+      float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 5);
+      float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 5);
+      float neu03 = pfEcalIso(ipho, 0.3, 0., 0., 0., 0., 0., 0., 5);
+      float neu04 = pfEcalIso(ipho, 0.4, 0., 0., 0., 0., 0., 0., 5); 
+      float neu05 = pfEcalIso(ipho, 0.5, 0., 0., 0., 0., 0., 0., 5); 
+      float neu06 = pfEcalIso(ipho, 0.6, 0., 0., 0., 0., 0., 0., 5); 
         if( GFDEBUG ) {
             if( ( pho_pfiso_myneutral03[ipho] != neu03 || 
                   pho_pfiso_myneutral04[ipho] != neu04   )
@@ -1465,13 +1465,14 @@ void LoopAll::FillCICPFInputs()
         pho_pfiso_myneutral05[ipho] = neu05;
         pho_pfiso_myneutral06[ipho] = neu06;
 
+	// pfEcalIso(phoindx, dRmax, dRVetoBarr, dRVetoEndc, etaStripBarr, etaStripEndc, thrBarr, thrEndc, dPhiBarr, dPhiEndc, pfToUse)
+        float pho01 = pfEcalIso(ipho, 0.1, 0.0, 0.070, 0.015, 0.0, 0.0, 0.0);
+        float pho02 = pfEcalIso(ipho, 0.2, 0.0, 0.070, 0.015, 0.0, 0.0, 0.0);
 
-        float pho01 = pfEcalIso(ipho, 0.1, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.);
-        float pho02 = pfEcalIso(ipho, 0.2, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.);
-        float pho03 = pfEcalIso(ipho, 0.3, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.);
-        float pho04 = pfEcalIso(ipho, 0.4, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.); 
-        float pho05 = pfEcalIso(ipho, 0.5, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.); 
-        float pho06 = pfEcalIso(ipho, 0.6, 0., 0.070, 0.015, 0., 0., 0.02, 0., 0.); 
+        float pho03   = pfEcalIso(ipho, 0.3, 0.00, 0.070, 0.015, 0., 0., 0.0); 
+        float pho04   = pfEcalIso(ipho, 0.4, 0.00, 0.070, 0.015, 0., 0., 0.0); 
+        float pho05   = pfEcalIso(ipho, 0.5, 0.00, 0.070, 0.015, 0., 0., 0.0); 
+        float pho06   = pfEcalIso(ipho, 0.6, 0.00, 0.070, 0.015, 0., 0., 0.0); 
         ///// float pho03 = pfEcalIso(ipho, 0.3, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1);
         ///// float pho04 = pfEcalIso(ipho, 0.4, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1); 
         if( GFDEBUG ) {
@@ -1486,7 +1487,14 @@ void LoopAll::FillCICPFInputs()
         }
         pho_pfiso_myphoton01[ipho] = pho01;
         pho_pfiso_myphoton02[ipho] = pho02;
-        pho_pfiso_myphoton03[ipho] = pho03;
+       	pho_pfiso_myphoton03[ipho] = pho03;
+	/*pho_pfiso_myphoton03_eta030[ipho] = pho03_b;
+        pho_pfiso_myphoton03_eta045[ipho] = pho03_c;
+        pho_pfiso_myphoton03_eta060[ipho] = pho03_d;
+        pho_pfiso_myphoton03_eta075[ipho] = pho03_e;
+        pho_pfiso_myphoton03_eta090[ipho] = pho03_f;
+        pho_pfiso_myphoton03_dR070[ipho] = pho03_g;
+	*/
         pho_pfiso_myphoton04[ipho] = pho04;
         pho_pfiso_myphoton05[ipho] = pho05;
         pho_pfiso_myphoton06[ipho] = pho06;

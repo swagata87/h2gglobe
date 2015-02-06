@@ -21,7 +21,7 @@
 //#endif
 
 //////void photonid(char* outputFileName = "TMVA_photonid_General") {
-void photonid(char* outputFileName = "TMVA_GJet_14TeV_General_Jan5") {
+void photonid(char* outputFileName = "TMVA_GJet_14TeV_General_Jan13") {
   ///////void photonid(char* outputFileName = "TMVA_photonid_8TeVlegacy") {
   TMVA::Tools::Instance();
   
@@ -46,6 +46,12 @@ void photonid(char* outputFileName = "TMVA_GJet_14TeV_General_Jan5") {
   factory->AddVariable("etawidth_pho", 'F');
   factory->AddVariable("phiwidth_pho", 'F');
   factory->AddVariable("pf_pho_iso", 'F');
+  factory->AddVariable("pf_pho_iso_eta030", 'F');
+  factory->AddVariable("pf_pho_iso_eta045", 'F');
+  factory->AddVariable("pf_pho_iso_eta060", 'F');
+  factory->AddVariable("pf_pho_iso_eta075", 'F');
+  factory->AddVariable("pf_pho_iso_eta090", 'F');
+  factory->AddVariable("pf_pho_iso_dR070", 'F');
   factory->AddVariable("pf_charged_iso_chosenvtx", 'F');
   factory->AddVariable("pf_charged_iso_vtx1", 'F');
   factory->AddVariable("pf_charged_iso_vtx2", 'F');
@@ -61,7 +67,7 @@ void photonid(char* outputFileName = "TMVA_GJet_14TeV_General_Jan5") {
   factory->AddSpectator("nvtx",'I');
   factory->AddSpectator("pT_pho", 'F');
   /////  factory->AddSpectator("weight", 'F');
-  TFile* input = TFile::Open("UCSDplotter/2DReweighted_opttree_14TeV_GJet_Jan5.root");
+  TFile* input = TFile::Open("UCSDplotter/2DReweighted_opttree_14TeV_GJet_Jan13_check.root");
   
   TTree* inputTree = (TTree*)input->Get("opttree_2Dwt");
   outputFile->cd();
@@ -69,14 +75,14 @@ void photonid(char* outputFileName = "TMVA_GJet_14TeV_General_Jan5") {
   factory->SetInputTrees(inputTree, "genmatched_pho==1 && (abs(sc_eta_pho))<1.479", "genmatched_pho==0 && (abs(sc_eta_pho)) < 1.479"); 
   factory->SetWeightExpression("weight");
 
-  factory->PrepareTrainingAndTestTree("", "", "nTrain_Signal=0:nTrain_Background=0::nTest_Signal=0:nTest_Background=0:SplitMode=Random:!V" );
+  factory->PrepareTrainingAndTestTree("", "", "nTrain_Signal=50000:nTrain_Background=50000::nTest_Signal=50000:nTest_Background=50000:SplitMode=Random:!V" );
 
   ///////  TString vars = "sieie_cleaned_pho:sieip_cleaned_pho:r9_cleaned_pho:E2byE5_cleaned_pho:etawidth_pho:phiwidth_pho:pf_pho_iso:pf_charged_iso_chosenvtx:pf_charged_iso_vtx1:pf_charged_iso_vtx2:pf_charged_iso_badvtx:rho:sc_eta_pho:scRaw_pho";
   //TString vars = "sieie_pho:sieip_pho:r9_pho:E2byE5_pho:etawidth_pho:phiwidth_pho:pf_pho_iso:pf_charged_iso_chosenvtx:pf_charged_iso_vtx1:pf_charged_iso_vtx2:pf_charged_iso_badvtx:rho:sc_eta_pho:scRaw_pho";
 
-  TString vars = "sieie_pho:sieip_pho:r9_pho:E2byE5_pho:etawidth_pho:phiwidth_pho:pf_pho_iso:pf_charged_iso_chosenvtx:pf_charged_iso_vtx1:pf_charged_iso_vtx2:pf_charged_iso_badvtx:rho:sc_eta_pho:scRaw_pho";   
+  TString vars = "sieie_pho:sieip_pho:r9_pho:E2byE5_pho:etawidth_pho:phiwidth_pho:pf_pho_iso:pf_pho_iso_eta030:pf_pho_iso_eta045:pf_pho_iso_eta060:pf_pho_iso_eta075:pf_pho_iso_eta090:pf_pho_iso_dR070:pf_charged_iso_chosenvtx:pf_charged_iso_vtx1:pf_charged_iso_vtx2:pf_charged_iso_badvtx:rho:sc_eta_pho:scRaw_pho";   
   
-  TMVA::MethodBase* fiCat2 = factory->BookMethod(TMVA::Types::kBDT, "Gradient", "!H:!V:NTrees=200::BoostType=Grad:Shrinkage=0.1:UseBaggedGrad=F:nCuts=2000:MaxDepth=3:NNodesMax=100000:UseYesNoLeaf=F:nEventsMin=1000"); 
+  TMVA::MethodBase* fiCat2 = factory->BookMethod(TMVA::Types::kBDT, "Gradient", "!H:!V:NTrees=1000::BoostType=Grad:Shrinkage=0.1:UseBaggedGrad=F:nCuts=2000:MaxDepth=3:NNodesMax=100000:UseYesNoLeaf=F:nEventsMin=1000"); 
  
   //////TMVA::MethodBase* fiCat2 = factory->BookMethod(TMVA::Types::kBDT, "AdaBoost", "!H:!V:NTrees=400:BoostType=AdaBoost:SeparationType=giniindex:nCuts=2000:PruneMethod=nopruning:MaxDepth=3");
  

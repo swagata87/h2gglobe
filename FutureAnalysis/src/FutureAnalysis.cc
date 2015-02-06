@@ -59,7 +59,100 @@ bool FutureAnalysis::Analysis(LoopAll& l, Int_t jentry)
 {
   bool isCorrectVertex;
   TVector3* vtx;
+  float etaStrip_run1 = 0.015;
+  float etaStrip_030  = 0.030;
+  float etaStrip_045  = 0.045;
+  float etaStrip_060  = 0.060;
+  float etaStrip_075  = 0.075;
+  float etaStrip_090  = 0.090;
 
+  float dRmax = 0.3;
+  float dRVeto_run1 = 0.0;
+  float dRVeto_070  = 0.070;
+
+  int type = l.itype[l.current];
+  float weight       = l.sampleContainer[l.current_sample_index].weight();
+  //std::cout << "pho_n=" << l.pho_n << " ecalhit_n=" << l.ecalhit_n << std::endl;
+  for (int ipho=0; ipho<l.pho_n; ipho++){
+    //std::cout << "ipho=" << ipho << std::endl;
+    TLorentzVector* p4_pho =  (TLorentzVector*) l.pho_p4->At(ipho);
+    if (p4_pho->Pt() < 40.0) continue; 
+    if (l.pho_genmatched==0) continue;
+    float sc_eta_ipho =  ((TVector3*)l.sc_xyz->At(l.pho_scind[ipho]))->Eta();
+    float phi_ipho = p4_pho->Phi();
+    if (fabs(sc_eta_ipho) >1.479 ) continue;
+    l.FillHist("pf_pho_iso_run1parameters", 0, l.pho_pfiso_myphoton03[ipho], weight);
+    l.FillHist("pf_pho_iso_eta030", 0, l.pho_pfiso_myphoton03_eta030[ipho], weight);
+    l.FillHist("pf_pho_iso_eta045", 0, l.pho_pfiso_myphoton03_eta045[ipho], weight);
+    l.FillHist("pf_pho_iso_eta060", 0, l.pho_pfiso_myphoton03_eta060[ipho], weight);
+    l.FillHist("pf_pho_iso_eta075", 0, l.pho_pfiso_myphoton03_eta075[ipho], weight);
+    l.FillHist("pf_pho_iso_eta090", 0, l.pho_pfiso_myphoton03_eta090[ipho], weight);
+
+    //    float iso=l.pho_pfiso_myphoton03[ipho];
+    //  if (iso<60.0 || iso>100.0) continue;
+    l.FillHist2D("my_pho_position", 0, sc_eta_ipho, phi_ipho, weight);
+   
+    //// PFcandidate loop ////
+    for (int ipf=0; ipf<l.pfcand_n; ipf++) {
+      if (l.pfcand_pdgid[ipf] != 4) continue;
+      TLorentzVector* p4_pf = (TLorentzVector*) l.pfcand_p4->At(ipf);
+      TVector3* pfvtx = (TVector3*)l.pfcand_posvtx->At(ipf);
+      TVector3* phoEcalPos = (TVector3*)l.sc_xyz->At(l.pho_scind[ipho]);
+      TVector3 photonDirectionWrtVtx = TVector3(phoEcalPos->X() - pfvtx->X(),
+						phoEcalPos->Y() - pfvtx->Y(),
+						phoEcalPos->Z() - pfvtx->Z());
+      float dPhi = (photonDirectionWrtVtx.Phi() - p4_pf->Phi());
+      ///////float dPhi = (p4_pho->Phi() - p4_pf->Phi());
+      if(dPhi > TMath::Pi()) dPhi = TMath::TwoPi() - dPhi;
+      if(dPhi < (-1.0*(TMath::Pi()))) dPhi = (-1.0*(TMath::TwoPi())) - dPhi;
+      ///   float deta = ((sc_eta_ipho - p4_pf->Eta()));
+      float deta = (photonDirectionWrtVtx.Eta() - p4_pf->Eta());
+      float dR = photonDirectionWrtVtx.DeltaR(p4_pf->Vect());
+      if(dR > dRmax) continue ; 
+      l.FillHist2D("pf_detadphi_noveto", 0, deta, dPhi, weight);
+
+      if (fabs(deta) < etaStrip_run1) continue;
+      if (dR < dRVeto_run1)           continue;
+      l.FillHist2D("my_pfetaphi_Run1veto", 0, deta, dPhi, weight);
+
+      if (fabs(deta) < etaStrip_030)  continue;
+      l.FillHist2D("my_pfetaphi_deta030", 0, deta, dPhi, weight);
+
+      if (fabs(deta) < etaStrip_045)  continue;
+      l.FillHist2D("my_pfetaphi_deta045", 0, deta, dPhi, weight);
+
+      if (fabs(deta) < etaStrip_060)  continue;
+      l.FillHist2D("my_pfetaphi_deta060", 0, deta, dPhi, weight);
+
+      if (fabs(deta) < etaStrip_075)  continue;
+      l.FillHist2D("my_pfetaphi_deta075", 0, deta, dPhi, weight);
+
+      if (fabs(deta) < etaStrip_090)  continue;
+      l.FillHist2D("my_pfetaphi_deta090", 0, deta, dPhi, weight);
+
+    }
+
+    /*
+    //// ecalhit loop ////
+    for (int iecal=0; iecal<l.ecalhit_n; iecal++) {
+      ////std::cout << "iecal=" << iecal << std::endl;
+      TLorentzVector* p4_ecal = (TLorentzVector*) l.ecalhit_p4->At(iecal);
+      float dPhi = (p4_pho->Phi() - p4_ecal->Phi());
+      if(dPhi > TMath::Pi()) dPhi = TMath::TwoPi() - dPhi;
+      if(dPhi < (-1.0*(TMath::Pi()))) dPhi = (-1.0*(TMath::TwoPi())) - dPhi;
+      float deta = ((sc_eta_ipho - p4_ecal->Eta()));
+      l.FillHist2D("my_etaphi", 0, deta, dPhi, weight);
+
+      //      float abs_dPhi = fabs(p4_pho->Phi() - p4_ecal->Phi());
+      // if(abs_dPhi > TMath::Pi()) abs_dPhi = TMath::TwoPi() - dPhi;
+      //  float abs_deta = fabs((sc_eta_ipho - p4_ecal->Eta()));
+
+      //std::cout << "deta=" << deta << " dPhi=" << dPhi << std::endl;
+      //  l.FillHist2D("my_absetaphi", 0, abs_deta, abs_dPhi, weight);
+      
+      }*/
+  }
+   
   for (int ipho=0;ipho<l.pho_n;ipho++){
     l.pho_s4ratio[ipho] = l.pho_e2x2[ipho]/l.bc_s25[l.sc_bcseedind[l.pho_scind[ipho]]];
     float rr2=l.pho_eseffsixix[ipho]*l.pho_eseffsixix[ipho]+l.pho_eseffsiyiy[ipho]*l.pho_eseffsiyiy[ipho];
@@ -71,8 +164,8 @@ bool FutureAnalysis::Analysis(LoopAll& l, Int_t jentry)
   //  std::cout << "\n Evt----" << jentry << std::endl;                                                              
                 
  
-  int type = l.itype[l.current];
-  float weight       = l.sampleContainer[l.current_sample_index].weight();
+  //  int type = l.itype[l.current];
+  //  float weight       = l.sampleContainer[l.current_sample_index].weight();
   float sampleweight = l.sampleContainer[l.current_sample_index].weight();
 
   int ivtx = l.dipho_vtxind[0];
@@ -197,8 +290,17 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
     float pfPhoIso_cleaned_t15 = pfEcalIso(l, pho_indx, 0.3, 0.0, 0.070, 0.015, 0.0, 0.0, 0.0, 4, 15.0);
     float pfPhoIso_cleaned_t10 = pfEcalIso(l, pho_indx, 0.3, 0.0, 0.070, 0.015, 0.0, 0.0, 0.0, 4, 10.0);
 
+    TVector3* phoEcalPos = (TVector3*)l.sc_xyz->At(l.pho_scind[pho_indx]);
+    float phoEcalPosX = phoEcalPos->X() ;
+    float phoEcalPosY = phoEcalPos->Y() ;
+    float phoEcalPosZ = phoEcalPos->Z() ; 
+    //    std::cout << "phoEcalPosX = " << phoEcalPosX << std::endl;
+
     //    std::cout << "mva = " << mva << std::endl;                       
     l.FillTree("mva_legacy",               mva,                                                      "Future_myTry");
+    l.FillTree("pho_EcalPosX",             phoEcalPosX,                                              "Future_myTry");
+    l.FillTree("pho_EcalPosY",             phoEcalPosY,                                              "Future_myTry");
+    l.FillTree("pho_EcalPosZ",             phoEcalPosZ,                                              "Future_myTry");
     l.FillTree("pT_pho",                   p4_photon->Pt(),                                          "Future_myTry");
     l.FillTree("p4_eta_pho",               p4_photon->Eta(),                                         "Future_myTry");
     l.FillTree("sc_eta_pho",               ((TVector3*)l.sc_xyz->At(l.pho_scind[pho_indx]))->Eta(),  "Future_myTry" );
@@ -218,6 +320,12 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
     l.FillTree("ecaliso03_pho",            l.pho_ecalsumetconedr03[pho_indx],                        "Future_myTry");
     l.FillTree("hcaliso03_pho",            l.pho_hcalsumetconedr03[pho_indx],                        "Future_myTry");
     l.FillTree("pf_pho_iso",               l.pho_pfiso_myphoton03[pho_indx],                         "Future_myTry");
+    l.FillTree("pf_pho_iso_eta030",        l.pho_pfiso_myphoton03_eta030[pho_indx],                  "Future_myTry");
+    l.FillTree("pf_pho_iso_eta045",        l.pho_pfiso_myphoton03_eta045[pho_indx],                  "Future_myTry");
+    l.FillTree("pf_pho_iso_eta060",        l.pho_pfiso_myphoton03_eta060[pho_indx],                  "Future_myTry");
+    l.FillTree("pf_pho_iso_eta075",        l.pho_pfiso_myphoton03_eta075[pho_indx],                  "Future_myTry");
+    l.FillTree("pf_pho_iso_eta090",        l.pho_pfiso_myphoton03_eta090[pho_indx],                  "Future_myTry");
+    l.FillTree("pf_pho_iso_dR070",         l.pho_pfiso_myphoton03_dR070[pho_indx],                   "Future_myTry");
     // if (pf_charged_iso03_chosenvtx>14.0) std::cout<< "Pf_chIso03_chosenvtx>14.0" << std::endl; 
     l.FillTree("pf_charged_iso_chosenvtx", pf_charged_iso03_chosenvtx,                               "Future_myTry");
     l.FillTree("pf_charged_iso_vtx1",      pf_charged_iso03_vtx1,                                    "Future_myTry");
@@ -236,6 +344,9 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
 
   else {
     l.FillTree("mva_legacy",                9999.0,       "Future_myTry");
+    l.FillTree("pho_EcalPosX",              9999.0,       "Future_myTry");
+    l.FillTree("pho_EcalPosY",              9999.0,       "Future_myTry");
+    l.FillTree("pho_EcalPosZ",              9999.0,       "Future_myTry");
     l.FillTree("pT_pho",                    9999.0,       "Future_myTry");
     l.FillTree("p4_eta_pho",                9999.0,       "Future_myTry");
     l.FillTree("sc_eta_pho",                9999.0,       "Future_myTry");
@@ -253,6 +364,12 @@ void FutureAnalysis::FillFlatTree(LoopAll& l, Int_t type, Float_t weight, Int_t 
     l.FillTree("ecaliso03_pho",             9999.0,       "Future_myTry");
     l.FillTree("hcaliso03_pho",             9999.0,       "Future_myTry");
     l.FillTree("pf_pho_iso",                9999.0,       "Future_myTry");
+    l.FillTree("pf_pho_iso_eta030",         9999.0,       "Future_myTry");
+    l.FillTree("pf_pho_iso_eta045",         9999.0,       "Future_myTry");
+    l.FillTree("pf_pho_iso_eta060",         9999.0,       "Future_myTry");
+    l.FillTree("pf_pho_iso_eta075",         9999.0,       "Future_myTry");
+    l.FillTree("pf_pho_iso_eta090",         9999.0,       "Future_myTry");
+    l.FillTree("pf_pho_iso_dR070",          9999.0,       "Future_myTry");
     l.FillTree("pf_charged_iso_chosenvtx",  9999.0,       "Future_myTry");
     l.FillTree("pf_charged_iso_vtx1",       9999.0,       "Future_myTry");
     l.FillTree("pf_charged_iso_vtx2",       9999.0,       "Future_myTry");

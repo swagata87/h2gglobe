@@ -136,7 +136,7 @@ class LoopAll {
   std::vector<TTree*> LumiTrees;
   std::vector<TFile*> Files;
   std::vector<TTree*> TreesPar;
-
+  //////// float pho03_b, pho03_c, pho03_d, pho03_e, pho03_f, pho03_g;
 
   TTree * outputTree;
   TTree * outputTreeLumi;
@@ -327,7 +327,7 @@ class LoopAll {
 
   float pfTkIsoWithVertex(int phoindex, int vtxInd, float dRmax, float dRvetoBarrel, float dRvetoEndcap, float ptMin, float dzMax, float dxyMax, int pfToUse=1);
   float pfEcalIso(int phoindex, float dRmax, float dRVetoBarrel, float dRVetoEndcap, float etaStripBarrel, float etaStripEndcap, 
-		  float thrBarrel, float thrEndcaps, float, float, int pfToUse=4);
+		  float thrBarrel, float thrEndcaps, int pfToUse=4);
 
   RooFuncReader *funcReader_dipho_MIT;
   TMVA::Reader *tmvaReaderID_UCSD, * tmvaReader_dipho_UCSD;

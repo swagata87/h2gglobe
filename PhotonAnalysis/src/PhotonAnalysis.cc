@@ -8,7 +8,8 @@
 #include <iomanip>
 #include <fstream>
 #include <algorithm>
-
+////#include "../../LoopAll.h"
+////#include "../../GeneralFunctions.cc"
 #include "JetAnalysis/interface/JetHandler.h"
 #include "CMGTools/External/interface/PileupJetIdentifier.h"
 
@@ -2046,6 +2047,20 @@ void PhotonAnalysis::PreselectPhotons(LoopAll& l, int jentry)
     for(int ipho=0; ipho<l.pho_n; ++ipho) {
         l.pho_genmatched[ipho]=GenMatchedPhoton( l, ipho, l.pho_genenergy[ipho]);
         /////  l.pho_genmatched[ipho]=GenMatchedPhoton( l, ipho);
+        //pfEcalIso(phoindx,dRmax,dRVetoBarr,dRVetoEndc,etaStripBarr,etaStripEndc,thrBarr,thrEndc,pfToUse)       
+        float  pho03_b = l.pfEcalIso(ipho, 0.3, 0.00, 0.070, 0.030, 0., 0., 0.0); // etaStripBarr cut 0.030 //       
+        float  pho03_c = l.pfEcalIso(ipho, 0.3, 0.00, 0.070, 0.045, 0., 0., 0.0); // etaStripBarr cut 0.045 //           
+        float  pho03_d = l.pfEcalIso(ipho, 0.3, 0.00, 0.070, 0.060, 0., 0., 0.0); // etaStripBarr cut 0.060 //        
+        float  pho03_e = l.pfEcalIso(ipho, 0.3, 0.00, 0.070, 0.075, 0., 0., 0.0); // etaStripBarr cut 0.075 //           
+        float  pho03_f = l.pfEcalIso(ipho, 0.3, 0.00, 0.070, 0.090, 0., 0., 0.0); // etaStripBarr cut 0.090 //          
+        float  pho03_g = l.pfEcalIso(ipho, 0.3, 0.07, 0.070, 0.015, 0., 0., 0.0); // dRVetoBarr cut 0.07 //             
+        
+        l.pho_pfiso_myphoton03_eta030[ipho] = pho03_b;
+        l.pho_pfiso_myphoton03_eta045[ipho] = pho03_c;
+        l.pho_pfiso_myphoton03_eta060[ipho] = pho03_d;
+        l.pho_pfiso_myphoton03_eta075[ipho] = pho03_e;
+        l.pho_pfiso_myphoton03_eta090[ipho] = pho03_f;
+        l.pho_pfiso_myphoton03_dR070[ipho] = pho03_g;
 
         // match all photons in the original tree with the conversions from the merged collection and save the indices
         int iConv  =l.matchPhotonToConversion(ipho);
@@ -2566,7 +2581,13 @@ void PhotonAnalysis::ReducedOutputTree(LoopAll &l, TTree * outputTree)
 
 	l.Branch_pho_genmatched(outputTree);
     l.Branch_pho_genenergy(outputTree);
-
+    l.Branch_pho_pfiso_myphoton03_eta030(outputTree);
+    l.Branch_pho_pfiso_myphoton03_eta045(outputTree);
+    l.Branch_pho_pfiso_myphoton03_eta060(outputTree);
+    l.Branch_pho_pfiso_myphoton03_eta075(outputTree);
+    l.Branch_pho_pfiso_myphoton03_eta090(outputTree);
+    l.Branch_pho_pfiso_myphoton03_dR070(outputTree);
+    
 	l.Branch_pho_regr_energy_otf(outputTree);
 	l.Branch_pho_regr_energyerr_otf(outputTree);
 

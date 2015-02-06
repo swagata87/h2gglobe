@@ -48,6 +48,12 @@ public :
    Float_t         ecaliso03_pho;
    Float_t         hcaliso03_pho;
    Float_t         pf_pho_iso;
+   Float_t         pf_pho_iso_eta030;
+   Float_t         pf_pho_iso_eta045;
+   Float_t         pf_pho_iso_eta060;
+   Float_t         pf_pho_iso_eta075;
+   Float_t         pf_pho_iso_eta090;
+   Float_t         pf_pho_iso_dR070;
    Float_t         pfPhoIso_cleaned_t15;
    Float_t         pfPhoIso_cleaned_t10;
    Int_t           genmatched_pho;
@@ -90,6 +96,12 @@ public :
    TBranch        *b_ecaliso03_pho;   //!
    TBranch        *b_hcaliso03_pho;   //!
    TBranch        *b_pf_pho_iso;   //!
+   TBranch        *b_pf_pho_iso_eta030;   //!
+   TBranch        *b_pf_pho_iso_eta045;   //!
+   TBranch        *b_pf_pho_iso_eta060;   //!
+   TBranch        *b_pf_pho_iso_eta075;   //!
+   TBranch        *b_pf_pho_iso_eta090;   //!
+   TBranch        *b_pf_pho_iso_dR070;   //! 
    TBranch        *b_pfPhoIso_cleaned_t15;   //!
    TBranch        *b_pfPhoIso_cleaned_t10;   //!
    TBranch        *b_genmatched_pho;   //!
@@ -124,11 +136,11 @@ Reweight::Reweight(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-     TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("opttree_14TeV_GJet_Jan5.root");
+     TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("opttree_14TeV_GJet_Jan13_check.root");
      /////    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("opttree_Sept15_8TeV_legacy.root");
 
       if (!f || !f->IsOpen()) {
-	f = new TFile("opttree_14TeV_GJet_Jan5.root");
+	f = new TFile("opttree_14TeV_GJet_Jan13_check.root");
 	///	f = new TFile("opttree_Sept15_8TeV_legacy.root");
       }
       f->GetObject("opttree",tree);
@@ -203,6 +215,12 @@ void Reweight::Init(TTree *tree)
    fChain->SetBranchAddress("ecaliso03_pho", &ecaliso03_pho, &b_ecaliso03_pho);
    fChain->SetBranchAddress("hcaliso03_pho", &hcaliso03_pho, &b_hcaliso03_pho);
    fChain->SetBranchAddress("pf_pho_iso", &pf_pho_iso, &b_pf_pho_iso);
+   fChain->SetBranchAddress("pf_pho_iso_eta030", &pf_pho_iso_eta030, &b_pf_pho_iso_eta030);
+   fChain->SetBranchAddress("pf_pho_iso_eta045", &pf_pho_iso_eta045, &b_pf_pho_iso_eta045);
+   fChain->SetBranchAddress("pf_pho_iso_eta060", &pf_pho_iso_eta060, &b_pf_pho_iso_eta060);
+   fChain->SetBranchAddress("pf_pho_iso_eta075", &pf_pho_iso_eta075, &b_pf_pho_iso_eta075);
+   fChain->SetBranchAddress("pf_pho_iso_eta090", &pf_pho_iso_eta090, &b_pf_pho_iso_eta090);
+   fChain->SetBranchAddress("pf_pho_iso_dR070", &pf_pho_iso_dR070, &b_pf_pho_iso_dR070);
    fChain->SetBranchAddress("pfPhoIso_cleaned_t15", &pfPhoIso_cleaned_t15, &b_pfPhoIso_cleaned_t15);
    fChain->SetBranchAddress("pfPhoIso_cleaned_t10", &pfPhoIso_cleaned_t10, &b_pfPhoIso_cleaned_t10);
    fChain->SetBranchAddress("genmatched_pho", &genmatched_pho, &b_genmatched_pho);

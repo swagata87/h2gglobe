@@ -14,7 +14,7 @@ void Reweight::Loop()
 
   float new_wt=0.0;
 
-  TFile* outputFile = new TFile("2DReweighted_opttree_14TeV_GJet_Jan5.root","RECREATE");
+  TFile* outputFile = new TFile("2DReweighted_opttree_14TeV_GJet_Jan13_check.root","RECREATE");
   TTree* myTree = new TTree("opttree_2Dwt","opttree_2Dwt");
 
   myTree->Branch("run", &run, "run/I");
@@ -44,6 +44,12 @@ void Reweight::Loop()
   myTree->Branch("ecaliso03_pho", &ecaliso03_pho, "ecaliso03_pho/F");
   myTree->Branch("hcaliso03_pho", &hcaliso03_pho, "hcaliso03_pho/F");
   myTree->Branch("pf_pho_iso", &pf_pho_iso, "pf_pho_iso/F");
+  myTree->Branch("pf_pho_iso_eta030", &pf_pho_iso_eta030, "pf_pho_iso_eta030/F");
+  myTree->Branch("pf_pho_iso_eta045", &pf_pho_iso_eta045, "pf_pho_iso_eta045/F");
+  myTree->Branch("pf_pho_iso_eta060", &pf_pho_iso_eta060, "pf_pho_iso_eta060/F");
+  myTree->Branch("pf_pho_iso_eta075", &pf_pho_iso_eta075, "pf_pho_iso_eta075/F");
+  myTree->Branch("pf_pho_iso_eta090", &pf_pho_iso_eta090, "pf_pho_iso_eta090/F");
+  myTree->Branch("pf_pho_iso_dR070",  &pf_pho_iso_dR070,  "pf_pho_iso_dR070/F");
   myTree->Branch("pfPhoIso_cleaned_t15", &pfPhoIso_cleaned_t15, "pfPhoIso_cleaned_t15/F");
   myTree->Branch("pfPhoIso_cleaned_t10", &pfPhoIso_cleaned_t10, "pfPhoIso_cleaned_t10/F");
   myTree->Branch("genmatched_pho", &genmatched_pho, "genmatched_pho/I");

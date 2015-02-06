@@ -645,7 +645,15 @@ TBranch *b_pho_pfiso_myneutral05;
 TBranch *b_pho_pfiso_myneutral06;
 TBranch *b_pho_pfiso_myphoton01;
 TBranch *b_pho_pfiso_myphoton02;
+///// PF iso 03 /////
 TBranch *b_pho_pfiso_myphoton03;
+TBranch *b_pho_pfiso_myphoton03_eta030;
+TBranch *b_pho_pfiso_myphoton03_eta045;
+TBranch *b_pho_pfiso_myphoton03_eta060;
+TBranch *b_pho_pfiso_myphoton03_eta075;
+TBranch *b_pho_pfiso_myphoton03_eta090;
+TBranch *b_pho_pfiso_myphoton03_dR070;
+////
 TBranch *b_pho_pfiso_myphoton04;
 TBranch *b_pho_pfiso_myphoton05;
 TBranch *b_pho_pfiso_myphoton06;

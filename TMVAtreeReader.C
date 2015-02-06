@@ -16,7 +16,7 @@ void TMVAtreeReader::Loop()
   
   //////  TFile* outputFile = new TFile("Overtraining_general.root","RECREATE");
   //////  TFile* outputFile = new TFile("Hgg_StudyTMVA_timeCl_2thEvt_1000trees.root","RECREATE");
-  TFile* outputFile = new TFile("Hgg_General_14TeV_Jan5.root","RECREATE");
+  TFile* outputFile = new TFile("Hgg_General_14TeV_Jan13.root","RECREATE");
 
   TH1F* h_weight_sig = new TH1F("weight_Sig", "h_weight_Sig", 200, 0.0, 20.0);
   TH1F* h_weight_bkg = new TH1F("weight_Bkg", "h_weight_Bkg", 200, 0.0, 20.0);
@@ -65,6 +65,36 @@ void TMVAtreeReader::Loop()
   TH1F* h_pf_pho_iso_bkg_barr = new TH1F("pf_pho_iso_Bkg_b", "h_pf_pho_iso_Bkg_b", 400, 0.0, 400.0);
   TH1F* h_pf_pho_iso_sig_endC = new TH1F("pf_pho_iso_Sig_e", "h_pf_pho_iso_Sig_e", 400, 0.0, 400.0);
   TH1F* h_pf_pho_iso_bkg_endC = new TH1F("pf_pho_iso_Bkg_e", "h_pf_pho_iso_Bkg_e", 400, 0.0, 400.0);
+
+  TH1F* h_pf_pho_iso_eta030_sig_barr = new TH1F("pf_pho_iso_eta030_Sig_b", "h_pf_pho_iso_eta030_Sig_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta030_bkg_barr = new TH1F("pf_pho_iso_eta030_Bkg_b", "h_pf_pho_iso_eta030_Bkg_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta030_sig_endC = new TH1F("pf_pho_iso_eta030_Sig_e", "h_pf_pho_iso_eta030_Sig_e", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta030_bkg_endC = new TH1F("pf_pho_iso_eta030_Bkg_e", "h_pf_pho_iso_eta030_Bkg_e", 400, 0.0, 400.0);
+
+  TH1F* h_pf_pho_iso_eta045_sig_barr = new TH1F("pf_pho_iso_eta045_Sig_b", "h_pf_pho_iso_eta045_Sig_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta045_bkg_barr = new TH1F("pf_pho_iso_eta045_Bkg_b", "h_pf_pho_iso_eta045_Bkg_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta045_sig_endC = new TH1F("pf_pho_iso_eta045_Sig_e", "h_pf_pho_iso_eta045_Sig_e", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta045_bkg_endC = new TH1F("pf_pho_iso_eta045_Bkg_e", "h_pf_pho_iso_eta045_Bkg_e", 400, 0.0, 400.0);
+
+  TH1F* h_pf_pho_iso_eta060_sig_barr = new TH1F("pf_pho_iso_eta060_Sig_b", "h_pf_pho_iso_eta060_Sig_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta060_bkg_barr = new TH1F("pf_pho_iso_eta060_Bkg_b", "h_pf_pho_iso_eta060_Bkg_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta060_sig_endC = new TH1F("pf_pho_iso_eta060_Sig_e", "h_pf_pho_iso_eta060_Sig_e", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta060_bkg_endC = new TH1F("pf_pho_iso_eta060_Bkg_e", "h_pf_pho_iso_eta060_Bkg_e", 400, 0.0, 400.0);
+
+  TH1F* h_pf_pho_iso_eta075_sig_barr = new TH1F("pf_pho_iso_eta075_Sig_b", "h_pf_pho_iso_eta075_Sig_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta075_bkg_barr = new TH1F("pf_pho_iso_eta075_Bkg_b", "h_pf_pho_iso_eta075_Bkg_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta075_sig_endC = new TH1F("pf_pho_iso_eta075_Sig_e", "h_pf_pho_iso_eta075_Sig_e", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta075_bkg_endC = new TH1F("pf_pho_iso_eta075_Bkg_e", "h_pf_pho_iso_eta075_Bkg_e", 400, 0.0, 400.0);
+
+  TH1F* h_pf_pho_iso_eta090_sig_barr = new TH1F("pf_pho_iso_eta090_Sig_b", "h_pf_pho_iso_eta090_Sig_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta090_bkg_barr = new TH1F("pf_pho_iso_eta090_Bkg_b", "h_pf_pho_iso_eta090_Bkg_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta090_sig_endC = new TH1F("pf_pho_iso_eta090_Sig_e", "h_pf_pho_iso_eta090_Sig_e", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_eta090_bkg_endC = new TH1F("pf_pho_iso_eta090_Bkg_e", "h_pf_pho_iso_eta090_Bkg_e", 400, 0.0, 400.0);
+
+  TH1F* h_pf_pho_iso_dR070_sig_barr = new TH1F("pf_pho_iso_dR070_Sig_b", "h_pf_pho_iso_dR070_Sig_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_dR070_bkg_barr = new TH1F("pf_pho_iso_dR070_Bkg_b", "h_pf_pho_iso_dR070_Bkg_b", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_dR070_sig_endC = new TH1F("pf_pho_iso_dR070_Sig_e", "h_pf_pho_iso_dR070_Sig_e", 400, 0.0, 400.0);
+  TH1F* h_pf_pho_iso_dR070_bkg_endC = new TH1F("pf_pho_iso_dR070_Bkg_e", "h_pf_pho_iso_dR070_Bkg_e", 400, 0.0, 400.0);
 
   TH1F* h_pf_pho_iso_by_pt_sig_barr = new TH1F("pf_pho_iso_Pt_Sig_b", "h_pf_pho_iso_Pt_Sig_b", 400, 0.0, 10.0);
   TH1F* h_pf_pho_iso_by_pt_bkg_barr = new TH1F("pf_pho_iso_Pt_Bkg_b", "h_pf_pho_iso_Pt_Bkg_b", 400, 0.0, 10.0);
@@ -140,7 +170,21 @@ void TMVAtreeReader::Loop()
   TH1F* phiwidth_siglikeBkg_barr = new TH1F("phiwidth_SigLikeBkg_barrel", "SigLikeBkg_phiwidth_barrel", 150, 0.0, 0.15);
   TH1F* ChIsoChosen_siglikeBkg_barr = new TH1F("chisochosen_SigLikeBkg_barrel", "SigLikeBkg_chisochosen_barrel", 500, 0.0, 20.0);
 
-  
+  ///// 2ndPeak_HardPho /////
+  TH1F* Peak2ndHardPho_R9_signal_barr = new TH1F("Peak2ndHardPho_R9_sig_barr", "Peak2ndHardPho_R9_sig_barr", 200, 0.0, 2.0);
+  TH1F* Peak2ndHardPho_BDT_signal_barr = new TH1F("Peak2ndHardPho_BDT_sig_barr", "Peak2ndHardPho_BDT_sig_barr", 300, -1.5, 1.5);
+  TH1F* Peak2ndHardPho_scRaw_signal_barr = new TH1F("Peak2ndHardPho_scRaw_sig_barr", "Peak2ndHardPho_scRaw_sig_barr", 250, 0.0, 500.0);
+  TH1F* Peak2ndHardPho_scEta_signal_barr = new TH1F("Peak2ndHardPho_scEta_sig_barr", "Peak2ndHardPho_scEta_sig_barr", 100, 0.0, 2.5);
+  TH1F* Peak2ndHardPho_sieie_signal_barr = new TH1F("Peak2ndHardPho_sieie_sig_barr", "Peak2ndHardPho_sieie_sig_barr", 250, 0.0, 0.05);
+  TH1F* Peak2ndHardPho_sieip_signal_barr = new TH1F("Peak2ndHardPho_sieip_sig_barr", "Peak2ndHardPho_sieip_sig_barr", 250, 0.0, 0.001);
+  TH1F* Peak2ndHardPho_IsoChosen_signal_barr = new TH1F("Peak2ndHardPho_ChIsoChosen_sig_barr", "Peak2ndHardPho_ChIsoChosen_sig_barr", 250, 0.0, 20.0);
+  TH1F* Peak2ndHardPho_IsoBadVtx_signal_barr = new TH1F("Peak2ndHardPho_IsoBadVt_signal_barr", "Peak2ndHardPho_IsoBadVt_signal_barr", 500, 0.0, 50.0);
+  TH1F* Peak2ndHardPho_pt_signal_barr = new TH1F("Peak2ndHardPho_pt_signal_barr", "Peak2ndHardPho_pt_signal_barr", 200, 0.0, 400.0);
+  TH1F* Peak2ndHardPho_E2byE5_signal_barr = new TH1F("Peak2ndHardPho_E2byE5_signal_barr", "Peak2ndHardPho_E2byE5_signal_barr", 200, 0.0, 2.0);
+  TH1F* Peak2ndHardPho_etawidth_signal_barr = new TH1F("Peak2ndHardPho_etawidth_signal_barr", "Peak2ndHardPho_etawidth_signal_barr", 300, 0.0, 0.03);
+  TH1F* Peak2ndHardPho_phiwidth_signal_barr = new TH1F("Peak2ndHardPho_phiwidth_signal_barr", "Peak2ndHardPho_phiwidth_signal_barr", 150, 0.0, 0.15);
+  TH1F* Peak2ndHardPho_PhoIso_signal_barr = new TH1F("Peak2ndHardPho_PhoIso_signal_barr", "Peak2ndHardPho_PhoIso_signal_barr", 200, 0.0, 200.0);
+
   SigEff_vs_eta_deno_barr->Sumw2();
   SigEff_vs_pt_deno_barr->Sumw2();
   BkgEff_vs_eta_deno_barr->Sumw2();
@@ -318,6 +362,33 @@ void TMVAtreeReader::Loop()
 	h_sieip_sig_barr->Fill(sieip_pho);
 	///////h_sieip_sig_barr->Fill(sieip_cleaned_pho,weight);
 	h_pf_pho_iso_sig_barr->Fill(pf_pho_iso,weight);
+        h_pf_pho_iso_eta030_sig_barr->Fill(pf_pho_iso_eta030,weight);
+	h_pf_pho_iso_eta045_sig_barr->Fill(pf_pho_iso_eta045,weight);
+        h_pf_pho_iso_eta060_sig_barr->Fill(pf_pho_iso_eta060,weight);
+        h_pf_pho_iso_eta075_sig_barr->Fill(pf_pho_iso_eta075,weight);
+        h_pf_pho_iso_eta090_sig_barr->Fill(pf_pho_iso_eta090,weight);
+        h_pf_pho_iso_dR070_sig_barr->Fill(pf_pho_iso_dR070,weight);
+
+	if (pf_pho_iso>50.0 && pf_pho_iso<100.0) {  /// 2nd peak with hard photon in isolation cone ///
+	  std::cout << "pf_pho_iso=" << pf_pho_iso << " r9=" << r9_pho << " genmatched=" << genmatched_pho << " sc_eta=" << sc_eta_pho
+		    << " pT=" << pT_pho << " BDToutput=" << Gradient << " scRawEnergy=" << scRaw_pho << " sieie=" << sieie_pho 
+		    << " chiso_chosenvtx=" << pf_charged_iso_chosenvtx << std::endl;
+	  
+	  //// Fill histograms ////
+	  Peak2ndHardPho_R9_signal_barr->Fill(r9_pho,weight);
+	  Peak2ndHardPho_BDT_signal_barr->Fill(Gradient,weight);
+	  Peak2ndHardPho_scRaw_signal_barr->Fill(scRaw_pho,weight);
+	  Peak2ndHardPho_scEta_signal_barr->Fill(sc_eta_pho,weight);
+	  Peak2ndHardPho_sieie_signal_barr->Fill(sieie_pho,weight);
+	  Peak2ndHardPho_sieip_signal_barr->Fill(sieip_pho,weight);
+	  Peak2ndHardPho_IsoChosen_signal_barr->Fill(pf_charged_iso_chosenvtx,weight);
+	  Peak2ndHardPho_IsoBadVtx_signal_barr->Fill(pf_charged_iso_badvtx,weight);
+	  Peak2ndHardPho_pt_signal_barr->Fill(pT_pho,weight);
+	  Peak2ndHardPho_E2byE5_signal_barr->Fill(E2byE5_pho,weight);
+	  Peak2ndHardPho_etawidth_signal_barr->Fill(etawidth_pho,weight);
+	  Peak2ndHardPho_phiwidth_signal_barr->Fill(phiwidth_pho,weight);
+	  Peak2ndHardPho_PhoIso_signal_barr->Fill(pf_pho_iso,weight);
+	}
         h_pf_pho_iso_by_pt_sig_barr->Fill(pf_pho_iso_Pt,weight);
 	h_E2byE5_sig_barr->Fill(E2byE5_pho,weight);
 	/////h_E2byE5_sig_barr->Fill(E2byE5_cleaned_pho,weight);
@@ -342,6 +413,13 @@ void TMVAtreeReader::Loop()
 	h_sieip_bkg_barr->Fill(sieip_pho);
         ///////h_sieip_bkg_barr->Fill(sieip_cleaned_pho,weight);
 	h_pf_pho_iso_bkg_barr->Fill(pf_pho_iso,weight);
+	h_pf_pho_iso_eta030_bkg_barr->Fill(pf_pho_iso_eta030,weight);
+        h_pf_pho_iso_eta045_bkg_barr->Fill(pf_pho_iso_eta045,weight);
+        h_pf_pho_iso_eta060_bkg_barr->Fill(pf_pho_iso_eta060,weight);
+        h_pf_pho_iso_eta075_bkg_barr->Fill(pf_pho_iso_eta075,weight);
+        h_pf_pho_iso_eta090_bkg_barr->Fill(pf_pho_iso_eta090,weight);
+        h_pf_pho_iso_dR070_bkg_barr->Fill(pf_pho_iso_dR070,weight);
+
         h_pf_pho_iso_by_pt_bkg_barr->Fill(pf_pho_iso_Pt,weight);
 	h_E2byE5_bkg_barr->Fill(E2byE5_pho,weight);
         //////h_E2byE5_bkg_barr->Fill(E2byE5_cleaned_pho,weight);
@@ -368,6 +446,13 @@ void TMVAtreeReader::Loop()
 	h_sieip_sig_endC->Fill(sieip_pho);
         /////h_sieip_sig_endC->Fill(sieip_cleaned_pho,weight);
         h_pf_pho_iso_sig_endC->Fill(pf_pho_iso,weight);
+        h_pf_pho_iso_eta030_sig_endC->Fill(pf_pho_iso_eta030,weight);
+        h_pf_pho_iso_eta045_sig_endC->Fill(pf_pho_iso_eta045,weight);
+        h_pf_pho_iso_eta060_sig_endC->Fill(pf_pho_iso_eta060,weight);
+        h_pf_pho_iso_eta075_sig_endC->Fill(pf_pho_iso_eta075,weight);
+        h_pf_pho_iso_eta090_sig_endC->Fill(pf_pho_iso_eta090,weight);
+        h_pf_pho_iso_dR070_sig_endC->Fill(pf_pho_iso_dR070,weight);
+
         h_pf_pho_iso_by_pt_sig_endC->Fill(pf_pho_iso_Pt,weight);
 	h_E2byE5_sig_endC->Fill(E2byE5_pho,weight);
 	///////h_E2byE5_sig_endC->Fill(E2byE5_cleaned_pho,weight);
@@ -390,6 +475,13 @@ void TMVAtreeReader::Loop()
 	h_sieip_bkg_endC->Fill(sieip_pho);
 	///////h_sieip_bkg_endC->Fill(sieip_cleaned_pho,weight);
         h_pf_pho_iso_bkg_endC->Fill(pf_pho_iso,weight);
+        h_pf_pho_iso_eta030_bkg_endC->Fill(pf_pho_iso_eta030,weight);
+        h_pf_pho_iso_eta045_bkg_endC->Fill(pf_pho_iso_eta045,weight);
+        h_pf_pho_iso_eta060_bkg_endC->Fill(pf_pho_iso_eta060,weight);
+        h_pf_pho_iso_eta075_bkg_endC->Fill(pf_pho_iso_eta075,weight);
+        h_pf_pho_iso_eta090_bkg_endC->Fill(pf_pho_iso_eta090,weight);
+        h_pf_pho_iso_dR070_bkg_endC->Fill(pf_pho_iso_dR070,weight);
+
         h_pf_pho_iso_by_pt_bkg_endC->Fill(pf_pho_iso_Pt,weight);
 	h_E2byE5_bkg_endC->Fill(E2byE5_pho,weight);
         //////h_E2byE5_bkg_endC->Fill(E2byE5_cleaned_pho,weight);
@@ -500,6 +592,13 @@ void TMVAtreeReader::Loop()
   h_pt_sig_barr->Write();
   h_sieip_sig_barr->Write();
   h_pf_pho_iso_sig_barr->Write();
+  h_pf_pho_iso_eta030_sig_barr->Write();
+  h_pf_pho_iso_eta045_sig_barr->Write();
+  h_pf_pho_iso_eta060_sig_barr->Write();
+  h_pf_pho_iso_eta075_sig_barr->Write();
+  h_pf_pho_iso_eta090_sig_barr->Write();
+  h_pf_pho_iso_dR070_sig_barr->Write();
+
   h_pf_pho_iso_by_pt_sig_barr->Write();
   h_E2byE5_sig_barr->Write();
   h_etawidth_sig_barr->Write();
@@ -517,6 +616,13 @@ void TMVAtreeReader::Loop()
   h_pt_sig_endC->Write();
   h_sieip_sig_endC->Write();
   h_pf_pho_iso_sig_endC->Write();
+  h_pf_pho_iso_eta030_sig_endC->Write();
+  h_pf_pho_iso_eta045_sig_endC->Write();
+  h_pf_pho_iso_eta060_sig_endC->Write();
+  h_pf_pho_iso_eta075_sig_endC->Write();
+  h_pf_pho_iso_eta090_sig_endC->Write();
+  h_pf_pho_iso_dR070_sig_endC->Write();
+
   h_pf_pho_iso_by_pt_sig_endC->Write();
   h_E2byE5_sig_endC->Write();
   h_etawidth_sig_endC->Write();
@@ -532,6 +638,13 @@ void TMVAtreeReader::Loop()
   h_pt_bkg_barr->Write();
   h_sieip_bkg_barr->Write();
   h_pf_pho_iso_bkg_barr->Write();
+  h_pf_pho_iso_eta030_bkg_barr->Write();
+  h_pf_pho_iso_eta045_bkg_barr->Write();
+  h_pf_pho_iso_eta060_bkg_barr->Write();
+  h_pf_pho_iso_eta075_bkg_barr->Write();
+  h_pf_pho_iso_eta090_bkg_barr->Write();
+  h_pf_pho_iso_dR070_bkg_barr->Write();
+
   h_pf_pho_iso_by_pt_bkg_barr->Write();
   h_E2byE5_bkg_barr->Write();
   h_etawidth_bkg_barr->Write();
@@ -549,6 +662,13 @@ void TMVAtreeReader::Loop()
   h_pt_bkg_endC->Write();
   h_sieip_bkg_endC->Write();
   h_pf_pho_iso_bkg_endC->Write();
+  h_pf_pho_iso_eta030_bkg_endC->Write();
+  h_pf_pho_iso_eta045_bkg_endC->Write();
+  h_pf_pho_iso_eta060_bkg_endC->Write();
+  h_pf_pho_iso_eta075_bkg_endC->Write();
+  h_pf_pho_iso_eta090_bkg_endC->Write();
+  h_pf_pho_iso_dR070_bkg_endC->Write();
+
   h_pf_pho_iso_by_pt_bkg_endC->Write();
   h_E2byE5_bkg_endC->Write();
   h_etawidth_bkg_endC->Write();
@@ -593,6 +713,20 @@ void TMVAtreeReader::Loop()
 
   h_weight_sig->Write();
   h_weight_bkg->Write();
+
+  Peak2ndHardPho_R9_signal_barr->Write();
+  Peak2ndHardPho_BDT_signal_barr->Write();
+  Peak2ndHardPho_scRaw_signal_barr->Write();
+  Peak2ndHardPho_scEta_signal_barr->Write();
+  Peak2ndHardPho_sieie_signal_barr->Write();
+  Peak2ndHardPho_sieip_signal_barr->Write();
+  Peak2ndHardPho_IsoChosen_signal_barr->Write();
+  Peak2ndHardPho_IsoBadVtx_signal_barr->Write();
+  Peak2ndHardPho_pt_signal_barr->Write();
+  Peak2ndHardPho_E2byE5_signal_barr->Write();
+  Peak2ndHardPho_etawidth_signal_barr->Write();
+  Peak2ndHardPho_phiwidth_signal_barr->Write();
+  Peak2ndHardPho_PhoIso_signal_barr->Write();
 
   outputFile->Close();
 }

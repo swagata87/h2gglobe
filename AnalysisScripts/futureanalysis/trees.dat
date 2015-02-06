@@ -17,6 +17,9 @@ type=2 name=weight
 type=2 name=rho
 type=0 name=nPho
 type=2 name=mva_legacy
+type=2 name=pho_EcalPosX
+type=2 name=pho_EcalPosY
+type=2 name=pho_EcalPosZ
 type=2 name=pT_pho
 type=2 name=p4_eta_pho
 type=2 name=sc_eta_pho
@@ -33,6 +36,12 @@ type=2 name=trkiso03_pho
 type=2 name=ecaliso03_pho
 type=2 name=hcaliso03_pho
 type=2 name=pf_pho_iso
+type=2 name=pf_pho_iso_eta030
+type=2 name=pf_pho_iso_eta045
+type=2 name=pf_pho_iso_eta060
+type=2 name=pf_pho_iso_eta075
+type=2 name=pf_pho_iso_eta090
+type=2 name=pf_pho_iso_dR070
 type=2 name=pfPhoIso_cleaned_t15
 type=2 name=pfPhoIso_cleaned_t10
 type=0 name=genmatched_pho

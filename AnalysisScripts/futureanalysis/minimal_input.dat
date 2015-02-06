@@ -33,6 +33,8 @@ pho_genmatched
 pho_etawidth
 pho_eseffsixix
 pho_eseffsiyiy
+ecalhit_n
+ecalhit_p4
 ##
 ## PF photon ID
 ##
@@ -50,8 +52,13 @@ pho_e2x2_cleaned
 pho_e5x5
 pho_e5x5_cleaned
 pho_pfiso_myphoton03
-pho_pfiso_myphoton04
-
+pho_pfiso_myphoton03_eta030
+pho_pfiso_myphoton03_eta045
+pho_pfiso_myphoton03_eta060
+pho_pfiso_myphoton03_eta075
+pho_pfiso_myphoton03_eta090
+pho_pfiso_myphoton03_dR070
+###pho_pfiso_myphoton04
 pfcand_pdgid
 pfcand_n
 pfcand_posvtx
