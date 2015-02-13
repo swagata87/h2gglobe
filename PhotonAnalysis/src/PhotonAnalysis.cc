@@ -2198,11 +2198,11 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
     } else {
         l.rho = l.rho_algo1;
     }
-    
+
     l.FillCICInputs();
-    if(reComputeCiCPF) { l.FillCICPFInputs(); }
-    l.FillCIC();
-    l.FillMuonGsfTracks();
+    if(reComputeCiCPF) { l.FillCICPFInputs(); }    
+    //l.FillCIC();
+    //l.FillMuonGsfTracks();
 
     if(l.itype[l.current]<0) {
         bool foundHiggs=FindHiggsObjects(l);
@@ -2262,11 +2262,11 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
             }
             oneKinSelected = true;
 
-            if( ! l.PhotonMITPreSelection(ipho1, vtxs[0], &corrected_pho_energy[0] )
-                || ! l.PhotonMITPreSelection(ipho2, vtxs[0], &corrected_pho_energy[0] ) ) {
-                vtxAna_.discardLastDipho();
-                continue;
-            }
+            //if( ! l.PhotonMITPreSelection(ipho1, vtxs[0], &corrected_pho_energy[0] )
+            //    || ! l.PhotonMITPreSelection(ipho2, vtxs[0], &corrected_pho_energy[0] ) ) {
+            //    vtxAna_.discardLastDipho();
+            //    continue;
+            //}
 
             l.vtx_std_ranked_list->push_back(vtxs);
             if( tmvaPerEvtReader_ ) {
@@ -2297,7 +2297,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
             l.dipho_n++;
         }
 
-       MetCorrections2012( l );
+        //MetCorrections2012( l );
     }
 
     // Post-process jets and compute beta variables for missing vertexes if needed.

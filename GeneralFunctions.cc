@@ -828,7 +828,7 @@ public:
     virtual int ntracks() const { return lo_.tk_p4->GetEntries(); } // return lo_.tk_n; };
   
     virtual bool hasVtxTracks() const { return true; }
-    virtual const unsigned short * vtxTracks(int ii) const { return &(*lo_.vtx_std_tkind)[ii][0]; };
+  virtual const unsigned short * vtxTracks(int ii) const { return &(*lo_.vtx_std_tkind)[ii][0]; };
     virtual int vtxNTracks(int ii) const { return lo_.vtx_std_ntks[ii]; };
     virtual const float * vtxTkWeights(int ii) const { return &(*lo_.vtx_std_tkweight)[ii][0]; };
 
@@ -1434,96 +1434,95 @@ void LoopAll::set_pho_p4(int ipho, int ivtx, float *pho_energy_array)
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 void LoopAll::FillCICPFInputs()
 {
-    for(int ipho=0; ipho<pho_n; ++ipho) {
-        float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 5);
-        float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 5);
-        float neu03 = pfEcalIso(ipho, 0.3, 0., 0., 0., 0., 0., 0., 5);
-        float neu04 = pfEcalIso(ipho, 0.4, 0., 0., 0., 0., 0., 0., 5); 
-        float neu05 = pfEcalIso(ipho, 0.5, 0., 0., 0., 0., 0., 0., 5); 
-        float neu06 = pfEcalIso(ipho, 0.6, 0., 0., 0., 0., 0., 0., 5); 
-        if( GFDEBUG ) {
-            if( ( pho_pfiso_myneutral03[ipho] != neu03 || 
-                  pho_pfiso_myneutral04[ipho] != neu04   )
-                ) { std::cout << "Fishy... "; }
-            std::cout << "neu03: " << pho_pfiso_myneutral03[ipho] << " " << neu03 
-                      << " neu04: " << pho_pfiso_myneutral04[ipho] << " " << neu04 
-                      << " " << ((TLorentzVector*)pho_p4->At(ipho))->Pt() 
-                      << " " << ((TLorentzVector*)pho_p4->At(ipho))->Eta() 
-                      << std::endl;
-        }
-        pho_pfiso_myneutral01[ipho] = neu01;
-        pho_pfiso_myneutral02[ipho] = neu02;
-        pho_pfiso_myneutral03[ipho] = neu03;
-        pho_pfiso_myneutral04[ipho] = neu04;
-        pho_pfiso_myneutral05[ipho] = neu05;
-        pho_pfiso_myneutral06[ipho] = neu06;
-
-
-        float pho01 = pfEcalIso(ipho, 0.1, 0., 0.070, 0.015, 0., 0., 0.);
-        float pho02 = pfEcalIso(ipho, 0.2, 0., 0.070, 0.015, 0., 0., 0.);
-        float pho03 = pfEcalIso(ipho, 0.3, 0., 0.070, 0.015, 0., 0., 0.);
-        float pho04 = pfEcalIso(ipho, 0.4, 0., 0.070, 0.015, 0., 0., 0.); 
-        float pho05 = pfEcalIso(ipho, 0.5, 0., 0.070, 0.015, 0., 0., 0.); 
-        float pho06 = pfEcalIso(ipho, 0.6, 0., 0.070, 0.015, 0., 0., 0.); 
-        ///// float pho03 = pfEcalIso(ipho, 0.3, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1);
-        ///// float pho04 = pfEcalIso(ipho, 0.4, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1); 
-        if( GFDEBUG ) {
-            if( ( pho_pfiso_myphoton03[ipho] != pho03 || 
-                  pho_pfiso_myphoton04[ipho] != pho04   )
-                ) { std::cout << "Fishy... "; }
-            std::cout << "pho03: " << pho_pfiso_myphoton03[ipho] << " " << pho03 
-                      << " pho04: " << pho_pfiso_myphoton04[ipho] << " " << pho04 
-                      << " " << ((TLorentzVector*)pho_p4->At(ipho))->Pt() 
-                      << " " << ((TLorentzVector*)pho_p4->At(ipho))->Eta() 
-                      << std::endl;
-        }
-        pho_pfiso_myphoton01[ipho] = pho01;
-        pho_pfiso_myphoton02[ipho] = pho02;
-        pho_pfiso_myphoton03[ipho] = pho03;
-        pho_pfiso_myphoton04[ipho] = pho04;
-        pho_pfiso_myphoton05[ipho] = pho05;
-        pho_pfiso_myphoton06[ipho] = pho06;
-
-        int badvtx = 0;
-        float badiso = 0.;
-        for(int ivtx=0; ivtx<vtx_std_n; ++ivtx) {
-            float ch01 = pfTkIsoWithVertex(ipho,ivtx,0.1,0.02,0.02,0.0,0.2,0.1);
-            float ch02 = pfTkIsoWithVertex(ipho,ivtx,0.2,0.02,0.02,0.0,0.2,0.1);
-            float ch03 = pfTkIsoWithVertex(ipho,ivtx,0.3,0.02,0.02,0.0,0.2,0.1);
-            float ch04 = pfTkIsoWithVertex(ipho,ivtx,0.4,0.02,0.02,0.0,0.2,0.1);
-            float ch05 = pfTkIsoWithVertex(ipho,ivtx,0.5,0.02,0.02,0.0,0.2,0.1);
-            float ch06 = pfTkIsoWithVertex(ipho,ivtx,0.6,0.02,0.02,0.0,0.2,0.1);
-            ///// float ch03 = pfTkIsoWithVertex(ipho,ivtx,0.3,0.02,0.02,1.0,0.2,0.1);
-            ///// float ch04 = pfTkIsoWithVertex(ipho,ivtx,0.4,0.02,0.02,1.0,0.2,0.1);
-            if( GFDEBUG ) {
-                if( ( pho_pfiso_mycharged03->at(ipho).at(ivtx) != ch03 ||
-                      pho_pfiso_mycharged04->at(ipho).at(ivtx) != ch04   )
-                    )  { std::cout << "Fishy... "; }
-                std::cout << "ch03: " << pho_pfiso_mycharged03->at(ipho).at(ivtx) << " " << ch03 
-                          << " ch04: " << pho_pfiso_mycharged04->at(ipho).at(ivtx) << " " << ch04 
-                          << " " << ((TLorentzVector*)pho_p4->At(ipho))->Pt() 
-                          << " " << ((TLorentzVector*)pho_p4->At(ipho))->Eta() 
-                          << std::endl;
-            }
-            pho_pfiso_mycharged01->at(ipho).at(ivtx) = ch01;
-            pho_pfiso_mycharged02->at(ipho).at(ivtx) = ch02;
-            pho_pfiso_mycharged03->at(ipho).at(ivtx) = ch03;
-            pho_pfiso_mycharged04->at(ipho).at(ivtx) = ch04;
-            pho_pfiso_mycharged05->at(ipho).at(ivtx) = ch05;
-            pho_pfiso_mycharged06->at(ipho).at(ivtx) = ch06;
-            if( ch04 > badiso ) {
-                badiso = ch04;
-                badvtx = ivtx;
-            }
-        }
-        pho_tkiso_badvtx_id[ipho] = badvtx;
+  for(int ipho=0; ipho<pho_n; ++ipho) {
+    //float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 5);
+    //float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 5);
+    float neu03 = pfEcalIso(ipho, 0.3, 0., 0., 0., 0., 0., 0., 5);
+    float neu04 = pfEcalIso(ipho, 0.4, 0., 0., 0., 0., 0., 0., 5); 
+    //float neu05 = pfEcalIso(ipho, 0.5, 0., 0., 0., 0., 0., 0., 5); 
+    //float neu06 = pfEcalIso(ipho, 0.6, 0., 0., 0., 0., 0., 0., 5); 
+    if( GFDEBUG ) {
+      if( ( pho_pfiso_myneutral03[ipho] != neu03 || 
+	    pho_pfiso_myneutral04[ipho] != neu04   )
+	  ) { std::cout << "Fishy... "; }
+      std::cout << "neu03: " << pho_pfiso_myneutral03[ipho] << " " << neu03 
+		<< " neu04: " << pho_pfiso_myneutral04[ipho] << " " << neu04 
+		<< " " << ((TLorentzVector*)pho_p4->At(ipho))->Pt() 
+		<< " " << ((TLorentzVector*)pho_p4->At(ipho))->Eta() 
+		<< std::endl;
     }
+    //pho_pfiso_myneutral01[ipho] = neu01;
+    //pho_pfiso_myneutral02[ipho] = neu02;
+    pho_pfiso_myneutral03[ipho] = neu03;
+    pho_pfiso_myneutral04[ipho] = neu04;
+    //pho_pfiso_myneutral05[ipho] = neu05;
+    //pho_pfiso_myneutral06[ipho] = neu06;
+
+    //float pho01 = pfEcalIso(ipho, 0.1, 0., 0.070, 0.015, 0., 0., 0.);
+    //float pho02 = pfEcalIso(ipho, 0.2, 0., 0.070, 0.015, 0., 0., 0.);
+    float pho03 = pfEcalIso(ipho, 0.3, 0., 0.070, 0.015, 0., 0., 0.);
+    float pho04 = pfEcalIso(ipho, 0.4, 0., 0.070, 0.015, 0., 0., 0.); 
+    //float pho05 = pfEcalIso(ipho, 0.5, 0., 0.070, 0.015, 0., 0., 0.); 
+    //float pho06 = pfEcalIso(ipho, 0.6, 0., 0.070, 0.015, 0., 0., 0.); 
+    ///// float pho03 = pfEcalIso(ipho, 0.3, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1);
+    ///// float pho04 = pfEcalIso(ipho, 0.4, 0.045, 0.070, 0.015, 0.015, 0.08, 0.1); 
+    if( GFDEBUG ) {
+      if( ( pho_pfiso_myphoton03[ipho] != pho03 || 
+	    pho_pfiso_myphoton04[ipho] != pho04   )
+	  ) { std::cout << "Fishy... "; }
+      std::cout << "pho03: " << pho_pfiso_myphoton03[ipho] << " " << pho03 
+		<< " pho04: " << pho_pfiso_myphoton04[ipho] << " " << pho04 
+		<< " " << ((TLorentzVector*)pho_p4->At(ipho))->Pt() 
+		<< " " << ((TLorentzVector*)pho_p4->At(ipho))->Eta() 
+		<< std::endl;
+    }
+    //pho_pfiso_myphoton01[ipho] = pho01;
+    //pho_pfiso_myphoton02[ipho] = pho02;
+    pho_pfiso_myphoton03[ipho] = pho03;
+    pho_pfiso_myphoton04[ipho] = pho04;
+    //pho_pfiso_myphoton05[ipho] = pho05;
+    //pho_pfiso_myphoton06[ipho] = pho06;
+
+    int badvtx = 0;
+    float badiso = 0.;
+    for(int ivtx=0; ivtx<vtx_std_n; ++ivtx) {
+      //float ch01 = pfTkIsoWithVertex(ipho,ivtx,0.1,0.02,0.02,0.0,0.2,0.1);
+      float ch02 = pfTkIsoWithVertex(ipho,ivtx,0.2,0.02,0.02,0.0,0.2,0.1);
+      float ch03 = pfTkIsoWithVertex(ipho,ivtx,0.3,0.02,0.02,0.0,0.2,0.1);
+      float ch04 = pfTkIsoWithVertex(ipho,ivtx,0.4,0.02,0.02,0.0,0.2,0.1);
+      //float ch05 = pfTkIsoWithVertex(ipho,ivtx,0.5,0.02,0.02,0.0,0.2,0.1);
+      //float ch06 = pfTkIsoWithVertex(ipho,ivtx,0.6,0.02,0.02,0.0,0.2,0.1);
+      ///// float ch03 = pfTkIsoWithVertex(ipho,ivtx,0.3,0.02,0.02,1.0,0.2,0.1);
+      ///// float ch04 = pfTkIsoWithVertex(ipho,ivtx,0.4,0.02,0.02,1.0,0.2,0.1);
+      if( GFDEBUG ) {
+	if( ( pho_pfiso_mycharged03->at(ipho).at(ivtx) != ch03 ||
+	      pho_pfiso_mycharged04->at(ipho).at(ivtx) != ch04   )
+	    )  { std::cout << "Fishy... "; }
+	std::cout << "ch03: " << pho_pfiso_mycharged03->at(ipho).at(ivtx) << " " << ch03 
+		  << " ch04: " << pho_pfiso_mycharged04->at(ipho).at(ivtx) << " " << ch04 
+		  << " " << ((TLorentzVector*)pho_p4->At(ipho))->Pt() 
+		  << " " << ((TLorentzVector*)pho_p4->At(ipho))->Eta() 
+		  << std::endl;
+      }
+      //pho_pfiso_mycharged01->at(ipho).at(ivtx) = ch01;
+      pho_pfiso_mycharged02->at(ipho).at(ivtx) = ch02;
+      pho_pfiso_mycharged03->at(ipho).at(ivtx) = ch03;
+      pho_pfiso_mycharged04->at(ipho).at(ivtx) = ch04;
+      //pho_pfiso_mycharged05->at(ipho).at(ivtx) = ch05;
+      //pho_pfiso_mycharged06->at(ipho).at(ivtx) = ch06;
+      if( ch04 > badiso ) {
+	badiso = ch04;
+	badvtx = ivtx;
+      }
+    }
+    pho_tkiso_badvtx_id[ipho] = badvtx;
+  }
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 void LoopAll::FillCICInputs()
 {
-    pho_tkiso_recvtx_030_002_0000_10_01->clear(); pho_tkiso_recvtx_030_002_0000_10_01->resize(pho_n,std::vector<float>(vtx_std_n,0.));
+  pho_tkiso_recvtx_030_002_0000_10_01->clear(); pho_tkiso_recvtx_030_002_0000_10_01->resize(pho_n,std::vector<float>(vtx_std_n,0.));
   
     pho_ZeeVal_tkiso_recvtx_030_002_0000_10_01->clear(); pho_ZeeVal_tkiso_recvtx_030_002_0000_10_01->resize(pho_n,std::vector<float>(vtx_std_n,0.));
   
@@ -1544,11 +1543,11 @@ void LoopAll::FillCICInputs()
             (*pho_ZeeVal_tkiso_recvtx_030_002_0000_10_01)[ipho][ivtx] = SumTrackPtInCone(&p4, ivtx, 0, 0.30, 0.02, 0.0, 1.0, 0.1,true,ipho);
       
             // Need to fill the CiCpf here
-            float largestIso= -1;
-            if((*pho_pfiso_mycharged04)[ipho][ivtx] > largestIso){
-                pho_pfiso_charged_badvtx_04[ipho]=(*pho_pfiso_mycharged04)[ipho][ivtx];
-                pho_pfiso_charged_badvtx_id[ipho]=ivtx;
-            }
+            //float largestIso= -1;
+            //if((*pho_pfiso_mycharged04)[ipho][ivtx] > largestIso){
+            //    pho_pfiso_charged_badvtx_04[ipho]=(*pho_pfiso_mycharged04)[ipho][ivtx];
+            //    pho_pfiso_charged_badvtx_id[ipho]=ivtx;
+	    //}
 
         }
     }

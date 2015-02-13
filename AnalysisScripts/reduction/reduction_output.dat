@@ -31,7 +31,7 @@ bc_p4
 bc_s25
 
 # Tracks 
-tk_n
+#tk_n
 ### tk_p4
 ### tk_vtx_pos
 
@@ -42,11 +42,11 @@ met_sumet_pfmet
 met_mEtSig_pfmet
 met_significance_pfmet
 
-met_pfmetType1
-met_phi_pfmetType1
-met_sumet_pfmetType1
-met_mEtSig_pfmetType1
-met_significance_pfmetType1
+#met_pfmetType1
+#met_phi_pfmetType1
+#met_sumet_pfmetType1
+#met_mEtSig_pfmetType1
+#met_significance_pfmetType1
 
 # Electrons
 el_std_n
@@ -92,31 +92,31 @@ el_std_regr_energyerr
 el_std_charge
 
 # Muons
-mu_glo_n
-mu_glo_p4
-mu_glo_dof
-mu_glo_chi2
-mu_glo_type
-mu_glo_charge
-mu_glo_nmatches
-##skimmed mu_glo_posvtx
-##skimmed mu_glo_losthits
-mu_glo_validhits
-##skimmed mu_glo_innerhits
-mu_glo_pixelhits
-mu_glo_validChmbhits
-##skimmed mu_glo_tkpterr
-mu_glo_ecaliso03
-mu_glo_hcaliso03
-mu_glo_tkiso03
-##skimmed mu_glo_dz
-mu_glo_D0Vtx
-mu_glo_DZVtx
-mu_tkLayers
-mu_glo_chhadiso04
-mu_glo_nehadiso04
-mu_glo_photiso04
-mu_dbCorr
+#mu_glo_n
+#mu_glo_p4
+#mu_glo_dof
+#mu_glo_chi2
+#mu_glo_type
+#mu_glo_charge
+#mu_glo_nmatches
+###skimmed mu_glo_posvtx
+###skimmed mu_glo_losthits
+#mu_glo_validhits
+###skimmed mu_glo_innerhits
+#mu_glo_pixelhits
+#mu_glo_validChmbhits
+###skimmed mu_glo_tkpterr
+#mu_glo_ecaliso03
+#mu_glo_hcaliso03
+#mu_glo_tkiso03
+###skimmed mu_glo_dz
+#mu_glo_D0Vtx
+#mu_glo_DZVtx
+#mu_tkLayers
+#mu_glo_chhadiso04
+#mu_glo_nehadiso04
+#mu_glo_photiso04
+#mu_dbCorr
 
 # Photons 
 pho_n
@@ -370,15 +370,15 @@ bs_sigmaZ
 ##skimmed bs_sigmaZ0Error
 
 # MET
-met_tcmet
+#met_tcmet
 ##skimmed met_phi_tcmet
 
 ###### # Trigger
-hlt_bit
-hlt_n
-hlt_candpath
-hlt_path_names_HLT
-hlt_p4
+#hlt_bit
+#hlt_n
+#hlt_candpath
+#hlt_path_names_HLT
+#hlt_p4
 #### l1emiso_n
 #### l1emiso_et
 #### l1emiso_eta
@@ -391,50 +391,50 @@ hlt_p4
 #### l1_labels
 
 # Jets
-jet_algoPF1_n
-jet_algoPF1_erescale
-jet_algoPF1_p4
-jet_algoPF1_beta
-jet_algoPF1_betaStar
-jet_algoPF1_betaStarClassic
-jet_algoPF1_dR2Mean
-jet_algoPF1_dRMean
-jet_algoPF1_dZ
-jet_algoPF1_frac01
-jet_algoPF1_frac02
-jet_algoPF1_frac03
-jet_algoPF1_frac04
-jet_algoPF1_frac05
-jet_algoPF1_full_mva
-jet_algoPF1_simple_mva
-jet_algoPF1_nCharged
-jet_algoPF1_nNeutrals
-jet_algoPF1_full_wp_level
-jet_algoPF1_simple_wp_level
-jet_algoPF1_cutbased_wp_level
-jet_algoPF1_pfloose
-jet_algoPF1_area
-jet_algoPF1_nvtx
+#jet_algoPF1_n
+#jet_algoPF1_erescale
+#jet_algoPF1_p4
+#jet_algoPF1_beta
+#jet_algoPF1_betaStar
+#jet_algoPF1_betaStarClassic
+#jet_algoPF1_dR2Mean
+#jet_algoPF1_dRMean
+#jet_algoPF1_dZ
+#jet_algoPF1_frac01
+#jet_algoPF1_frac02
+#jet_algoPF1_frac03
+#jet_algoPF1_frac04
+#jet_algoPF1_frac05
+#jet_algoPF1_full_mva
+#jet_algoPF1_simple_mva
+#jet_algoPF1_nCharged
+#jet_algoPF1_nNeutrals
+#jet_algoPF1_full_wp_level
+#jet_algoPF1_simple_wp_level
+#jet_algoPF1_cutbased_wp_level
+#jet_algoPF1_pfloose
+#jet_algoPF1_area
+#jet_algoPF1_nvtx
 
-jet_algoPF1_beta_ext
-jet_algoPF1_betaStar_ext
-jet_algoPF1_betaStarClassic_ext
-jet_algoPF1_full_wp_level_ext
-jet_algoPF1_simple_wp_level_ext
-jet_algoPF1_cutbased_wp_level_ext
-jet_algoPF1_full_mva_ext
-jet_algoPF1_simple_mva_ext
+#jet_algoPF1_beta_ext
+#jet_algoPF1_betaStar_ext
+#jet_algoPF1_betaStarClassic_ext
+#jet_algoPF1_full_wp_level_ext
+#jet_algoPF1_simple_wp_level_ext
+#jet_algoPF1_cutbased_wp_level_ext
+#jet_algoPF1_full_mva_ext
+#jet_algoPF1_simple_mva_ext
 
-jet_algoPF1_csvBtag
-jet_algoPF1_csvMvaBtag
-jet_algoPF1_jetProbBtag
-jet_algoPF1_tcheBtag
+#jet_algoPF1_csvBtag
+#jet_algoPF1_csvMvaBtag
+#jet_algoPF1_jetProbBtag
+#jet_algoPF1_tcheBtag
 
 # QG tagging variables
-jet_algoPF1_ptD_QC
-jet_algoPF1_nCharged_QC
-jet_algoPF1_axis2_QC
-jet_algoPF1_nNeutrals_ptCut
+#jet_algoPF1_ptD_QC
+#jet_algoPF1_nCharged_QC
+#jet_algoPF1_axis2_QC
+#jet_algoPF1_nNeutrals_ptCut
 
 #jet_algoPF2_n
 #jet_algoPF2_erescale
@@ -474,39 +474,39 @@ jet_algoPF1_nNeutrals_ptCut
 #jet_algoPF2_jetProbBtag
 #jet_algoPF2_tcheBtag
 
-jet_algoPF3_n
-jet_algoPF3_erescale
-jet_algoPF3_p4
-jet_algoPF3_beta
-jet_algoPF3_betaStar
-jet_algoPF3_betaStarClassic
-jet_algoPF3_dR2Mean
-jet_algoPF3_dRMean
-jet_algoPF3_dZ
-jet_algoPF3_frac01
-jet_algoPF3_frac02
-jet_algoPF3_frac03
-jet_algoPF3_frac04
-jet_algoPF3_frac05
-jet_algoPF3_full_mva
-jet_algoPF3_simple_mva
-jet_algoPF3_nCharged
-jet_algoPF3_nNeutrals
-jet_algoPF3_full_wp_level
-jet_algoPF3_simple_wp_level
-jet_algoPF3_cutbased_wp_level
-jet_algoPF3_pfloose
-jet_algoPF3_area
-jet_algoPF3_nvtx
-
-jet_algoPF3_beta_ext
-jet_algoPF3_betaStar_ext
-jet_algoPF3_betaStarClassic_ext
-jet_algoPF3_full_wp_level_ext
-jet_algoPF3_simple_wp_level_ext
-jet_algoPF3_cutbased_wp_level_ext
-jet_algoPF3_full_mva_ext
-jet_algoPF3_simple_mva_ext
+#jet_algoPF3_n
+#jet_algoPF3_erescale
+#jet_algoPF3_p4
+#jet_algoPF3_beta
+#jet_algoPF3_betaStar
+#jet_algoPF3_betaStarClassic
+#jet_algoPF3_dR2Mean
+#jet_algoPF3_dRMean
+#jet_algoPF3_dZ
+#jet_algoPF3_frac01
+#jet_algoPF3_frac02
+#jet_algoPF3_frac03
+#jet_algoPF3_frac04
+#jet_algoPF3_frac05
+#jet_algoPF3_full_mva
+#jet_algoPF3_simple_mva
+#jet_algoPF3_nCharged
+#jet_algoPF3_nNeutrals
+#jet_algoPF3_full_wp_level
+#jet_algoPF3_simple_wp_level
+#jet_algoPF3_cutbased_wp_level
+#jet_algoPF3_pfloose
+#jet_algoPF3_area
+#jet_algoPF3_nvtx
+#
+#jet_algoPF3_beta_ext
+#jet_algoPF3_betaStar_ext
+#jet_algoPF3_betaStarClassic_ext
+#jet_algoPF3_full_wp_level_ext
+#jet_algoPF3_simple_wp_level_ext
+#jet_algoPF3_cutbased_wp_level_ext
+#jet_algoPF3_full_mva_ext
+#jet_algoPF3_simple_mva_ext
 
 #jet_algoPF3_csvBtag
 #jet_algoPF3_csvMvaBtag

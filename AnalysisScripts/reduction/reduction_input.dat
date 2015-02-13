@@ -74,10 +74,6 @@ tk_n
 tk_p4
 tk_pterr
 tk_quality
-
-## track isolation
-tk_n
-tk_p4
 tk_vtx_pos
 
 ## DeltaR to track
@@ -89,8 +85,8 @@ el_std_dphiin
 el_std_tkind
 
 ## Muon Variables
-mu_glo_n
-mu_glo_tkind
+#mu_glo_n
+#mu_glo_tkind
 
 ## MC truth
 gp_n:1
@@ -102,36 +98,32 @@ gp_mother:1
 
 genjet_algo1_n:1
 genjet_algo1_p4:1
-genjet_algo2_n:1
-genjet_algo2_p4:1
-genjet_algo3_n:1
-genjet_algo3_p4:1
+#genjet_algo2_n:1
+#genjet_algo2_p4:1
+#genjet_algo3_n:1
+#genjet_algo3_p4:1
 
-jet_algoPF1_beta_ext
-jet_algoPF1_betaStar_ext
-jet_algoPF1_betaStarClassic_ext
-vtx_std_tkind
-vtx_std_xyz
-jet_algoPF1_tkind
+#jet_algoPF1_beta_ext
+#jet_algoPF1_betaStar_ext
+#jet_algoPF1_betaStarClassic_ext
+#jet_algoPF1_tkind
 #jet_algoPF2_tkind
-jet_algoPF3_tkind
-jet_algoPF1_ntk
+#jet_algoPF3_tkind
+#jet_algoPF1_ntk
 #jet_algoPF2_ntk
-jet_algoPF3_ntk
-tk_p4
-tk_vtx_pos
+#jet_algoPF3_ntk
 
 # B-tagging variables
-jet_algoPF1_csvBtag
-jet_algoPF1_csvMvaBtag
-jet_algoPF1_jetProbBtag
-jet_algoPF1_tcheBtag
+#jet_algoPF1_csvBtag
+#jet_algoPF1_csvMvaBtag
+#jet_algoPF1_jetProbBtag
+#jet_algoPF1_tcheBtag
 
 # QG tagging variables
-jet_algoPF1_ptD_QC
-jet_algoPF1_nCharged_QC
-jet_algoPF1_axis2_QC
-jet_algoPF1_nNeutrals_ptCut
+#jet_algoPF1_ptD_QC
+#jet_algoPF1_nCharged_QC
+#jet_algoPF1_axis2_QC
+#jet_algoPF1_nNeutrals_ptCut
 
 pfcand_n
 pfcand_pdgid
