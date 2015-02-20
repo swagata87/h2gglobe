@@ -1,0 +1,9 @@
+output=my_reduced_tuple_foo.root
+
+typ=1 Fil=/afs/cern.ch/user/s/sani/work/upgrade_v3/src/HiggsAnalysis/HiggsTo2photons/test/GJet_Pt-15to3000_Tune4C_14TeV_pythia8_TP2023SHCALDR-SHCALJan23_PU140BX25_PH2_1K_FB_V6-v1.root
+
+inputBranches reduction/reduction_input.dat
+outputBranches reduction/reduction_output.dat
+
+analyzer PhotonAnalysis photonanalysis.dat common/reduction_settings_jan22rereco_std_mc.dat energyCorrectionMethod=BendavidOTF doEcorrectionSmear=0 doEcorrectionSyst=0 regressionVersion=5 regressionFile=aux/regweights_v5_forest_ph.root
+

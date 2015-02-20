@@ -1,0 +1,12 @@
+b_pho_smin = fChain->GetBranch("pho_smin");
+b_pho_alpha = fChain->GetBranch("pho_alpha");
+b_pho_alpha_frac = fChain->GetBranch("pho_alpha_frac");
+b_pho_smin_frac = fChain->GetBranch("pho_smin_frac");
+b_pho_smaj_frac = fChain->GetBranch("pho_smaj_frac");
+b_pho_sieie_frac = fChain->GetBranch("pho_sieie_frac");
+b_pho_sieip_frac = fChain->GetBranch("pho_sieip_frac");
+b_pho_sipip_frac = fChain->GetBranch("pho_sipip_frac");
+b_pho_r9_frac = fChain->GetBranch("pho_r9_frac");
+b_pho_e2x2_frac = fChain->GetBranch("pho_e2x2_frac");
+b_pho_e5x5_frac = fChain->GetBranch("pho_e5x5_frac");
+b_pho_e3x3_frac = fChain->GetBranch("pho_e3x3_frac");

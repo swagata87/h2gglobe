@@ -859,3 +859,15 @@ void SetBranchAddress_jet_algoPF1_lgenMatched(TTree* tree) { tree->SetBranchAddr
 void SetBranchAddress_jet_algoPF2_lgenMatched(TTree* tree) { tree->SetBranchAddress("jet_algoPF2_lgenMatched", &jet_algoPF2_lgenMatched, &b_jet_algoPF2_lgenMatched); };
 void SetBranchAddress_jet_algoPF3_lgenMatched(TTree* tree) { tree->SetBranchAddress("jet_algoPF3_lgenMatched", &jet_algoPF3_lgenMatched, &b_jet_algoPF3_lgenMatched); };
 
+void SetBranchAddress_pho_smin(TTree* tree) { tree->SetBranchAddress("pho_smin", &pho_smin, &b_pho_smin); };
+void SetBranchAddress_pho_alpha(TTree* tree) { tree->SetBranchAddress("pho_alpha", &pho_alpha, &b_pho_alpha); };
+void SetBranchAddress_pho_alpha_frac(TTree* tree) { tree->SetBranchAddress("pho_alpha_frac", &pho_alpha_frac, &b_pho_alpha_frac); };
+void SetBranchAddress_pho_smin_frac(TTree* tree) { tree->SetBranchAddress("pho_smin_frac", &pho_smin_frac, &b_pho_smin_frac); };
+void SetBranchAddress_pho_smaj_frac(TTree* tree) { tree->SetBranchAddress("pho_smaj_frac", &pho_smaj_frac, &b_pho_smaj_frac); };
+void SetBranchAddress_pho_sieie_frac(TTree* tree) { tree->SetBranchAddress("pho_sieie_frac", &pho_sieie_frac, &b_pho_sieie_frac); };
+void SetBranchAddress_pho_sieip_frac(TTree* tree) { tree->SetBranchAddress("pho_sieip_frac", &pho_sieip_frac, &b_pho_sieip_frac); };
+void SetBranchAddress_pho_sipip_frac(TTree* tree) { tree->SetBranchAddress("pho_sipip_frac", &pho_sipip_frac, &b_pho_sipip_frac); };
+void SetBranchAddress_pho_r9_frac(TTree* tree) { tree->SetBranchAddress("pho_r9_frac", &pho_r9_frac, &b_pho_r9_frac); };
+void SetBranchAddress_pho_e2x2_frac(TTree* tree) { tree->SetBranchAddress("pho_e2x2_frac", &pho_e2x2_frac, &b_pho_e2x2_frac); };
+void SetBranchAddress_pho_e5x5_frac(TTree* tree) { tree->SetBranchAddress("pho_e5x5_frac", &pho_e5x5_frac, &b_pho_e5x5_frac); };
+void SetBranchAddress_pho_e3x3_frac(TTree* tree) { tree->SetBranchAddress("pho_e3x3_frac", &pho_e3x3_frac, &b_pho_e3x3_frac); };

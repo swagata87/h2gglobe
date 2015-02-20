@@ -864,3 +864,15 @@ void Branch_jet_algoPF2_lgenMatched(TTree* tree) { tree->Branch("jet_algoPF2_lge
 void Branch_jet_algoPF3_lgenMatched(TTree* tree) { tree->Branch("jet_algoPF3_lgenMatched", &jet_algoPF3_lgenMatched, "jet_algoPF3_lgenMatched[jet_algoPF3_n]/O"); };
 
 
+void Branch_pho_smin(TTree* tree) { tree->Branch("pho_smin", &pho_smin, "pho_smin[pho_n]/F"); };
+void Branch_pho_alpha(TTree* tree) { tree->Branch("pho_alpha", &pho_alpha, "pho_alpha[pho_n]/F"); };
+void Branch_pho_alpha_frac(TTree* tree) { tree->Branch("pho_alpha_frac", &pho_alpha_frac, "pho_alpha_frac[pho_n]/F"); };
+void Branch_pho_smin_frac(TTree* tree) { tree->Branch("pho_smin_frac", &pho_smin_frac, "pho_smin_frac[pho_n]/F"); };
+void Branch_pho_smaj_frac(TTree* tree) { tree->Branch("pho_smaj_frac", &pho_smaj_frac, "pho_smaj_frac[pho_n]/F"); };
+void Branch_pho_sieie_frac(TTree* tree) { tree->Branch("pho_sieie_frac", &pho_sieie_frac, "pho_sieie_frac[pho_n]/F"); };
+void Branch_pho_sieip_frac(TTree* tree) { tree->Branch("pho_sieip_frac", &pho_sieip_frac, "pho_sieip_frac[pho_n]/F"); };
+void Branch_pho_sipip_frac(TTree* tree) { tree->Branch("pho_sipip_frac", &pho_sipip_frac, "pho_sipip_frac[pho_n]/F"); };
+void Branch_pho_r9_frac(TTree* tree) { tree->Branch("pho_r9_frac", &pho_r9_frac, "pho_r9_frac[pho_n]/F"); };
+void Branch_pho_e2x2_frac(TTree* tree) { tree->Branch("pho_e2x2_frac", &pho_e2x2_frac, "pho_e2x2_frac[pho_n]/F"); };
+void Branch_pho_e5x5_frac(TTree* tree) { tree->Branch("pho_e5x5_frac", &pho_e5x5_frac, "pho_e5x5_frac[pho_n]/F"); };
+void Branch_pho_e3x3_frac(TTree* tree) { tree->Branch("pho_e3x3_frac", &pho_e3x3_frac, "pho_e3x3_frac[pho_n]/F"); };

@@ -96,8 +96,8 @@ gp_status:1
 gp_pdgid:1
 gp_mother:1
 
-genjet_algo1_n:1
-genjet_algo1_p4:1
+#genjet_algo1_n:1
+#genjet_algo1_p4:1
 #genjet_algo2_n:1
 #genjet_algo2_p4:1
 #genjet_algo3_n:1
