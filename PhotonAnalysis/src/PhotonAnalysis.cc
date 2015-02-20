@@ -2200,7 +2200,8 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
     }
 
     l.FillCICInputs();
-    if(reComputeCiCPF) { l.FillCICPFInputs(); }    
+    //if(reComputeCiCPF) { 
+        l.FillCICPFInputs(); //}    
     //l.FillCIC();
     //l.FillMuonGsfTracks();
 

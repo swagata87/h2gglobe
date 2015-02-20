@@ -17,31 +17,26 @@ float LoopAll::pfTkIsoWithVertex(int phoindex, int vtxInd, float dRmax, float dR
     float sum = 0;
     // Loop over the PFCandidates
     for(unsigned i=0; i<pfcand_n; i++) {
-    
-        //require that PFCandidate is a charged hadron
+
+        //require thet PFCandidate is a charged hadron
         if (pfcand_pdgid[i] == pfToUse) {
-      
-            TLorentzVector* pfc = (TLorentzVector*)pfcand_p4->At(i);
-      
+	    TLorentzVector* pfc = (TLorentzVector*)pfcand_p4->At(i);
+
             if (pfc->Pt() < ptMin)
                 continue;
-    
+
             TVector3* vtx = (TVector3*)vtx_std_xyz->At(vtxInd);
             TVector3* pfCandVtx = (TVector3*)pfcand_posvtx->At(i);
+            float dz = 0;//fabs(pfCandVtx->Z() - vtx->Z());
 
-            float dz = fabs(pfCandVtx->Z() - vtx->Z());
-      
             if (dz > dzMax) 
                 continue;
-
             double dxy = (-(pfCandVtx->X() - vtx->X())*pfc->Py() + (pfCandVtx->Y() - vtx->Y())*pfc->Px()) / pfc->Pt();
             if(fabs(dxy) > dxyMax) 
                 continue;
-      
             float dR = photonDirectionWrtVtx.DeltaR(*pfc);
             if(dR > dRmax || dR < dRveto) 
                 continue;
-      
             sum += pfc->Pt();
         }
     }
@@ -1434,6 +1429,7 @@ void LoopAll::set_pho_p4(int ipho, int ivtx, float *pho_energy_array)
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 void LoopAll::FillCICPFInputs()
 {
+
   for(int ipho=0; ipho<pho_n; ++ipho) {
     //float neu01 = pfEcalIso(ipho, 0.1, 0., 0., 0., 0., 0., 0., 5);
     //float neu02 = pfEcalIso(ipho, 0.2, 0., 0., 0., 0., 0., 0., 5);
@@ -1485,6 +1481,9 @@ void LoopAll::FillCICPFInputs()
 
     int badvtx = 0;
     float badiso = 0.;
+    pho_pfiso_mycharged02->resize(pho_n, std::vector<float>(vtx_std_n, 0.));
+    pho_pfiso_mycharged03->resize(pho_n, std::vector<float>(vtx_std_n, 0.));
+    pho_pfiso_mycharged04->resize(pho_n, std::vector<float>(vtx_std_n, 0.));
     for(int ivtx=0; ivtx<vtx_std_n; ++ivtx) {
       //float ch01 = pfTkIsoWithVertex(ipho,ivtx,0.1,0.02,0.02,0.0,0.2,0.1);
       float ch02 = pfTkIsoWithVertex(ipho,ivtx,0.2,0.02,0.02,0.0,0.2,0.1);
@@ -1515,7 +1514,9 @@ void LoopAll::FillCICPFInputs()
 	badvtx = ivtx;
       }
     }
-    pho_tkiso_badvtx_id[ipho] = badvtx;
+    pho_tkiso_badvtx_id[ipho] = badvtx;    
+    pho_pfiso_charged_badvtx_04[ipho]= badvtx;
+    pho_pfiso_charged_badvtx_id[ipho]=-1;//ivtx;
   }
 }
 
