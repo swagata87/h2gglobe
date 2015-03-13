@@ -1,6 +1,6 @@
 output=my_reduced_tuple_foo.root
 
-typ=1 Fil=/afs/cern.ch/user/s/sani/work/upgrade_v3/src/HiggsAnalysis/HiggsTo2photons/test/GJet_Pt-15to3000_Tune4C_14TeV_pythia8_TP2023SHCALDR-SHCALJan23_PU140BX25_PH2_1K_FB_V6-v1.root
+typ=1 Fil=/afs/cern.ch/user/s/sani/work/CMSSW_6_2_0_SLHC23_patch1/src/HiggsAnalysis/HiggsTo2photons/test/GJet_Pt-15to3000_Tune4C_14TeV_pythia8_TP2023SHCALDR-SHCALJan23_PU140BX25_PH2_1K_FB_V6-v1.root
 
 inputBranches reduction/reduction_input.dat
 outputBranches reduction/reduction_output.dat

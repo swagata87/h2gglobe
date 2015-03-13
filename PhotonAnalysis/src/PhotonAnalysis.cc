@@ -2060,11 +2060,12 @@ void PhotonAnalysis::PreselectPhotons(LoopAll& l, int jentry)
         float et = p4.Pt();
         pho_et.push_back(et);
 
-	if( (eta>1.4442 && eta<1.566) || eta > 2.5 ) {
+        // FIXME FOR UPGRADE
+        if( (eta>1.4442 && eta<1.566) || eta > 3.0 ) {
             continue;
         }
         pho_acc.push_back(ipho);
-
+        
         pho_presel.push_back(ipho);
     }
 
@@ -2072,7 +2073,7 @@ void PhotonAnalysis::PreselectPhotons(LoopAll& l, int jentry)
               SimpleSorter<float,std::greater<float> >(&pho_et[0]));
     std::sort(pho_presel.begin(),pho_presel.end(),
               SimpleSorter<float,std::greater<float> >(&pho_et[0]));
-
+    
     if( pho_presel.size() > 1 ) {
         for(size_t ipho=0; ipho<pho_presel.size()-1; ++ipho ) {
             assert( pho_et[pho_presel[ipho]] >= pho_et[pho_presel[ipho+1]] );
@@ -2234,7 +2235,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
         }
         l.dipho_n = 0;
         for(size_t id=0; id<diphotons.size(); ++id ) {
-
+            
             if( l.dipho_n >= MAX_DIPHOTONS-1 ) { continue; }
             int ipho1 = diphotons[id].first;
             int ipho2 = diphotons[id].second;
@@ -2246,11 +2247,11 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
 
             l.vertexAnalysis(vtxAna_, pho1, pho2 );
             std::vector<int> vtxs = l.vertexSelection(vtxAna_, vtxConv_, pho1, pho2, vtxVarNames, mvaVertexSelection,
-                              tmvaPerVtxReader_, tmvaPerVtxMethod);
+                                                      tmvaPerVtxReader_, tmvaPerVtxMethod);
 
             TLorentzVector lead_p4 = l.get_pho_p4( ipho2, vtxs[0], &corrected_pho_energy[0] );
             TLorentzVector sublead_p4 = l.get_pho_p4( ipho1, vtxs[0], &corrected_pho_energy[0] );
-
+            
             if(sublead_p4.Pt()  > lead_p4.Pt() ) {
                 std::swap( diphotons[id].first,  diphotons[id].second );
                 std::swap( lead_p4,  sublead_p4 );
@@ -2303,8 +2304,8 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
 
     // Post-process jets and compute beta variables for missing vertexes if needed.
     int highestVtx = ( ! l.dipho_vtx_std_sel->empty() ?
-		       *std::max_element(l.dipho_vtx_std_sel->begin(), l.dipho_vtx_std_sel->end()) + 1
-		       : 1 );
+                       *std::max_element(l.dipho_vtx_std_sel->begin(), l.dipho_vtx_std_sel->end()) + 1
+                       : 1 );
     for(int ivtx = 0; ivtx<highestVtx; ++ivtx ) {
         postProcessJets(l,ivtx);
     }
