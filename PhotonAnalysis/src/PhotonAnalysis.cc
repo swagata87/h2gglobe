@@ -2567,6 +2567,7 @@ void PhotonAnalysis::ReducedOutputTree(LoopAll &l, TTree * outputTree)
 	l.Branch_pho_cic4pfpasscuts_sublead( outputTree );
 
 	l.Branch_pho_genmatched(outputTree);
+	l.Branch_pho_genenergy(outputTree);
 	l.Branch_pho_regr_energy_otf(outputTree);
 	l.Branch_pho_regr_energyerr_otf(outputTree);
 
