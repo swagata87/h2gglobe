@@ -2044,8 +2044,8 @@ void PhotonAnalysis::PreselectPhotons(LoopAll& l, int jentry)
     }
 
     for(int ipho=0; ipho<l.pho_n; ++ipho) {
-
-        l.pho_genmatched[ipho]=GenMatchedPhoton( l, ipho);
+        
+        l.pho_genmatched[ipho]=GenMatchedPhoton( l, ipho, l.pho_genenergy[ipho]);
 
         // match all photons in the original tree with the conversions from the merged collection and save the indices
         int iConv  =l.matchPhotonToConversion(ipho);
@@ -2772,8 +2772,9 @@ bool PhotonAnalysis::FindHiggsObjects(LoopAll& l){
 
 
 
-Bool_t PhotonAnalysis::GenMatchedPhoton(LoopAll& l, int ipho){
+Bool_t PhotonAnalysis::GenMatchedPhoton(LoopAll& l, int ipho, float& energy){
     Bool_t is_prompt = false;
+    energy = -1;
     TLorentzVector* phop4 = (TLorentzVector*) l.pho_p4->At(ipho);
 
     for(int ip=0;ip<l.gp_n;++ip) {
@@ -2787,6 +2788,7 @@ Bool_t PhotonAnalysis::GenMatchedPhoton(LoopAll& l, int ipho){
             float dr = phop4->DeltaR(*p4);
             if (dr<0.3 && fabs((p4->Pt()-phop4->Pt())/p4->Pt()) < 0.5) {
                 is_prompt = true;
+                energy = p4->E();
                 break;
             }
         }

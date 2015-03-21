@@ -48,7 +48,9 @@ for d in ds.read().split("\n"):
     else:
         iname = dname
         dname = dname.replace("_AODSIM","").replace("_AOD","")
-    analyzer = "analyzer PhotonAnalysis photonanalysis.dat"
+    #analyzer = "analyzer PhotonAnalysis photonanalysis.dat"
+    analyzer = "analyzer PhotonAnalysis photonanalysis.dat common/reduction_settings_jan22rereco_std_mc.dat energyCorrectionMethod=BendavidOTF doEcorrectionSmear=0 doEcorrectionSyst=0 regressionVersion=5 regressionFile=aux/regweights_v5_forest_ph.root"
+
     getanalyzer = False
     for s in sl:
         if "append" in s:
@@ -71,8 +73,8 @@ CaDir=%s%s typ=%s %s
 
 %s
 
-inputBranches reduction_input.dat
-outputBranches reduction_output.dat
+inputBranches reduction/reduction_input.dat
+outputBranches reduction/reduction_output.dat
         """ % ( outdir, basname, basname, indir, iname, dtype, props, analyzer)
     f.close()
 

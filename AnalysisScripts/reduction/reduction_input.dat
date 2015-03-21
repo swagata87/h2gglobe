@@ -70,11 +70,11 @@ vtx_std_n
 vtx_std_tkind
 vtx_std_ntks
 vtx_std_tkweight
-tk_n
-tk_p4
-tk_pterr
-tk_quality
-tk_vtx_pos
+#tk_n
+#tk_p4
+#tk_pterr
+#tk_quality
+#tk_vtx_pos
 
 ## DeltaR to track
 el_std_n

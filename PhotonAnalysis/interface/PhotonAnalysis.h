@@ -450,7 +450,7 @@ class PhotonAnalysis : public BaseAnalysis
 
     void SetNullHiggs(LoopAll& l);
     bool FindHiggsObjects(LoopAll& l);
-    Bool_t GenMatchedPhoton(LoopAll& l, int ipho);
+    Bool_t GenMatchedPhoton(LoopAll& l, int ipho, float& energy);
 
     bool ClassicCatsNm1Plots(LoopAll& l, int diphoton_nm1_id, float* smeared_pho_energy, float eventweight, float myweight);
 
