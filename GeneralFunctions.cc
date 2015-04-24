@@ -3,6 +3,62 @@
 #include "TRandom3.h"
 #define GFDEBUG 0
 
+bool LoopAll::isPrompt(int ip) {
+
+  if( gp_status[ip] != 1 || gp_pdgid[ip] != 22 ) {
+    return false;
+  }
+  
+  TLorentzVector * p4 = (TLorentzVector*)gp_p4->At(ip);
+  if( p4->Pt() < 20. || fabs(p4->Eta()) > 3. ) { 
+    return false; 
+  }
+  int mother_id = abs( gp_pdgid[ gp_mother[ip] ] );
+  
+  if( mother_id <= 25 ) {
+    return true;
+  }
+  
+  return false;  
+}
+
+bool LoopAll::isEMGenJet(int ip) {
+  
+  TLorentzVector * p4 = (TLorentzVector*)genjet_algo1_p4->At(ip);
+  if(p4->Pt() < 20. || fabs(p4->Eta()) > 3.) { 
+    return false; 
+  }
+  
+  if((genjet_algo1_em[ip]/p4->E()) >.5) {
+    return true;
+  }
+  
+  return false;  
+}
+
+bool LoopAll::selectGenEvents(int& iPrompt, int& iFake) {
+  
+  for(int ip=0; ip<gp_n; ++ip) {
+    TLorentzVector * p4_gp = (TLorentzVector*)(gp_p4->At(ip)->Clone());
+    if (isPrompt(ip)) {
+      iPrompt = ip;
+
+      for (int i=0; i<genjet_algo1_n; i++) {
+	TLorentzVector * p4 = (TLorentzVector*)genjet_algo1_p4->At(i);
+	if (p4->Pt() > 20 and isEMGenJet(i)) {
+	  float dr = p4_gp->DeltaR(*p4);
+	  if (dr > 0.5) {
+	    iFake = i;
+	    return true;
+	  }
+	}
+      }
+    }
+  }
+  
+  return false;
+}
+
 float LoopAll::pfTkIsoWithVertex(int phoindex, int vtxInd, float dRmax, float dRvetoBarrel, float dRvetoEndcap, 
                                  float ptMin, float dzMax, float dxyMax, int pfToUse) {
   
@@ -3190,7 +3246,8 @@ float LoopAll::DiphotonMITPreSelectionPerDipho(const char * type, int idipho, Fl
     float subleadEta = fabs(((TVector3 *)sc_xyz->At(pho_scind[sublead]))->Eta());
     float m_gamgam = (lead_p4+sublead_p4).M();
     
-    if( leadEta > 2.5 || subleadEta > 2.5 || 
+    // FIX FOR SHASHLIK
+    if( leadEta > 3.0 || subleadEta > 3.0 || 
         ( leadEta > 1.4442 && leadEta < 1.566 ) ||
         ( subleadEta > 1.4442 && subleadEta < 1.566 ) ) { return -99; }
     
@@ -3928,6 +3985,15 @@ void LoopAll::DefineUserBranches()
     BRANCH_DICT(pho_matchingConv);
   
     BRANCH_DICT(dipho_n);
+    BRANCH_DICT(dipho_gensel);
+    BRANCH_DICT(dipho_genfakeind);
+    BRANCH_DICT(dipho_genpromptind);
+    BRANCH_DICT(dipho_genfakee);
+    BRANCH_DICT(dipho_genprompte);
+    BRANCH_DICT(dipho_genfakeeta);
+    BRANCH_DICT(dipho_genprompteta);
+    BRANCH_DICT(dipho_genfakephi);
+    BRANCH_DICT(dipho_genpromptphi);
     BRANCH_DICT(dipho_leadind);
     BRANCH_DICT(dipho_subleadind);
     BRANCH_DICT(dipho_vtxind);

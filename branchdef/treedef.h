@@ -1,3 +1,44 @@
+
+Float_t pho_bc2e[MAX_PHOTONS];
+Float_t pho_bc2eta[MAX_PHOTONS];
+Float_t pho_bc2phi[MAX_PHOTONS];
+Float_t pho_bclast2e[MAX_PHOTONS];
+Float_t pho_bclast2eta[MAX_PHOTONS];
+Float_t pho_bclast2phi[MAX_PHOTONS];
+Float_t pho_bclaste[MAX_PHOTONS];
+Float_t pho_bclasteta[MAX_PHOTONS];
+Float_t pho_bclastphi[MAX_PHOTONS];
+
+Int_t   pho_bc2ieta[MAX_PHOTONS];
+Int_t   pho_bc2iphi[MAX_PHOTONS];
+Float_t pho_bc2etacry[MAX_PHOTONS];
+Float_t pho_bc2phicry[MAX_PHOTONS];
+Float_t pho_bc2thetatilt[MAX_PHOTONS];
+Float_t pho_bc2phitilt[MAX_PHOTONS];
+
+Float_t pho_bc2emax[MAX_PHOTONS];
+Float_t pho_bc2e2nd[MAX_PHOTONS]; 
+Float_t pho_bc2etop[MAX_PHOTONS]; 
+Float_t pho_bc2ebottom[MAX_PHOTONS];
+Float_t pho_bc2eleft[MAX_PHOTONS];
+Float_t pho_bc2eright[MAX_PHOTONS];
+
+Float_t pho_bc2e3x3[MAX_PHOTONS];
+Float_t pho_bc2e5x5[MAX_PHOTONS];
+Float_t pho_bc2sieie[MAX_PHOTONS];
+Float_t pho_bc2sipip[MAX_PHOTONS];
+Float_t pho_bc2sieip[MAX_PHOTONS];
+Float_t pho_bclaste3x3[MAX_PHOTONS];
+Float_t pho_bclaste5x5[MAX_PHOTONS];
+Float_t pho_bclastsieie[MAX_PHOTONS];
+Float_t pho_bclastsipip[MAX_PHOTONS];
+Float_t pho_bclastsieip[MAX_PHOTONS];
+Float_t pho_bclast2e3x3[MAX_PHOTONS];
+Float_t pho_bclast2e5x5[MAX_PHOTONS];
+Float_t pho_bclast2sieie[MAX_PHOTONS];
+Float_t pho_bclast2sipip[MAX_PHOTONS];
+Float_t pho_bclast2sieip[MAX_PHOTONS];
+
 Int_t pho_ncrys[MAX_PHOTONS];
 Int_t pfcand_n;
 Int_t pfcand_pdgid[MAX_PFCANDS];
@@ -483,7 +524,7 @@ Float_t pho_e2x5max[MAX_PHOTONS];
 Int_t pho_bieta[MAX_PHOTONS];
 Int_t pho_biphi[MAX_PHOTONS];
 Float_t pho_betacry[MAX_PHOTONS];
-Float_t pho_phicry[MAX_PHOTONS];
+Float_t pho_bphicry[MAX_PHOTONS];
 Float_t pho_bthetatilt[MAX_PHOTONS];
 Float_t pho_bphitilt[MAX_PHOTONS];
 Float_t pho_e2x5bottom[MAX_PHOTONS];

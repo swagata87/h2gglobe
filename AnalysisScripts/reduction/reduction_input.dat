@@ -9,7 +9,6 @@ event
 lumis
 run
 
-
 ## (minimal) photon info
 pho_n
 pho_p4
@@ -43,7 +42,7 @@ pho_e2x5right
 pho_bieta
 pho_biphi
 pho_betacry
-pho_phicry
+#pho_bphicry
 bc_sieie
 pho_sipip
 pho_sieip
@@ -95,9 +94,10 @@ gp_p4:1
 gp_status:1
 gp_pdgid:1
 gp_mother:1
+genjet_algo1_n:1
+genjet_algo1_p4:1
+genjet_algo1_em:1
 
-#genjet_algo1_n:1
-#genjet_algo1_p4:1
 #genjet_algo2_n:1
 #genjet_algo2_p4:1
 #genjet_algo3_n:1

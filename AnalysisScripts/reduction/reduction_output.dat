@@ -146,7 +146,6 @@ pho_r9_frac
 pho_smaj_frac
 pho_smin_frac
 pho_alpha_frac
-
 pho_e2nd
 pho_e2x5max
 pho_e2x5right
@@ -225,7 +224,45 @@ pho_hoe_bc
 pho_biphi
 pho_bieta
 pho_betacry
-pho_phicry
+#pho_bphicry
+
+#pho_bc2e
+#pho_bc2eta
+#pho_bc2phi
+#pho_bclast2e
+#pho_bclast2eta
+#pho_bclast2phi
+#pho_bclaste
+#pho_bclasteta
+#pho_bclastphi
+#pho_bc2ieta
+#pho_bc2iphi
+#pho_bc2etacry
+#pho_bc2phicry
+##pho_bc2thetatilt
+##pho_bc2phitilt
+#pho_bc2emax
+#pho_bc2e2nd 
+#pho_bc2etop 
+#pho_bc2ebottom
+#pho_bc2eleft
+#pho_bc2eright
+#pho_bc2e3x3
+#pho_bc2e5x5
+#pho_bc2sieie
+#pho_bc2sipip
+#pho_bc2sieip
+#pho_bclaste3x3
+#pho_bclaste5x5
+#pho_bclastsieie
+#pho_bclastsipip
+#pho_bclastsieip
+#pho_bclast2e3x3
+#pho_bclast2e5x5
+#pho_bclast2sieie
+#pho_bclast2sipip
+#pho_bclast2sieip
+
 
 # All Conversions
 conv_n
@@ -256,8 +293,9 @@ pu_sumpt_lowpt:1
 pu_sumpt_highpt:1
 pu_ntrks_lowpt:1
 pu_ntrks_highpt:1
-### genjet_algo1_n:1
-### genjet_algo1_p4:1
+#genjet_algo1_n:1
+#genjet_algo1_p4:1
+#genjet_algo1_em:1
 
 # Vertex
 vtx_std_n
@@ -460,4 +498,3 @@ pho_pfe2nd
 #pho_pfiso_egcharged04
 #pho_pfiso_egcharged05
 #pho_pfiso_egcharged06
-

@@ -1,7 +1,7 @@
 output=my_reduced_tuple_foo.root
 
-typ=1 Fil=/afs/cern.ch/user/s/sani/work/CMSSW_6_2_0_SLHC23_patch1/src/HiggsAnalysis/HiggsTo2photons/test/GJet_Pt-15to3000_Tune4C_14TeV_pythia8_TP2023SHCALDR-SHCALJan23_PU140BX25_PH2_1K_FB_V6-v1.root
-
+typ=1 Fil=/afs/cern.ch/user/s/sani/eos/cms/store/group/phys_higgs/cmshgg/processed/FixPFIsolationIssue/22AprFix/GJet_Pt-20to40_doubleEMEnriched_TuneZ2star_14TeV-pythia6_TP2023SHCALDR-SHCALMar26_PU140BX25_PH2_1K_FB_V6-v1/GJet_2_1_AQR.root
+      
 inputBranches reduction/reduction_input.dat
 outputBranches reduction/reduction_output.dat
 

@@ -1,3 +1,43 @@
+void Branch_pho_bc2e(TTree * tree)         { tree->Branch("pho_bc2e", &pho_bc2e, "pho_bc2e[pho_n]/F"); };
+void Branch_pho_bc2eta(TTree * tree)       { tree->Branch("pho_bc2eta", &pho_bc2eta, "pho_bc2eta[pho_n]/F"); };
+void Branch_pho_bc2phi(TTree * tree)       { tree->Branch("pho_bc2phi", &pho_bc2phi, "pho_bc2phi[pho_n]/F"); };
+void Branch_pho_bclast2e(TTree * tree)     { tree->Branch("pho_bclast2e", &pho_bclast2e, "pho_bclast2e[pho_n]/F"); };
+void Branch_pho_bclast2eta(TTree * tree)   { tree->Branch("pho_bclast2eta", &pho_bclast2eta, "pho_bclast2eta[pho_n]/F"); };
+void Branch_pho_bclast2phi(TTree * tree)   { tree->Branch("pho_bclast2phi", &pho_bclast2phi, "pho_bclast2phi[pho_n]/F"); };
+void Branch_pho_bclaste(TTree * tree)      { tree->Branch("pho_bclaste", &pho_bclaste, "pho_bclaste[pho_n]/F"); };
+void Branch_pho_bclasteta(TTree * tree)    { tree->Branch("pho_bclasteta", &pho_bclasteta, "pho_bclasteta[pho_n]/F"); };
+void Branch_pho_bclastphi(TTree * tree)    { tree->Branch("pho_bclastphi", &pho_bclastphi, "pho_bclastphi[pho_n]/F"); };
+void Branch_pho_bc2ieta(TTree * tree)      { tree->Branch("pho_bc2ieta", &pho_bc2ieta, "pho_bc2ieta[pho_n]/I"); };
+void Branch_pho_bc2iphi(TTree * tree)      { tree->Branch("pho_bc2iphi", &pho_bc2iphi, "pho_bc2iphi[pho_n]/I"); };
+void Branch_pho_bc2etacry(TTree * tree)    { tree->Branch("pho_bc2etacry", &pho_bc2etacry, "pho_bc2etacry[pho_n]/F"); };
+void Branch_pho_bc2phicry(TTree * tree)    { tree->Branch("pho_bc2phicry", &pho_bc2phicry, "pho_bc2phicry[pho_n]/F"); };
+void Branch_pho_bc2thetatilt(TTree * tree) { tree->Branch("pho_bc2thetatilt", &pho_bc2thetatilt, "pho_bc2thetatilt[pho_n]/F"); };
+void Branch_pho_bc2phitilt(TTree * tree)   { tree->Branch("pho_bc2phitilt", &pho_bc2phitilt, "pho_bc2phitilt[pho_n]/F"); };
+void Branch_pho_bc2emax(TTree * tree)      { tree->Branch("pho_bc2emax", &pho_bc2emax, "pho_bc2emax[pho_n]/F"); };
+void Branch_pho_bc2e2nd(TTree * tree)      { tree->Branch("pho_bc2e2nd", &pho_bc2e2nd, "pho_bc2e2nd[pho_n]/F"); }; 
+void Branch_pho_bc2etop(TTree * tree)      { tree->Branch("pho_bc2etop", &pho_bc2etop, "pho_bc2etop[pho_n]/F"); }; 
+void Branch_pho_bc2ebottom(TTree * tree)   { tree->Branch("pho_bc2ebottom", &pho_bc2ebottom, "pho_bc2ebottom[pho_n]/F"); };
+void Branch_pho_bc2eleft(TTree * tree)     { tree->Branch("pho_bc2eleft", &pho_bc2eleft, "pho_bc2eleft[pho_n]/F"); };
+void Branch_pho_bc2eright(TTree * tree)    { tree->Branch("pho_bc2eright", &pho_bc2eright, "pho_bc2eright[pho_n]/F"); };
+void Branch_pho_bc2e3x3(TTree * tree)      { tree->Branch("pho_bc2e3x3", &pho_bc2e3x3, "pho_bc2e3x3[pho_n]/F"); };
+void Branch_pho_bc2e5x5(TTree * tree)      { tree->Branch("pho_bc2e5x5", &pho_bc2e5x5, "pho_bc2e5x5[pho_n]/F"); };
+void Branch_pho_bc2sieie(TTree * tree)     { tree->Branch("pho_bc2sieie", &pho_bc2sieie, "pho_bc2sieie[pho_n]/F"); };
+void Branch_pho_bc2sipip(TTree * tree)     { tree->Branch("pho_bc2sipip", &pho_bc2sipip, "pho_bc2sipip[pho_n]/F"); };
+void Branch_pho_bc2sieip(TTree * tree)     { tree->Branch("pho_bc2sieip", &pho_bc2sieip, "pho_bc2sieip[pho_n]/F"); };
+void Branch_pho_bclaste3x3(TTree * tree)   { tree->Branch("pho_bclaste3x3", &pho_bclaste3x3, "pho_bclaste3x3[pho_n]/F"); };
+void Branch_pho_bclaste5x5(TTree * tree)   { tree->Branch("pho_bclaste5x5", &pho_bclaste5x5, "pho_bclaste5x5[pho_n]/F"); };
+void Branch_pho_bclastsieie(TTree * tree)  { tree->Branch("pho_bclastsieie", &pho_bclastsieie, "pho_bclastsieie[pho_n]/F"); };
+void Branch_pho_bclastsipip(TTree * tree)  { tree->Branch("pho_bclastsipip", &pho_bclastsipip, "pho_bclastsipip[pho_n]/F"); };
+void Branch_pho_bclastsieip(TTree * tree)  { tree->Branch("pho_bclastsieip", &pho_bclastsieip, "pho_bclastsieip[pho_n]/F"); };
+void Branch_pho_bclast2e3x3(TTree * tree)  { tree->Branch("pho_bclast2e3x3", &pho_bclast2e3x3, "pho_bclast2e3x3[pho_n]/F"); };
+void Branch_pho_bclast2e5x5(TTree * tree)  { tree->Branch("pho_bclast2e5x5", &pho_bclast2e5x5, "pho_bclast2e5x5[pho_n]/F"); };
+void Branch_pho_bclast2sieie(TTree * tree) { tree->Branch("pho_bclast2sieie", &pho_bclast2sieie, "pho_bclast2sieie[pho_n]/F"); };
+void Branch_pho_bclast2sipip(TTree * tree) { tree->Branch("pho_bclast2sipip", &pho_bclast2sipip, "pho_bclast2sipip[pho_n]/F"); };
+void Branch_pho_bclast2sieip(TTree * tree) { tree->Branch("pho_bclast2sieip", &pho_bclast2sieip, "pho_bclast2sieip[pho_n]/F"); };
+
+
+
+
 void Branch_pho_ncrys(TTree * tree) { tree->Branch("pho_ncrys",&pho_ncrys, "pho_ncrys[pho_n]/I");  }; 
 
 void Branch_pfcand_n(TTree * tree) { tree->Branch("pfcand_n",&pfcand_n, "pfcand_n/I");  }; 
@@ -511,7 +551,7 @@ void Branch_pho_e2x5max(TTree * tree) { tree->Branch("pho_e2x5max",&pho_e2x5max,
 void Branch_pho_bieta(TTree * tree) { tree->Branch("pho_bieta",&pho_bieta,"pho_bieta[pho_n]/I");  }; 
 void Branch_pho_biphi(TTree * tree) { tree->Branch("pho_biphi",&pho_biphi,"pho_biphi[pho_n]/I");  }; 
 void Branch_pho_betacry(TTree * tree) { tree->Branch("pho_betacry",&pho_betacry,"pho_betacry[pho_n]/F");  }; 
-void Branch_pho_phicry(TTree * tree) { tree->Branch("pho_phicry",&pho_phicry,"pho_phicry[pho_n]/F");  }; 
+void Branch_pho_bphicry(TTree * tree) { tree->Branch("pho_bphicry",&pho_bphicry,"pho_bphicry[pho_n]/F");  }; 
 void Branch_pho_bthetatilt(TTree * tree) { tree->Branch("pho_bthetatilt",&pho_bthetatilt,"pho_bthetatitl[pho_n]/F");  }; 
 void Branch_pho_bphitilt(TTree * tree) { tree->Branch("pho_bphitilt",&pho_bphitilt,"pho_bphitilt[pho_n]/F");  }; 
 void Branch_pho_e2x5bottom(TTree * tree) { tree->Branch("pho_e2x5bottom",&pho_e2x5bottom,"pho_e2x5bottom[pho_n]/F");  }; 

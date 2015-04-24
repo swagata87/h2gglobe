@@ -534,7 +534,8 @@ void PhotonAnalysis::applySinglePhotonSmearings(std::vector<float> & smeared_pho
     smeared_pho_r9.resize(l.pho_n,0.);
     smeared_pho_weight.resize(l.pho_n,0.);
     for(int ipho=0; ipho<l.pho_n; ++ipho ) {
-        
+        if (l.pho_scind[ipho] == -1)
+            continue;
         std::vector<std::vector<bool> > p;
         if( fillInfo ) {
             PhotonReducedInfo info (
@@ -2015,6 +2016,8 @@ void PhotonAnalysis::PreselectPhotons(LoopAll& l, int jentry)
     int cur_type = l.itype[l.current];
 
     for(int ipho=0; ipho<l.pho_n; ++ipho ) {
+        //if (l.pho_scind[ipho] == -1)
+        //    continue;
         std::vector<std::vector<bool> > p;
         PhotonReducedInfo phoInfo (
                                    *((TVector3*)l.sc_xyz->At(l.pho_scind[ipho])),
@@ -2044,8 +2047,12 @@ void PhotonAnalysis::PreselectPhotons(LoopAll& l, int jentry)
     }
 
     for(int ipho=0; ipho<l.pho_n; ++ipho) {
-        
-        l.pho_genmatched[ipho]=GenMatchedPhoton( l, ipho, l.pho_genenergy[ipho]);
+
+        // FIXME MATTEO SHASHLIK
+        //if (l.pho_scind[ipho] == -1)
+        //    continue;
+
+        l.pho_genmatched[ipho] = GenMatchedPhoton( l, ipho, l.pho_genenergy[ipho]);
 
         // match all photons in the original tree with the conversions from the merged collection and save the indices
         int iConv  =l.matchPhotonToConversion(ipho);
@@ -2092,6 +2099,34 @@ void PhotonAnalysis::FillReductionVariables(LoopAll& l, int jentry)
 {
     if(PADEBUG)
 	cout<<"myFillReduceVar START"<<endl;
+
+    int iPrompt = -1;
+    int iFake = -1;
+    l.dipho_gensel = (int)l.selectGenEvents(iPrompt, iFake);
+    l.dipho_genfakeind = iFake;
+    l.dipho_genpromptind = iPrompt;
+    
+    if (iPrompt != -1)  {
+        TLorentzVector* promptp4 = (TLorentzVector*)l.gp_p4->At(iPrompt);
+        l.dipho_genprompte   = promptp4->E();
+        l.dipho_genprompteta = promptp4->Eta();
+        l.dipho_genpromptphi = promptp4->Phi();
+    } else {
+        l.dipho_genprompte = 0;
+        l.dipho_genprompteta = 0;
+        l.dipho_genpromptphi = 0;
+    }
+
+    if (iFake != -1)  {
+        TLorentzVector* fakep4 = (TLorentzVector*)l.genjet_algo1_p4->At(iFake);
+        l.dipho_genfakee = fakep4->E();
+        l.dipho_genfakeeta = fakep4->Eta();
+        l.dipho_genfakephi = fakep4->Phi();
+    } else {
+        l.dipho_genfakee = 0;
+        l.dipho_genfakeeta = 0;
+        l.dipho_genfakephi = 0;
+    }
 
     // Run on-the-fly regression at Reduction Step
     if( l.typerun == LoopAll::kReduce ) {
@@ -2181,7 +2216,9 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
     if(PADEBUG)  cout << " ****************** SelectEventsReduction " << endl;
     // require at least two reconstructed photons to store the event
 
-    if( pho_acc.size() < 2 ) { return false; }
+    if( pho_acc.size() < 2 ) {         
+        return false; 
+    }
 
     vtxAna_.clear();
     l.vtx_std_ranked_list->clear();
@@ -2191,7 +2228,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
     l.vtx_std_sel=0;
     float maxSumPt = 0.;
     l.dipho_n = 0;
-    bool oneKinSelected = false;
+    bool oneKinSelected = true;
 
     // fill ID variables
     if( forcedRho >= 0. ) {
@@ -2202,7 +2239,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
 
     l.FillCICInputs();
     //if(reComputeCiCPF) { 
-        l.FillCICPFInputs(); //}    
+    l.FillCICPFInputs(); //}    
     //l.FillCIC();
     //l.FillMuonGsfTracks();
 
@@ -2249,19 +2286,20 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
             std::vector<int> vtxs = l.vertexSelection(vtxAna_, vtxConv_, pho1, pho2, vtxVarNames, mvaVertexSelection,
                                                       tmvaPerVtxReader_, tmvaPerVtxMethod);
 
-            TLorentzVector lead_p4 = l.get_pho_p4( ipho2, vtxs[0], &corrected_pho_energy[0] );
-            TLorentzVector sublead_p4 = l.get_pho_p4( ipho1, vtxs[0], &corrected_pho_energy[0] );
+            TLorentzVector lead_p4 = l.get_pho_p4( ipho2, vtxs[0], 0);//, &corrected_pho_energy[0] );
+            TLorentzVector sublead_p4 = l.get_pho_p4( ipho1, vtxs[0], 0);// &corrected_pho_energy[0] );
             
             if(sublead_p4.Pt()  > lead_p4.Pt() ) {
                 std::swap( diphotons[id].first,  diphotons[id].second );
                 std::swap( lead_p4,  sublead_p4 );
             }
             
-            if( lead_p4.Pt() < presel_scet1 || sublead_p4.Pt() < presel_scet2 ||
+            if( lead_p4.Pt() < presel_scet1   || sublead_p4.Pt() < presel_scet2 ||
                 fabs(lead_p4.Eta()) > presel_maxeta || fabs(sublead_p4.Eta()) > presel_maxeta ) {
                 vtxAna_.discardLastDipho();
                 continue;
             }
+
             oneKinSelected = true;
 
             //if( ! l.PhotonMITPreSelection(ipho1, vtxs[0], &corrected_pho_energy[0] )
@@ -2279,8 +2317,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
                 l.dipho_vtx_std_sel->push_back( (l.vtx_std_ranked_list)->back()[0] );
             } else {
                 l.dipho_vtx_std_sel->push_back(0);
-                std::cerr << "NO VERTEX SELECTED " << l.event << " " << l.run << " " << diphotons[id].first << " " << diphotons[id].second << std::endl;
-            }
+             }
 
             l.dipho_leadind[l.dipho_n] = diphotons[id].first;
             l.dipho_subleadind[l.dipho_n] = diphotons[id].second;
@@ -2309,7 +2346,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
     for(int ivtx = 0; ivtx<highestVtx; ++ivtx ) {
         postProcessJets(l,ivtx);
     }
-    
+
     return oneKinSelected;
 }
 
@@ -2387,17 +2424,16 @@ bool PhotonAnalysis::SkimEvents(LoopAll& l, int jentry)
     static TH1F * fakeMotherStatus = 0;
     if( run7TeV4Xanalysis ) { l.version=12; }
     
-    
     l.b_pho_n->GetEntry(jentry);
     if( l.pho_n < 2 ) {
-        return false;
+       return false;
     }
 
     if( skimOnDiphoN && l.typerun == l.kFill ) {
-	l.b_dipho_n->GetEntry(jentry);
-	if( l.dipho_n < 1 ) {
-	    return false;
-	}
+        l.b_dipho_n->GetEntry(jentry);
+        if( l.dipho_n < 1 ) {
+            return false;
+        }
     }
 
     // do not run trigger selection on MC
@@ -2548,6 +2584,15 @@ void PhotonAnalysis::ReducedOutputTree(LoopAll &l, TTree * outputTree)
 	l.Branch_pho_drtotk_25_99(outputTree);
 
 	l.Branch_dipho_n(outputTree);
+	l.Branch_dipho_gensel(outputTree);
+	l.Branch_dipho_genfakeind(outputTree);
+	l.Branch_dipho_genpromptind(outputTree);
+	l.Branch_dipho_genfakee(outputTree);
+	l.Branch_dipho_genprompte(outputTree);
+	l.Branch_dipho_genfakeeta(outputTree);
+	l.Branch_dipho_genprompteta(outputTree);
+	l.Branch_dipho_genfakephi(outputTree);
+	l.Branch_dipho_genpromptphi(outputTree);
 	l.Branch_dipho_leadind(outputTree);
 	l.Branch_dipho_subleadind(outputTree);
 	l.Branch_dipho_vtxind(outputTree);
@@ -2783,17 +2828,23 @@ Bool_t PhotonAnalysis::GenMatchedPhoton(LoopAll& l, int ipho, float& energy){
             continue;
         }
         TLorentzVector * p4 = (TLorentzVector*) l.gp_p4->At(ip);
+
         if( p4->Pt() < 20. || fabs(p4->Eta()) > 3. ) { continue; }
         int mother_id = abs( l.gp_pdgid[ l.gp_mother[ip] ] );
         if( mother_id <= 25 ) {
+            //std::cout << "GEN: " << p4->Pt() << " " << p4->Eta() << " " << p4->Phi() << std::endl;
+        
             float dr = phop4->DeltaR(*p4);
             if (dr<0.3 && fabs((p4->Pt()-phop4->Pt())/p4->Pt()) < 0.5) {
+                //std::cout << "Reco: " << l.sc_raw[l.pho_scind[ipho]] << " " << phop4->Eta() << " " << phop4->Phi() << " " << dr << " " << p4->E() - l.sc_raw[l.pho_scind[ipho]] << std::endl;
+
                 is_prompt = true;
                 energy = p4->E();
                 break;
             }
         }
     }
+
     return is_prompt;
 }
 
@@ -3820,7 +3871,7 @@ bool PhotonAnalysis::HLTPhotonPreselection(LoopAll& l, TLorentzVector* phop4, in
     if (phopt<20) pass = false;
 
     // eta cut
-    if( phop4->Eta() > 2.5 || ( phop4->Eta()>1.4442 && phop4->Eta()<1.566 ) ) pass = false;
+    if( phop4->Eta() > 3.0 || ( phop4->Eta()>1.4442 && phop4->Eta()<1.566 ) ) pass = false;
 
     // photon category
     int PhotonEtaCategory;
@@ -6647,7 +6698,7 @@ void PhotonAnalysis::GetSinglePhotonRegressionCorrectionV6(LoopAll &l, int ipho,
     _vals[33] = (TMath::Abs(bieta)<=25)*((bieta-1*TMath::Abs(bieta)/bieta)%25) + (TMath::Abs(bieta)>25)*((bieta-26*TMath::Abs(bieta)/bieta)%20);  //module boundary eta approximate symmetry
     _vals[34] = (biphi-1)%20; //module boundary phi symmetry
     _vals[35] = l.pho_betacry[ipho];//betacry; //local coordinates with respect to closest crystal center at nominal shower depth
-    _vals[36] = l.pho_phicry[ipho];//bphicry;
+    _vals[36] = l.pho_bphicry[ipho];//bphicry;
 
 
     double den = l.sc_raw[sc_index];
@@ -6680,7 +6731,9 @@ void PhotonAnalysis::GetRegressionCorrectionsV5(LoopAll &l){
     // v5 used for 8 TeV Energy Regression 
     // On the fly energy regression values
     for (int ipho=0;ipho<l.pho_n;ipho++){
-
+        // FIXME MATTEO SHASHLIK
+        if (l.pho_scind[ipho] == -1)
+            continue;
         double ecor,ecorerr,cbalpha1,cbn1,cbalpha2,cbn2,pdfpeakval;
 
         double phoE = ((TLorentzVector*)l.pho_p4->At(ipho))->Energy();
@@ -6759,7 +6812,7 @@ void PhotonAnalysis::GetRegressionCorrectionsV5(LoopAll &l){
             _vals[32] = (TMath::Abs(bieta)<=25)*(bieta%25) + (TMath::Abs(bieta)>25)*((bieta-25*TMath::Abs(bieta)/bieta)%20);  //module boundary eta approximate symmetry
             _vals[33] = biphi%20; //module boundary phi symmetry
             _vals[34] = l.pho_betacry[ipho];//betacry; //local coordinates with respect to closest crystal center at nominal shower depth
-            _vals[35] = l.pho_phicry[ipho];//bphicry;
+            _vals[35] = l.pho_bphicry[ipho];//bphicry;
             
         }
         else {

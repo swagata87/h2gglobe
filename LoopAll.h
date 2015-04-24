@@ -322,6 +322,10 @@ class LoopAll {
   std::set<TBranch *> inputBranches; 
   std::list<std::string> outputBranchNames;
   
+  bool isPrompt(int ip);
+  bool isEMGenJet(int ip);
+  bool selectGenEvents(int& iPrompt, int& iFake);
+
   /** list of the analyses to be performed */
   std::vector<BaseAnalysis*> analyses;
 
@@ -774,6 +778,15 @@ float pho_idmva[MAX_PHOTONS][MAX_VERTICES];
 
 #define MAX_DIPHOTONS 50
 Int_t dipho_n;
+Int_t dipho_gensel;
+Int_t dipho_genfakeind;
+Int_t dipho_genpromptind;
+Float_t dipho_genfakephi;
+Float_t dipho_genprompte;
+Float_t dipho_genfakee;
+Float_t dipho_genprompteta;
+Float_t dipho_genfakeeta;
+Float_t dipho_genpromptphi;
 Int_t dipho_leadind[MAX_DIPHOTONS];
 Int_t dipho_subleadind[MAX_DIPHOTONS];
 Int_t dipho_vtxind[MAX_DIPHOTONS];
@@ -836,6 +849,15 @@ TBranch *b_gh_vbfq2_p4;
 TBranch *b_gh_vh1_p4;
 TBranch *b_gh_vh2_p4;
 TBranch * b_dipho_n;
+TBranch * b_dipho_gensel;
+TBranch * b_dipho_genfakeind;
+TBranch * b_dipho_genpromptind;
+TBranch * b_dipho_genfakee;
+TBranch * b_dipho_genprompte;
+TBranch * b_dipho_genfakeeta;
+TBranch * b_dipho_genprompteta;
+TBranch * b_dipho_genfakephi;
+TBranch * b_dipho_genpromptphi;
 TBranch * b_dipho_leadind;
 TBranch * b_dipho_subleadind;
 TBranch * b_dipho_vtxind;
@@ -1058,12 +1080,21 @@ void SetBranchAddress_vtx_std_ranked_list(TTree * tree) { tree->SetBranchAddress
 void SetBranchAddress_pho_matchingConv(TTree * tree) { tree->SetBranchAddress("pho_matchingConv", &pho_matchingConv, &b_pho_matchingConv); }; 
 
 void Branch_dipho_n(TTree * tree) { tree->Branch("dipho_n", &dipho_n, "dipho_n/I"); };
+void Branch_dipho_gensel(TTree * tree) { tree->Branch("dipho_gensel", &dipho_gensel, "dipho_gensel/I"); };
+void Branch_dipho_genfakeind(TTree * tree) { tree->Branch("dipho_genfakeind", &dipho_genfakeind, "dipho_genfakeind/I"); };
+void Branch_dipho_genpromptind(TTree * tree) { tree->Branch("dipho_genpromptind", &dipho_genpromptind, "dipho_genpromptind/I"); };
+void Branch_dipho_genfakee(TTree * tree) { tree->Branch("dipho_genfakee", &dipho_genfakee, "dipho_genfakee/F"); };
+void Branch_dipho_genprompte(TTree * tree) { tree->Branch("dipho_genprompte", &dipho_genprompte, "dipho_genprompte/F"); };
+void Branch_dipho_genfakeeta(TTree * tree) { tree->Branch("dipho_genfakeeta", &dipho_genfakeeta, "dipho_genfakeeta/F"); };
+void Branch_dipho_genprompteta(TTree * tree) { tree->Branch("dipho_genprompteta", &dipho_genprompteta, "dipho_genprompteta/F"); };
+void Branch_dipho_genfakephi(TTree * tree) { tree->Branch("dipho_genfakephi", &dipho_genfakephi, "dipho_genfakephi/F"); };
+void Branch_dipho_genpromptphi(TTree * tree) { tree->Branch("dipho_genpromptphi", &dipho_genpromptphi, "dipho_genpromptphi/F"); };
 void Branch_dipho_leadind(TTree * tree) { tree->Branch("dipho_leadind", &dipho_leadind, "dipho_leadind[dipho_n]/I"); };
 void Branch_dipho_subleadind(TTree * tree) { tree->Branch("dipho_subleadind", &dipho_subleadind, "dipho_subleadind[dipho_n]/I"); };
 void Branch_dipho_vtxind(TTree * tree) { tree->Branch("dipho_vtxind", &dipho_vtxind, "dipho_vtxind[dipho_n]/I"); };
 void Branch_dipho_sumpt(TTree * tree) { tree->Branch("dipho_sumpt", &dipho_sumpt, "dipho_sumpt[dipho_n]/F"); };
 void Branch_pho_genmatched(TTree *tree){tree->Branch("pho_genmatched", &pho_genmatched, "pho_genmatched[pho_n]/O");};
-void Branch_pho_genenergy(TTree *tree){tree->Branch("pho_genenergy", &pho_genenergy, "pho_genenergy[pho_n]/O");};
+void Branch_pho_genenergy(TTree *tree){tree->Branch("pho_genenergy", &pho_genenergy, "pho_genenergy[pho_n]/F");};
 void Branch_pho_regr_energy_otf(TTree *tree){tree->Branch("pho_regr_energy_otf", &pho_regr_energy_otf, "pho_regr_energy_otf[pho_n]/F");};
 void Branch_pho_regr_energyerr_otf(TTree *tree){tree->Branch("pho_regr_energyerr_otf", &pho_regr_energyerr_otf, "pho_regr_energyerr_otf[pho_n]/F");};
 //// void Branch_dipho_leadet(TTree * tree) { tree->Branch("dipho_leadet", &dipho_leadet, "dipho_leadet[dipho_n]/F"); };
@@ -1081,6 +1112,15 @@ void Branch_pho_regr_energyerr_otf(TTree *tree){tree->Branch("pho_regr_energyerr
 //// void Branch_dipho_cts(TTree * tree) { tree->Branch("dipho_cts", &dipho_cts, "dipho_cts[dipho_n]/F"); };
 
 void SetBranchAddress_dipho_n(TTree * tree) { tree->SetBranchAddress("dipho_n", &dipho_n, &b_dipho_n); };
+void SetBranchAddress_dipho_gensel(TTree * tree) { tree->SetBranchAddress("dipho_gensel", &dipho_gensel, &b_dipho_gensel); };
+void SetBranchAddress_dipho_genfakeind(TTree * tree) { tree->SetBranchAddress("dipho_genfakeind", &dipho_genfakeind, &b_dipho_genfakeind); };
+void SetBranchAddress_dipho_genpromptind(TTree * tree) { tree->SetBranchAddress("dipho_genpromptind", &dipho_genpromptind, &b_dipho_genpromptind); };
+void SetBranchAddress_dipho_genfakee(TTree * tree) { tree->SetBranchAddress("dipho_genfakee", &dipho_genfakee, &b_dipho_genfakee); };
+void SetBranchAddress_dipho_genprompte(TTree * tree) { tree->SetBranchAddress("dipho_genprompte", &dipho_genprompte, &b_dipho_genprompte); };
+void SetBranchAddress_dipho_genfakeeta(TTree * tree) { tree->SetBranchAddress("dipho_genfakeeta", &dipho_genfakeeta, &b_dipho_genfakeeta); };
+void SetBranchAddress_dipho_genprompteta(TTree * tree) { tree->SetBranchAddress("dipho_genprompteta", &dipho_genprompteta, &b_dipho_genprompteta); };
+void SetBranchAddress_dipho_genfakephi(TTree * tree) { tree->SetBranchAddress("dipho_genfakephi", &dipho_genfakephi, &b_dipho_genfakephi); };
+void SetBranchAddress_dipho_genpromptphi(TTree * tree) { tree->SetBranchAddress("dipho_genpromptphi", &dipho_genpromptphi, &b_dipho_genpromptphi); };
 void SetBranchAddress_dipho_leadind(TTree * tree) { tree->SetBranchAddress("dipho_leadind", &dipho_leadind, &b_dipho_leadind); };
 void SetBranchAddress_dipho_subleadind(TTree * tree) { tree->SetBranchAddress("dipho_subleadind", &dipho_subleadind, &b_dipho_subleadind); };
 void SetBranchAddress_dipho_vtxind(TTree * tree) { tree->SetBranchAddress("dipho_vtxind", &dipho_vtxind, &b_dipho_vtxind); };
