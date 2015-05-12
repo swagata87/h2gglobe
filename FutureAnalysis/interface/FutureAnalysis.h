@@ -2,16 +2,7 @@
 #define __FUTUREANALYSIS__
 
 #include "BaseAnalysis.h"
-//#include "BaseSmearer.h"
-//#include "PhotonAnalysis.h"
-//#include "StatAnalysis.h"
 #include "RooContainer.h"
-//#include "VertexAnalysis/interface/HggVertexAnalyzer.h"
-
-//#include "EnergySmearer.h"
-//#include "EfficiencySmearer.h"
-//#include "DiPhoEfficiencySmearer.h"
-//#include "KFactorSmearer.h"
 #include <iostream>
 #include <fstream>
 #include "math.h"
@@ -39,17 +30,13 @@ public:
   virtual bool SkimEvents(LoopAll&, int);
   virtual bool SelectEvents(LoopAll&, int);
   virtual bool Analysis(LoopAll&, Int_t);
-  void FillFlatTree(LoopAll&, Int_t, Int_t);
-  int MatchedWithReco(TLorentzVector&, LoopAll&) ;
+  void FillFlatTree(LoopAll&, Int_t, Float_t, Int_t, Int_t);
+  bool PhotonPreSelection(LoopAll&, Int_t, Int_t);
 
+  bool makeOptTree;
   
 protected:
   std::string name_;
-  
-  /// Counters for photon reconstruction efficiency ///
-  int deno;
-  int num ;
-  
 };
 
 #endif

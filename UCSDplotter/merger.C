@@ -8,7 +8,7 @@
 #include<vector>
 #include<string>
 
-int merger(char* filename = "all.root", char* dirname = "",  char* outfilename = "opttree.root", char* treename = "opttree") {
+int merger(char* filename = "all.root", char* dirname = "",  char* outfilename = "opttree_Shashlik.root", char* treename = "opttree") {
 
   int nTrees = 0;
   TTree *tree[100];

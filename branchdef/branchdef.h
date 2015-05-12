@@ -1,4 +1,3 @@
-
 TBranch* b_pho_bc2e;
 TBranch* b_pho_bc2eta;
 TBranch* b_pho_bc2phi;

@@ -2228,7 +2228,7 @@ bool PhotonAnalysis::SelectEventsReduction(LoopAll& l, int jentry)
     l.vtx_std_sel=0;
     float maxSumPt = 0.;
     l.dipho_n = 0;
-    bool oneKinSelected = true;
+    bool oneKinSelected = false;
 
     // fill ID variables
     if( forcedRho >= 0. ) {

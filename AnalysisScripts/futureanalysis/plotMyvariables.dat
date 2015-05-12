@@ -5,4 +5,21 @@ htyp=0  plot=0  ncat=1  xbins=40    ybins=0  xmin=0.0  xmax=4.0    ymin=0  ymax=
 htyp=0  plot=0  ncat=1  xbins=40    ybins=0  xmin=0.0  xmax=4.0    ymin=0  ymax=0  name=deno_hist_absEta  xaxis=|Eta|  yaxis=Nevents
 htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=num_hist_Pt  xaxis=Pt  yaxis=Nevents
 htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=deno_hist_Pt  xaxis=Pt  yaxis=Nevents
-
+htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=my_nvtx_rv  xaxis=nvtx_right  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=100   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=my_nvtx  xaxis=nvtx_total  yaxis=Nevents
+#####
+htyp=0  plot=0  ncat=1  xbins=200   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=pf_pho_iso_run1parameters  xaxis=phoIso  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=200   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=pf_pho_iso_eta030          xaxis=phoIso  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=200   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=pf_pho_iso_eta045          xaxis=phoIso  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=200   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=pf_pho_iso_eta060          xaxis=phoIso  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=200   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=pf_pho_iso_eta075          xaxis=phoIso  yaxis=Nevents
+htyp=0  plot=0  ncat=1  xbins=200   ybins=0  xmin=0.0  xmax=200.0  ymin=0  ymax=0  name=pf_pho_iso_eta090          xaxis=phoIso  yaxis=Nevents
+######
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=pf_detadphi_noveto     xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=my_pfetaphi_Run1veto   xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=my_pfetaphi_deta030    xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=my_pfetaphi_deta045    xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=my_pfetaphi_deta060    xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=my_pfetaphi_deta075    xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=400   ybins=400  xmin=-0.4  xmax=0.4  ymin=-0.4  ymax=0.4  name=my_pfetaphi_deta090    xaxis=dEta  yaxis=dPhi
+htyp=1  plot=0  ncat=1  xbins=300   ybins=700  xmin=-1.5  xmax=1.5  ymin=-3.5  ymax=3.5  name=my_pho_position xaxis=PhoEta  yaxis=PhoPhi
